@@ -35,6 +35,21 @@ pnpm tauri build
 
 产物在 `src-tauri/target/release/bundle/`（`macos/课时统计.app` 与 `dmg/`）。未签名，首次打开需在访达里右键 → 打开。
 
+## 版本与更新
+
+安装：到 [Releases](https://github.com/cod7ce/CourseHours/releases/latest) 下载 `CourseHours-<版本>-mac-arm64.dmg`，拖进「应用程序」。
+
+应用启动 20 秒后和之后每 6 小时静默检查一次 GitHub Releases，发现新版本时侧边栏「设置」旁出现红点；「设置 → 版本」里可以手动检查、查看更新说明、一键「下载并安装」：下载 zip → 解压 → 退出后原地替换 .app → 自动重启。实现在 `src-tauri/src/commands/updater.rs`，没有用 `tauri-plugin-updater`（它要求给更新包签名）。替换脚本先把旧版改名备份，复制成功才删，失败回滚。
+
+发新版本：
+
+```bash
+scripts/bump.sh 0.1.1     # 同步 package.json / tauri.conf.json / Cargo.toml，提交并打 tag v0.1.1
+scripts/release.sh        # 本地打包，产出 dmg + zip，创建 GitHub Release 并上传
+```
+
+也可以只 `git push origin v0.1.1`，`.github/workflows/release.yml` 会在 GitHub Actions 上构建并上传。`.zip` 给自动更新用，`.dmg` 给人下载。
+
 ## 数据
 
 - 数据库：`~/Library/Application Support/com.coursehours.app/data.db`

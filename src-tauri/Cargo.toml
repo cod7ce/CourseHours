@@ -23,6 +23,7 @@ rusqlite = { version = "0.32", features = ["bundled", "backup"] }
 uuid = { version = "1", features = ["v4"] }
 chrono = "0.4"
 thiserror = "2"
+ureq = { version = "2", features = ["json"] }
 
 [profile.release]
 codegen-units = 1

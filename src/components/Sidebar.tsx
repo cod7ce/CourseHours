@@ -1,5 +1,6 @@
 import { NavLink, useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
+import { listen } from '@tauri-apps/api/event';
 import { getNavStats, type NavStats } from '../lib/api';
 import { num } from '../lib/format';
 import { useRefresh } from './ui';
@@ -20,6 +21,8 @@ export function Sidebar() {
   const loc = useLocation();
   useEffect(() => { getNavStats().then(setStats).catch(() => {}); }, [tick, loc.pathname]);
   const onSettings = loc.pathname.startsWith('/settings');
+  const [hasUpdate, setHasUpdate] = useState(false);
+  useEffect(() => { let un: (() => void) | undefined; listen('update-available', () => setHasUpdate(true)).then((f) => { un = f; }); return () => un?.(); }, []);
   return (
     <aside className="drag" style={{ width: 216, flexShrink: 0, background: 'var(--nav-bg)', display: 'flex', flexDirection: 'column', height: '100%' }}>
       <div style={{ height: 28 }} />
@@ -56,6 +59,7 @@ export function Sidebar() {
           background: onSettings ? 'var(--nav-card)' : 'transparent', color: onSettings ? 'var(--nav-text-on)' : 'var(--nav-text-dim)',
         }}>
           <IconGear /><span>设置</span>
+          {hasUpdate && <span title="有新版本" style={{ marginLeft: 'auto', width: 8, height: 8, borderRadius: '50%', background: 'var(--accent)' }} />}
         </NavLink>
       </div>
     </aside>

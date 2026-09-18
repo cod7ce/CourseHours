@@ -38,6 +38,7 @@ pub fn run() {
             commands::startup::run_startup_tasks(&db);
             app.manage(db);
             commands::startup::spawn_scheduler(app.handle().clone());
+            commands::updater::spawn_auto_check(app.handle().clone());
             #[cfg(debug_assertions)]
             seed::spawn_dev_bridge(app.handle().clone());
             Ok(())

@@ -4,17 +4,18 @@ import * as api from '../lib/api';
 import type { AllSettings } from '../lib/api';
 import { Loading, PageHeader, useConfirm, useRefresh, useToast } from '../components/ui';
 import {
-  AlertsPreview, AlertsSection, DataPreview, DataSection, OrgPreview, OrgSection,
+  AlertsPreview, AlertsSection, DataPreview, DataSection, OrgPreview, OrgSection, VersionPreview, VersionSection,
   PacksPreview, PacksSection, RulesPreview, RulesSection,
 } from './SettingsSections';
 
-export type Section = 'rules' | 'alerts' | 'packs' | 'org' | 'data';
+export type Section = 'rules' | 'alerts' | 'packs' | 'org' | 'data' | 'version';
 const SECTIONS: { key: Section; label: string }[] = [
   { key: 'rules', label: '课时规则' },
   { key: 'alerts', label: '提醒与预警' },
   { key: 'packs', label: '班级与课包' },
   { key: 'org', label: '机构信息' },
   { key: 'data', label: '数据与备份' },
+  { key: 'version', label: '版本' },
 ];
 const isSection = (s: string | undefined): s is Section => SECTIONS.some((x) => x.key === s);
 
@@ -139,16 +140,17 @@ export function Settings() {
             {section === 'packs' && <PacksSection d={draft} patch={patch} />}
             {section === 'org' && <OrgSection d={draft} patch={patch} />}
             {section === 'data' && <DataSection d={draft} patch={patch} reload={reload} />}
+            {section === 'version' && <VersionSection />}
           </div>
 
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 16, borderTop: '1px solid var(--line-faint)', flexShrink: 0 }}>
+          {section !== 'version' && <div style={{ display: 'flex', alignItems: 'center', gap: 10, paddingTop: 16, borderTop: '1px solid var(--line-faint)', flexShrink: 0 }}>
             <span style={{ fontSize: 11.5, color: 'var(--ink-3)', minWidth: 0, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>保存后立即生效，历史流水不受影响</span>
             {saveErr && <span className="err">{saveErr}</span>}
             <div style={{ flexGrow: 1 }} />
             <button type="button" className="btn ghost" style={{ height: 38, padding: '0 14px', borderRadius: 10, fontSize: 13.5 }} onClick={reset}>恢复默认</button>
             {dirty && <button type="button" className="btn" style={{ height: 38, padding: '0 18px', borderRadius: 10, fontSize: 13.5 }} onClick={() => setDraft(saved)}>放弃改动</button>}
             <button type="button" className="btn primary" style={{ height: 38, padding: '0 24px', borderRadius: 10 }} disabled={saving || !dirty} onClick={save}>保存设置</button>
-          </div>
+          </div>}
         </section>
 
         <aside style={{ width: 304, flexShrink: 0, display: 'flex', flexDirection: 'column', gap: 16, overflow: 'auto', minHeight: 0 }}>
@@ -157,6 +159,7 @@ export function Settings() {
           {section === 'packs' && <PacksPreview d={draft} />}
           {section === 'org' && <OrgPreview d={draft} />}
           {section === 'data' && <DataPreview d={draft} />}
+          {section === 'version' && <VersionPreview />}
         </aside>
       </div>
     </>

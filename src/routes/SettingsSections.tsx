@@ -1,7 +1,8 @@
 import { TimePicker } from '../components/pickers';
 import { useEffect, useRef, useState, type ReactNode } from 'react';
 import { save as saveDialog } from '@tauri-apps/plugin-dialog';
-import { revealItemInDir } from '@tauri-apps/plugin-opener';
+import { openUrl, revealItemInDir } from '@tauri-apps/plugin-opener';
+import { listen } from '@tauri-apps/api/event';
 import * as api from '../lib/api';
 import type { AllSettings, BackupFile, HoursRule, InvariantReport, PackagePreset } from '../lib/api';
 import { Loading, Modal, Stepper, Switch, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
@@ -578,6 +579,138 @@ export function DataPreview({ d }: { d: AllSettings }) {
         {([['学生', info.data?.students], ['课次', info.data?.sessions], ['流水记录', info.data?.ledgerEntries]] as [string, number | undefined][]).map(([l, v], i) => (
           <div key={l} style={{ ...KV, marginTop: i === 0 ? 12 : 9 }}><span>{l}</span><span className="num" style={{ color: 'var(--ink)' }}>{v == null ? '—' : v.toLocaleString('en-US')}</span></div>
         ))}
+      </Card>
+    </>
+  );
+}
+
+// =============== version ===============
+function fmtBytes(n: number): string {
+  return bytes(n);
+}
+
+/** 更新状态放在模块级，切换分区/页面时不丢 */
+let lastInfo: api.UpdateInfo | null = null;
+
+export function VersionSection() {
+  const toast = useToast();
+  const [version, setVersion] = useState('');
+  const [info, setInfo] = useState<api.UpdateInfo | null>(lastInfo);
+  const [checking, setChecking] = useState(false);
+  const [err, setErr] = useState<string | null>(null);
+  const [progress, setProgress] = useState<api.UpdateProgress | null>(null);
+  const [installing, setInstalling] = useState(false);
+
+  useEffect(() => { api.getAppVersion().then(setVersion).catch(() => {}); }, []);
+  useEffect(() => {
+    let un: (() => void) | undefined;
+    let un2: (() => void) | undefined;
+    listen<api.UpdateProgress>('update-progress', (e) => {
+      setProgress(e.payload);
+      if (e.payload.phase === 'error') setInstalling(false);
+    }).then((f) => { un = f; });
+    listen<api.UpdateInfo>('update-available', (e) => { lastInfo = e.payload; setInfo(e.payload); }).then((f) => { un2 = f; });
+    return () => { un?.(); un2?.(); };
+  }, []);
+
+  const check = async (force = false) => {
+    setChecking(true); setErr(null);
+    try {
+      const r = await api.checkUpdate(force);
+      lastInfo = r; setInfo(r);
+      if (!r.available) toast('已经是最新版本', 'ok');
+    } catch (e) { setErr(api.errMsg(e)); } finally { setChecking(false); }
+  };
+  const install = async () => {
+    if (!info?.asset) return;
+    setInstalling(true); setErr(null); setProgress({ phase: 'downloading', received: 0, total: info.asset.size });
+    try {
+      await api.installUpdate(info.asset);
+    } catch (e) { setErr(api.errMsg(e)); setInstalling(false); setProgress(null); }
+  };
+
+  const pct = progress && progress.total > 0 ? Math.min(100, Math.round((progress.received / progress.total) * 100)) : 0;
+  const phaseText = progress?.phase === 'downloading' ? `下载中 ${pct}% · ${fmtBytes(progress.received)} / ${fmtBytes(progress.total)}`
+    : progress?.phase === 'installing' ? '正在解压安装包…'
+    : progress?.phase === 'restarting' ? '安装完成，正在重启…' : '';
+
+  return (
+    <div>
+      <h2 style={H2}>版本</h2>
+      <p style={SUB}>更新直接从 GitHub Releases 下载，安装后自动重启，数据不受影响。</p>
+
+      <Row top h={64}>
+        <Text t="当前版本" s={info ? `上次检查 ${dt(info.checkedAt)}` : '还没有检查过更新'} />
+        <span className="num" style={{ fontSize: 20, fontWeight: 600 }}>v{version || '—'}</span>
+      </Row>
+
+      <Row h={64}>
+        <Text t="检查更新" s="启动 20 秒后和之后每 6 小时会自动静默检查一次" />
+        <button type="button" className="btn" disabled={checking || installing} onClick={() => check(false)}>{checking ? '检查中…' : '立即检查'}</button>
+      </Row>
+
+      {info && (
+        <div style={{ marginTop: 14, padding: '14px 16px', borderRadius: 12, background: info.available ? 'var(--accent-tint)' : 'var(--surface-soft)', border: `1px solid ${info.available ? 'var(--accent-soft)' : 'var(--line-faint)'}` }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+            <span style={{ fontSize: 13.5, fontWeight: 600 }}>{info.available ? `发现新版本 v${info.latest}` : `已是最新 · v${info.latest}`}</span>
+            {info.publishedAt && <span className="muted" style={{ fontSize: 11.5 }}>发布于 {info.publishedAt.slice(0, 10)}</span>}
+            <div style={{ flexGrow: 1 }} />
+            <a role="button" style={{ fontSize: 12, cursor: 'pointer' }} onClick={() => openUrl(info.pageUrl)}>查看发布页</a>
+          </div>
+          {info.notes && (
+            <pre style={{ margin: '10px 0 0', fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--ink-2)', whiteSpace: 'pre-wrap', lineHeight: 1.6, maxHeight: 180, overflow: 'auto' }}>{info.notes.slice(0, 1200)}</pre>
+          )}
+          {info.available && (
+            <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 12 }}>
+              {info.asset && info.canInstall ? (
+                <button type="button" className="btn primary" disabled={installing} onClick={install}>
+                  {installing ? '更新中…' : `下载并安装（${fmtBytes(info.asset.size)}）`}
+                </button>
+              ) : (
+                <button type="button" className="btn primary" onClick={() => openUrl(info.pageUrl)}>去下载页</button>
+              )}
+              {!info.canInstall && <span className="muted" style={{ fontSize: 11.5 }}>开发模式不能原地更新</span>}
+              {!info.asset && <span className="muted" style={{ fontSize: 11.5 }}>这个版本没有自动安装包</span>}
+            </div>
+          )}
+          {progress && progress.phase !== 'error' && (
+            <div style={{ marginTop: 12 }}>
+              <div style={{ height: 6, borderRadius: 3, background: 'var(--line-mid)', overflow: 'hidden' }}>
+                <div style={{ width: `${progress.phase === 'downloading' ? pct : 100}%`, height: '100%', background: 'var(--accent)', transition: 'width .2s' }} />
+              </div>
+              <div className="muted" style={{ fontSize: 11.5, marginTop: 6 }}>{phaseText}</div>
+            </div>
+          )}
+        </div>
+      )}
+      {err && <div className="err" style={{ marginTop: 10 }}>{err}</div>}
+
+      <div style={{ marginTop: 18, fontSize: 11.5, color: 'var(--ink-3)', lineHeight: 1.7 }}>
+        更新时会先把旧版本改名备份，新版本复制成功才删除备份，失败则自动回滚。应用需要放在「应用程序」或个人目录下才能原地更新。
+        <br />
+        <a role="button" style={{ cursor: 'pointer' }} onClick={() => check(true)}>用当前版本演练一次更新流程</a>
+      </div>
+    </div>
+  );
+}
+
+export function VersionPreview() {
+  return (
+    <>
+      <Card title="更新是怎么做的">
+        <div style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.7, marginTop: 8 }}>
+          <div>1. 读取 GitHub 上 cod7ce/CourseHours 的 Releases</div>
+          <div>2. 版本号比当前新就提示，点一下下载 zip</div>
+          <div>3. 解压后退出应用，用脚本原地替换 .app，再自动打开</div>
+          <div style={{ marginTop: 8, color: 'var(--ink-3)' }}>没有用系统级签名，所以第一次打开新版本时若系统拦截，在访达里右键 → 打开一次即可。</div>
+        </div>
+      </Card>
+      <Card title="发新版本">
+        <div style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.7, marginTop: 8 }}>
+          <div className="num">scripts/bump.sh 0.1.1</div>
+          <div className="num">scripts/release.sh</div>
+          <div style={{ marginTop: 6, color: 'var(--ink-3)' }}>或者只推 tag，GitHub Actions 会自动构建并上传到 Release。</div>
+        </div>
       </Card>
     </>
   );

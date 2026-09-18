@@ -1,0 +1,49 @@
+name: 构建并发布
+
+on:
+  push:
+    tags: ['v*']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  macos:
+    name: macOS (arm64)
+    runs-on: macos-14
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pnpm/action-setup@v4
+        with:
+          version: 10
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: pnpm
+      - uses: dtolnay/rust-toolchain@stable
+      - uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: src-tauri
+      - name: 安装依赖
+        run: pnpm install --frozen-lockfile
+      - name: 打包
+        run: pnpm tauri build
+      - name: 整理产物
+        run: |
+          V=$(node -p "require('./package.json').version")
+          NAME="CourseHours-$V-mac-arm64"
+          mkdir -p release
+          cp src-tauri/target/release/bundle/dmg/*.dmg "release/$NAME.dmg"
+          APP=$(ls -d src-tauri/target/release/bundle/macos/*.app | head -1)
+          /usr/bin/ditto -c -k --keepParent "$APP" "release/$NAME.zip"
+          ls -la release
+      - name: 发布到 Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          if gh release view "$GITHUB_REF_NAME" >/dev/null 2>&1; then
+            gh release upload "$GITHUB_REF_NAME" release/*.dmg release/*.zip --clobber
+          else
+            gh release create "$GITHUB_REF_NAME" release/*.dmg release/*.zip --verify-tag --title "$GITHUB_REF_NAME" --generate-notes
+          fi

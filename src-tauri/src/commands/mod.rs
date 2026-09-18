@@ -9,6 +9,7 @@ pub mod settings;
 pub mod startup;
 pub mod students;
 pub mod today;
+pub mod updater;
 
 use crate::db::Db;
 use std::sync::MutexGuard;
@@ -67,5 +68,8 @@ pub fn handler() -> impl Fn(tauri::ipc::Invoke) -> bool + Send + Sync + 'static 
         data::save_text_file,
         data::export_database,
         data::check_invariants,
+        updater::get_app_version,
+        updater::check_update,
+        updater::install_update,
     ]
 }

@@ -368,3 +368,15 @@ export function errMsg(e: unknown): string {
   if (e && typeof e === 'object' && 'message' in e) return String((e as { message: unknown }).message);
   return String(e);
 }
+
+// ---------- 版本与更新 ----------
+export interface UpdateAsset { name: string; url: string; size: number }
+export interface UpdateInfo {
+  current: string; latest: string; available: boolean; notes: string; publishedAt: string | null; pageUrl: string;
+  asset: UpdateAsset | null; checkedAt: number; canInstall: boolean;
+}
+export interface UpdateProgress { phase: 'downloading' | 'installing' | 'restarting' | 'error'; received: number; total: number }
+export const RELEASES_PAGE = 'https://github.com/cod7ce/CourseHours/releases/latest';
+export const getAppVersion = () => invoke<string>('get_app_version');
+export const checkUpdate = (force = false) => invoke<UpdateInfo>('check_update', { force });
+export const installUpdate = (asset: UpdateAsset) => invoke<void>('install_update', { asset });
