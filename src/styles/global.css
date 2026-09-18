@@ -142,11 +142,11 @@ select.input { appearance: none; -webkit-appearance: none; padding-right: 30px; 
 .err { color: var(--danger-ink); font-size: 12.5px; }
 
 /* toast */
-.toasts { position: fixed; top: 16px; right: 20px; display: flex; flex-direction: column; gap: 8px; z-index: 100; }
+.toasts { position: fixed; top: 14px; left: calc(50% + var(--sidebar-w) / 2); transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 8px; z-index: 100; pointer-events: none; }
 .toast { padding: 10px 14px; border-radius: 10px; background: var(--ink); color: #FFF6EE; font-size: 12.5px; box-shadow: 0 8px 24px -12px rgba(0,0,0,.5); animation: toast-in .18s ease-out; max-width: 380px; }
 .toast.danger { background: var(--danger); }
 .toast.ok { background: var(--ok); }
-@keyframes toast-in { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: none; } }
+@keyframes toast-in { from { opacity: 0; transform: translateY(-8px); } to { opacity: 1; transform: none; } }
 
 /* 空状态 */
 .empty { display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 8px; padding: 40px 20px; color: var(--ink-3); font-size: 13px; text-align: center; }
