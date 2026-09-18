@@ -43,6 +43,7 @@ pub fn handler() -> impl Fn(tauri::ipc::Invoke) -> bool + Send + Sync + 'static 
         scheduling::generate_sessions,
         scheduling::list_sessions,
         scheduling::cancel_session,
+        scheduling::delete_session,
         scheduling::add_extra_session,
         scheduling::update_session,
         scheduling::recent_adjustments,

@@ -486,6 +486,26 @@ pub fn cancel_session(db: State<Db>, id: String, reason: Option<String>) -> AppR
     Ok(())
 }
 
+/// 删除一节还没点名、没有任何流水的课次（误加 / 多排的）。已点名的先撤销点名。
+#[tauri::command]
+pub fn delete_session(db: State<Db>, id: String) -> AppResult<()> {
+    let conn = lock(&db);
+    let s = repo::session(&conn, &id)?;
+    if s.status == "taken" {
+        return Err(AppError::rule("这节课已点名，不能删除；如需作废请先撤销点名"));
+    }
+    let refs: i64 = conn.query_row(
+        "SELECT (SELECT COUNT(*) FROM attendance WHERE session_id = ?1) + (SELECT COUNT(*) FROM ledger_entry WHERE session_id = ?1)",
+        params![id],
+        |r| r.get(0),
+    )?;
+    if refs > 0 {
+        return Err(AppError::rule("这节课有点名或流水记录，不能删除"));
+    }
+    conn.execute("DELETE FROM session WHERE id = ?1", params![id])?;
+    Ok(())
+}
+
 #[derive(Deserialize, Clone, Debug)]
 #[serde(rename_all = "camelCase")]
 pub struct ExtraSessionInput {

@@ -258,7 +258,15 @@ export function Schedule() {
 
       {cancelledView && (
         <Modal title="这节课已取消" sub={`${cancelledView.className} · ${cnDate(cancelledView.date)} ${cancelledView.startTime} – ${cancelledView.endTime}`} onClose={() => setCancelledView(null)} width={420}
-          footer={<button className="btn" onClick={() => setCancelledView(null)}>关闭</button>}>
+          footer={<>
+            <button className="btn sm" style={{ color: 'var(--danger-ink)', marginRight: 'auto' }} onClick={async () => {
+              const s = cancelledView;
+              const ok = await confirm({ title: '从课表上删除这节课？', body: <>{s.className} · {cnDate(s.date)} {s.startTime} – {s.endTime}<br />删掉后课表上不再显示这个灰块。</>, danger: true, confirmText: '删除' });
+              if (!ok) return;
+              try { await api.deleteSession(s.id); toast('已删除课次', 'ok'); setCancelledView(null); afterWrite(); } catch (e) { toast(api.errMsg(e), 'danger'); }
+            }}>删除这节课</button>
+            <button className="btn" onClick={() => setCancelledView(null)}>关闭</button>
+          </>}>
           <div style={{ fontSize: 13, color: 'var(--ink-2)', lineHeight: 1.6 }}>
             <div className="muted" style={{ fontSize: 11.5 }}>取消原因</div>
             <div style={{ marginTop: 4 }}>{cancelledView.cancelReason || '未填写原因'}</div>
@@ -351,6 +359,21 @@ function SessionActionModal({ s, durationMin, onClose, onSaved, confirm, toast }
     } catch (e) { setErr(api.errMsg(e)); } finally { setBusy(false); }
   };
 
+  const remove = async () => {
+    const ok = await confirm({
+      title: '删除这节课？',
+      body: <>{s.className} · {cnDate(s.date)} {s.startTime} – {s.endTime}<br />直接从课表上删掉，不留取消记录。适合误加或多排的课；正常停课请用「取消课次」。</>,
+      danger: true, confirmText: '删除',
+    });
+    if (!ok) return;
+    setBusy(true); setErr(null);
+    try {
+      await api.deleteSession(s.id);
+      toast('已删除课次', 'ok');
+      onSaved();
+    } catch (e) { setErr(api.errMsg(e)); } finally { setBusy(false); }
+  };
+
   const cancel = async () => {
     const ok = await confirm({
       title: '取消这节课？',
@@ -390,6 +413,11 @@ function SessionActionModal({ s, durationMin, onClose, onSaved, confirm, toast }
         <div style={{ display: 'flex', gap: 10 }}>
           <input className="input" value={reason} placeholder="原因，例如：老师出差 / 台风停课" onChange={(e) => setReason(e.target.value)} />
           <button className="btn danger" style={{ flexShrink: 0 }} disabled={busy} onClick={cancel}>取消课次</button>
+        </div>
+        <div className="muted" style={{ fontSize: 11.5 }}>取消会在课表上留一个灰色划线块，不顺延。</div>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 6 }}>
+          <span className="muted" style={{ fontSize: 11.5, flexGrow: 1 }}>误加或多排的课可以直接删掉，不留记录</span>
+          <button className="btn sm" style={{ color: 'var(--danger-ink)' }} disabled={busy} onClick={remove}>删除这节课</button>
         </div>
         {err && <div className="err">{err}</div>}
       </div>

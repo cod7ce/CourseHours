@@ -260,6 +260,7 @@ export const previewGenerate = (weeks: number, from?: string) => invoke<Generate
 export const generateSessions = (weeks: number, from?: string) => invoke<GenerateResult>('generate_sessions', { weeks, from });
 export const listSessions = (date?: string) => invoke<WeekView>('list_sessions', { date });
 export const cancelSession = (id: string, reason?: string) => invoke<void>('cancel_session', { id, reason });
+export const deleteSession = (id: string) => invoke<void>('delete_session', { id });
 export const addExtraSession = (input: ExtraSessionInput) => invoke<Session>('add_extra_session', { input });
 export const updateSession = (id: string, patch: SessionPatch) => invoke<Session>('update_session', { id, patch });
 export const recentAdjustments = () => invoke<Adjustment[]>('recent_adjustments');
