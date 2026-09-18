@@ -1,6 +1,6 @@
 [package]
 name = "coursehours"
-version = "0.1.0"
+version = "0.1.1"
 description = "课时统计与消费系统"
 authors = ["dingnAn"]
 edition = "2021"
