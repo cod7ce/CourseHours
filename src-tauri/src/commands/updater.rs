@@ -319,3 +319,48 @@ mod tests {
         assert!(!is_newer("abc", "0.1.0"));
     }
 }
+
+// ---------- 本机身份验证（Touch ID / 登录密码） ----------
+#[derive(Serialize, Clone, Debug)]
+#[serde(rename_all = "camelCase")]
+pub struct AuthResult {
+    pub ok: bool,
+    /// 设备没有可用的验证方式（没设密码等）
+    pub unavailable: bool,
+    pub message: String,
+}
+
+fn authlock_path() -> Option<PathBuf> {
+    // 打包 / dev 时 Tauri 把 sidecar 放在主二进制旁边
+    if let Ok(exe) = std::env::current_exe() {
+        if let Some(dir) = exe.parent() {
+            let p = dir.join("authlock");
+            if p.exists() {
+                return Some(p);
+            }
+        }
+    }
+    // 开发兜底：源码目录里的产物
+    let triple = if cfg!(target_arch = "aarch64") { "aarch64-apple-darwin" } else { "x86_64-apple-darwin" };
+    let p = PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("bin").join(format!("authlock-{}", triple));
+    if p.exists() { Some(p) } else { None }
+}
+
+/// 弹系统验证：有 Touch ID 用 Touch ID，否则登录密码
+#[tauri::command]
+pub async fn authenticate(reason: String) -> AppResult<AuthResult> {
+    tauri::async_runtime::spawn_blocking(move || {
+        let Some(bin) = authlock_path() else {
+            return Ok(AuthResult { ok: false, unavailable: true, message: "找不到验证组件".into() });
+        };
+        let out = std::process::Command::new(bin).arg(&reason).output()?;
+        let msg = String::from_utf8_lossy(&out.stderr).trim().to_string();
+        Ok(match out.status.code() {
+            Some(0) => AuthResult { ok: true, unavailable: false, message: String::new() },
+            Some(2) => AuthResult { ok: false, unavailable: true, message: msg },
+            _ => AuthResult { ok: false, unavailable: false, message: msg },
+        })
+    })
+    .await
+    .map_err(|e| AppError::rule(e.to_string()))?
+}

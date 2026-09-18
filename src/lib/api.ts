@@ -381,3 +381,6 @@ export const RELEASES_PAGE = 'https://github.com/cod7ce/CourseHours/releases/lat
 export const getAppVersion = () => invoke<string>('get_app_version');
 export const checkUpdate = (force = false) => invoke<UpdateInfo>('check_update', { force });
 export const installUpdate = (asset: UpdateAsset) => invoke<void>('install_update', { asset });
+export interface AuthResult { ok: boolean; unavailable: boolean; message: string }
+/** 系统身份验证：Touch ID，不可用时退到登录密码 */
+export const authenticate = (reason: string) => invoke<AuthResult>('authenticate', { reason });

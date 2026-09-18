@@ -2,6 +2,7 @@ import { createContext, useCallback, useContext, useEffect, useMemo, useRef, use
 import { Link } from 'react-router';
 import { IconBack, IconMinus, IconPlus } from './icons';
 import { setMoneyHidden, todayStr } from '../lib/format';
+import { authenticate } from '../lib/api';
 
 // ---------- Toast ----------
 type ToastKind = 'info' | 'ok' | 'danger';
@@ -172,7 +173,7 @@ export function RefreshProvider({ children }: { children: ReactNode }) {
 }
 
 /** 隐藏金额：默认隐藏；点开后当天有效（记住「哪天打开的」），隔天自动回到隐藏。切换时整棵页面树重挂载以刷新所有 yuan() */
-const PrivacyCtx = createContext<{ hidden: boolean; toggle: () => void }>({ hidden: true, toggle: () => {} });
+const PrivacyCtx = createContext<{ hidden: boolean; toggle: () => Promise<void>; busy: boolean }>({ hidden: true, toggle: async () => {}, busy: false });
 export const usePrivacy = () => useContext(PrivacyCtx);
 const PRIVACY_KEY = 'privacy:money-shown-on';
 function shownToday(): boolean {
@@ -180,14 +181,28 @@ function shownToday(): boolean {
 }
 export function PrivacyProvider({ children }: { children: ReactNode }) {
   const [hidden, setHidden] = useState<boolean>(() => { const v = !shownToday(); setMoneyHidden(v); return v; });
-  const toggle = useCallback(() => {
-    setHidden((h) => {
-      const v = !h;
-      setMoneyHidden(v);
-      try { if (v) localStorage.removeItem(PRIVACY_KEY); else localStorage.setItem(PRIVACY_KEY, todayStr()); } catch { /* ignore */ }
-      return v;
-    });
-  }, []);
+  const [busy, setBusy] = useState(false);
+  const push = useContext(ToastCtx);
+  const apply = (v: boolean) => {
+    setMoneyHidden(v);
+    try { if (v) localStorage.removeItem(PRIVACY_KEY); else localStorage.setItem(PRIVACY_KEY, todayStr()); } catch { /* ignore */ }
+    setHidden(v);
+  };
+  // 显示金额前先过系统验证（Touch ID / 登录密码）；隐藏不需要
+  const toggle = useCallback(async () => {
+    if (!hidden) { apply(true); return; }
+    if (busy) return;
+    setBusy(true);
+    try {
+      const r = await authenticate('查看金额');
+      if (r.ok) apply(false);
+      else if (r.unavailable) { apply(false); push('此设备没有可用的验证方式，已直接显示', 'info'); }
+      else if (r.message && !/取消|cancel/i.test(r.message)) push(r.message, 'danger');
+    } catch (e) {
+      push(typeof e === 'string' ? e : String(e), 'danger');
+    } finally { setBusy(false); }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [hidden, busy]);
   // 跨过午夜自动回到隐藏
   useEffect(() => {
     const t = setInterval(() => {
@@ -195,6 +210,6 @@ export function PrivacyProvider({ children }: { children: ReactNode }) {
     }, 60 * 1000);
     return () => clearInterval(t);
   }, []);
-  const value = useMemo(() => ({ hidden, toggle }), [hidden, toggle]);
+  const value = useMemo(() => ({ hidden, toggle, busy }), [hidden, toggle, busy]);
   return <PrivacyCtx.Provider value={value}>{children}</PrivacyCtx.Provider>;
 }

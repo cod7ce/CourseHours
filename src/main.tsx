@@ -10,14 +10,14 @@ const router = createHashRouter([{ path: '/', element: <Shell />, children: rout
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <PrivacyProvider>
-      <RefreshProvider>
-        <ToastProvider>
+    <ToastProvider>
+      <PrivacyProvider>
+        <RefreshProvider>
           <ConfirmProvider>
             <RouterProvider router={router} />
           </ConfirmProvider>
-        </ToastProvider>
-      </RefreshProvider>
-    </PrivacyProvider>
+        </RefreshProvider>
+      </PrivacyProvider>
+    </ToastProvider>
   </React.StrictMode>,
 );

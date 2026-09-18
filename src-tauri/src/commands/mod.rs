@@ -72,5 +72,6 @@ pub fn handler() -> impl Fn(tauri::ipc::Invoke) -> bool + Send + Sync + 'static 
         updater::get_app_version,
         updater::check_update,
         updater::install_update,
+        updater::authenticate,
     ]
 }

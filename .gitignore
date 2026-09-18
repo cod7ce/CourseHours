@@ -28,3 +28,6 @@ dist-ssr
 *.db-wal
 *.db-shm
 release/
+
+# Touch ID 助手编译产物（scripts/build-authlock.sh 生成）
+src-tauri/bin/
