@@ -657,9 +657,6 @@ export function VersionSection() {
             <div style={{ flexGrow: 1 }} />
             <a role="button" style={{ fontSize: 12, cursor: 'pointer' }} onClick={() => openUrl(info.pageUrl)}>查看发布页</a>
           </div>
-          {info.notes && (
-            <pre style={{ margin: '10px 0 0', fontFamily: 'var(--font-body)', fontSize: 12, color: 'var(--ink-2)', whiteSpace: 'pre-wrap', lineHeight: 1.6, maxHeight: 180, overflow: 'auto' }}>{info.notes.replace(/\*\*/g, '').replace(/^#+\s*/gm, '').slice(0, 1200)}</pre>
-          )}
           {info.available && (
             <div style={{ marginTop: 12, display: 'flex', alignItems: 'center', gap: 12 }}>
               {info.asset && info.canInstall ? (
