@@ -684,8 +684,6 @@ export function VersionSection() {
 
       <div style={{ marginTop: 18, fontSize: 11.5, color: 'var(--ink-3)', lineHeight: 1.7 }}>
         更新时会先把旧版本改名备份，新版本复制成功才删除备份，失败则自动回滚。应用需要放在「应用程序」或个人目录下才能原地更新。
-        <br />
-        <a role="button" style={{ cursor: 'pointer' }} onClick={() => check(true)}>用当前版本演练一次更新流程</a>
       </div>
     </div>
   );
@@ -702,13 +700,6 @@ export function VersionPreview() {
           <div style={{ marginTop: 8, color: 'var(--ink-3)' }}>没有 Apple 公证。手动下载安装的包若提示「已损坏」，在终端跑一次：</div>
           <div className="num" style={{ marginTop: 4, fontSize: 11.5, wordBreak: 'break-all', userSelect: 'text' }}>xattr -dr com.apple.quarantine "/Applications/课时统计.app"</div>
           <div style={{ marginTop: 4, color: 'var(--ink-3)' }}>应用内自动更新的版本不需要。</div>
-        </div>
-      </Card>
-      <Card title="发新版本">
-        <div style={{ fontSize: 12, color: 'var(--ink-2)', lineHeight: 1.7, marginTop: 8 }}>
-          <div className="num">scripts/bump.sh 0.1.1</div>
-          <div className="num">scripts/release.sh</div>
-          <div style={{ marginTop: 6, color: 'var(--ink-3)' }}>或者只推 tag，GitHub Actions 会自动构建并上传到 Release。</div>
         </div>
       </Card>
     </>
