@@ -4,7 +4,7 @@ export function setMoneyHidden(v: boolean) { moneyHidden = v; }
 export function isMoneyHidden() { return moneyHidden; }
 export const MONEY_MASK = '*****';
 
-/** 金额：分 → ¥1,000 / ¥14,286.50 / −¥300；隐藏时 ¥••• */
+/** 金额：分 → ¥1,000 / ¥14,286.50 / −¥300；隐藏时 ***** */
 export function yuan(cents: number | null | undefined, opts: { sign?: boolean } = {}): string {
   if (cents == null) return '—';
   if (moneyHidden) return MONEY_MASK;
