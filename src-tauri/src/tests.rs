@@ -475,3 +475,24 @@ fn schedule_apply_to_future_regenerates_unstarted_sessions() {
     let wed: i64 = c.query_row("SELECT COUNT(*) FROM session WHERE class_id = ?1 AND start_time = '14:00'", params![a], |r| r.get(0)).unwrap();
     assert_eq!(wed, r.created_sessions);
 }
+
+#[test]
+fn rule_added_later_backfills_already_generated_weeks() {
+    let mut c = conn();
+    let a = add_class(&c, "A");
+    add_rule(&c, &a, "2", "09:30");
+    let from = crate::db::today();
+    let n1 = generate_inner(&mut c, from, 2).unwrap();
+    assert!(n1 >= 1);
+    // 之后新建一个班并设了时段：再生成同样的 2 周，只补它的课，A 班不重复
+    let b = add_class(&c, "B");
+    add_rule(&c, &b, "4", "14:00");
+    let n2 = generate_inner(&mut c, from, 2).unwrap();
+    let b_count: i64 = c.query_row("SELECT COUNT(*) FROM session WHERE class_id = ?1", params![b], |r| r.get(0)).unwrap();
+    assert_eq!(n2, b_count);
+    assert!(b_count >= 1);
+    let a_count: i64 = c.query_row("SELECT COUNT(*) FROM session WHERE class_id = ?1", params![a], |r| r.get(0)).unwrap();
+    assert_eq!(a_count, n1);
+    // 第三次什么都不生成
+    assert_eq!(generate_inner(&mut c, from, 2).unwrap(), 0);
+}

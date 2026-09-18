@@ -1,4 +1,3 @@
-use chrono::Duration;
 use rusqlite::{params, Connection};
 use serde::{Deserialize, Serialize};
 use tauri::State;
@@ -141,18 +140,11 @@ pub struct GeneratePreview {
     pub lead_weeks: i64,
 }
 
-/// from 默认 = MAX(generated_through) + 1，没有则今天
-fn default_from(conn: &Connection) -> AppResult<chrono::NaiveDate> {
-    let max: Option<String> = conn
-        .query_row("SELECT MAX(generated_through) FROM recurrence_rule WHERE active = 1", [], |r| r.get(0))
-        .unwrap_or(None);
-    Ok(match max {
-        Some(d) => {
-            let d = parse_date(&d)? + Duration::days(1);
-            if d < today() { today() } else { d }
-        }
-        None => today(),
-    })
+/// 生成起点统一取今天：每条规则各自补齐今天到「今天 + N 周」之间还没有的课次。
+/// 已存在的课次（含已取消的）由 UNIQUE(class_id, date, start_time) 跳过，所以已排过的周不会重复，
+/// 后加的班级 / 时段会在同一区间内补上。
+fn default_from(_conn: &Connection) -> AppResult<chrono::NaiveDate> {
+    Ok(today())
 }
 
 struct Planned {
