@@ -55,11 +55,11 @@ export function Sidebar() {
         </div>
       </div>
       <div className="no-drag" style={{ padding: '8px 12px 14px', borderTop: '1px solid var(--nav-line)' }}>
-        <button type="button" onClick={privacy.toggle} title={privacy.hidden ? '点击显示金额' : '点击隐藏金额'} style={{
+        <button type="button" onClick={privacy.toggle} title={privacy.hidden ? '点击显示金额，当天有效，隔天自动隐藏' : '点击隐藏金额'} style={{
           display: 'flex', alignItems: 'center', gap: 11, width: '100%', height: 36, padding: '0 12px', border: 0, borderRadius: 9, fontSize: 13, cursor: 'pointer',
           background: privacy.hidden ? 'var(--nav-card)' : 'transparent', color: privacy.hidden ? 'var(--nav-text-on)' : 'var(--nav-text-dim)', textAlign: 'left',
         }}>
-          {privacy.hidden ? <IconEyeOff /> : <IconEye />}<span>{privacy.hidden ? '金额已隐藏' : '隐藏金额'}</span>
+          {privacy.hidden ? <IconEyeOff /> : <IconEye />}<span>{privacy.hidden ? '显示金额' : '金额今日可见'}</span>
         </button>
         <NavLink to="/settings/rules" style={{
           display: 'flex', alignItems: 'center', gap: 11, height: 36, padding: '0 12px', borderRadius: 9, fontSize: 13,
