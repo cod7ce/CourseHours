@@ -14,4 +14,4 @@ sed -i '' "s/^version = \".*\"$/version = \"$V\"/" src-tauri/Cargo.toml
 git add package.json src-tauri/tauri.conf.json src-tauri/Cargo.toml src-tauri/Cargo.lock
 git commit -q -m "v$V"
 git tag -a "v$V" -m "v$V"
-echo "✅ 已提交并打 tag v$V。发布：scripts/release.sh"
+echo "✅ 已提交并打 tag v${V}。发布：scripts/release.sh"
