@@ -118,7 +118,7 @@ export function Loading() {
 
 export function PageHeader({ title, sub, crumb, right }: { title: ReactNode; sub?: ReactNode; crumb?: { to: string; label: string }; right?: ReactNode }) {
   return (
-    <header className="page-header">
+    <header className="page-header drag">
       <div>
         {crumb && <Link className="crumb" to={crumb.to}><IconBack />{crumb.label}</Link>}
         <h1>{title}</h1>

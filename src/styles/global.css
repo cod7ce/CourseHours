@@ -163,5 +163,5 @@ select.input { appearance: none; -webkit-appearance: none; padding-right: 30px; 
 @keyframes spin { to { transform: rotate(360deg); } }
 .loading { display: flex; align-items: center; justify-content: center; padding: 60px; }
 .divider-v { width: 1px; align-self: stretch; background: var(--line-faint); }
-.drag { -webkit-app-region: drag; }
+.drag { -webkit-app-region: drag; } /* 实际拖动由 Shell.tsx 里的 mousedown 调 startDragging 实现 */
 .no-drag { -webkit-app-region: no-drag; }
