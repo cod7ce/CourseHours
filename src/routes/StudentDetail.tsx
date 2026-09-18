@@ -153,6 +153,7 @@ export function StudentDetail() {
                 <span key={c.id} className="pill" style={{ height: 22, padding: '0 9px', fontSize: 11.5, background: 'var(--class-2-soft)', color: 'var(--ok-ink)' }}>{c.name}</span>
               ))}
               <span className={`pill ${s.status === 'active' ? 'neutral' : s.status === 'paused' ? 'warn' : 'danger'}`} style={{ height: 22, padding: '0 9px', fontSize: 11.5 }}>{studentStatusLabel(s.status)}</span>
+              {s.billing === 'free' && <span className="pill ok" style={{ height: 22, padding: '0 9px', fontSize: 11.5 }}>免费学员</span>}
             </div>
           </div>
           <div style={vline} />

@@ -386,8 +386,8 @@ pub fn session_view(conn: &Connection, s: Session, balances: &std::collections::
     if s.status == "planned" {
         let students = repo::enrolled_students(conn, &s.class_id, &s.date)?;
         enrolled = students.len() as i64;
-        hours = present_cost * students.len() as f64;
-        for st in &students {
+        hours = present_cost * students.iter().filter(|x| !x.is_free()).count() as f64;
+        for st in students.iter().filter(|x| !x.is_free()) {
             let b = *balances.get(&st.id).unwrap_or(&0.0);
             if b - present_cost < 0.0 {
                 negative_names.push(st.name.clone());

@@ -66,7 +66,7 @@ pub fn alerts(conn: &Connection, limit: usize) -> AppResult<(Vec<AlertStudent>, 
     let rule = &all.hours_rule;
     let threshold = all.alerts.low_balance_threshold;
     let balances = repo::balances(conn)?;
-    let mut st = conn.prepare("SELECT id, name FROM student WHERE status = 'active'")?;
+    let mut st = conn.prepare("SELECT id, name FROM student WHERE status = 'active' AND billing != 'free'")?;
     let mut rows: Vec<(String, String, f64)> = st
         .query_map([], |r| Ok((r.get::<_, String>(0)?, r.get::<_, String>(1)?)))?
         .filter_map(|r| r.ok())
@@ -273,7 +273,7 @@ pub fn get_nav_stats(db: State<Db>) -> AppResult<NavStats> {
         |r| r.get(0),
     )?;
     let balances = repo::balances(&conn)?;
-    let mut st = conn.prepare("SELECT id FROM student WHERE status = 'active'")?;
+    let mut st = conn.prepare("SELECT id FROM student WHERE status = 'active' AND billing != 'free'")?;
     let ids: Vec<String> = st.query_map([], |r| r.get(0))?.collect::<Result<Vec<_>, _>>()?;
     let mut alert_count = 0;
     let mut owed_count = 0;

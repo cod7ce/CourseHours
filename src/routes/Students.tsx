@@ -31,6 +31,7 @@ function perWeekOf(s: StudentRow, perWeekByClass: Map<string, number>): number {
 
 /** 状态列：文案 + 颜色 */
 function statusOf(s: StudentRow, perWeek: number): { text: string; color: string } {
+  if (s.billing === 'free') return { text: '免费学员', color: 'var(--ok-ink)' };
   if (s.status === 'paused') return { text: '已停课', color: 'var(--ink-3)' };
   if (s.balance < 0) return { text: `已欠 ${num(-s.balance)} 课时`, color: 'var(--danger-ink)' };
   if (s.balance === 0) return { text: '下次上课起欠', color: 'var(--warn-ink)' };
@@ -112,7 +113,8 @@ export function Students() {
   const modal = showForm && (
     <StudentFormModal
       classes={classes}
-      onClose={() => setShowForm(false)}
+      onClose={() => { setShowForm(false); reload(); }}
+      onCreated={() => { reload(); bump(); }}
       onDone={() => { setShowForm(false); reload(); bump(); toast('已新增学生', 'ok'); }}
     />
   );
@@ -174,7 +176,8 @@ export function Students() {
 
               {shown.map((s) => {
                 const st = statusOf(s, perWeekOf(s, perWeekByClass));
-                const tone = s.balance < 0 ? 'danger' : s.balance <= threshold ? 'warn' : undefined;
+                const free = s.billing === 'free';
+                const tone = free ? undefined : s.balance < 0 ? 'danger' : s.balance <= threshold ? 'warn' : undefined;
                 const rowCls = s.balance < 0 ? 'danger' : s.balance === 0 ? 'warn' : '';
                 const filled = s.balance <= 0;
                 return (
@@ -195,7 +198,7 @@ export function Students() {
                     <span style={{ ...col(W.cls), fontSize: 12.5, color: 'var(--ink-2)', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
                       {s.classes.length ? s.classes.map((c) => c.name).join(' / ') : <span className="faint">—</span>}
                     </span>
-                    <span className="num" style={{ ...col(W.n, true), fontSize: 17, fontWeight: 600, color: balanceColor(s.balance, threshold) }}>{num(s.balance)}</span>
+                    <span className="num" style={{ ...col(W.n, true), fontSize: free ? 13 : 17, fontWeight: 600, color: free ? 'var(--ink-4)' : balanceColor(s.balance, threshold) }}>{free ? '免费' : num(s.balance)}</span>
                     <span className="num" style={{ ...col(W.n, true), fontSize: 13, color: 'var(--ink-2)' }}>{s.monthAttended} / {s.monthTotal}</span>
                     <span className="num" style={{ ...col(W.last, true), fontSize: 13, color: 'var(--ink-3)' }}>{s.lastSessionDate ? md(s.lastSessionDate) : '—'}</span>
                     <span className="num" style={{ ...col(W.owed, true), fontSize: 13, color: s.owedCents > 0 ? 'var(--danger-ink)' : 'var(--ink-3)' }}>{s.owedCents > 0 ? yuan(s.owedCents) : '—'}</span>

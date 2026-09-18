@@ -95,7 +95,7 @@ export function Classes() {
       </div>
 
       {creating && (
-        <ClassFormModal onClose={() => setCreating(false)} onDone={(id) => { setCreating(false); reload(); nav(`/classes/${id}`); }} />
+        <ClassFormModal onClose={() => { setCreating(false); reload(); }} onCreated={() => reload()} onDone={(id) => { setCreating(false); reload(); nav(`/classes/${id}`); }} />
       )}
     </>
   );

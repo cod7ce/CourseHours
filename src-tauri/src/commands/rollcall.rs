@@ -162,7 +162,7 @@ pub fn confirm_rollcall_inner(conn: &mut Connection, session_id: &str, marks: &[
             return Err(AppError::rule("同一学生重复出现在名单中"));
         }
         let stu = repo::student(&tx, &m.student_id)?;
-        snapshot.push(StudentBalance { id: stu.id.clone(), name: stu.name.clone(), balance: repo::balance(&tx, &stu.id)? });
+        snapshot.push(StudentBalance { id: stu.id.clone(), name: stu.name.clone(), balance: repo::balance(&tx, &stu.id)?, free: stu.is_free() });
     }
     let plan = plan_rollcall(&rule, &snapshot, marks).map_err(AppError::Rule)?;
     if !plan.insufficient.is_empty() {
@@ -187,8 +187,11 @@ pub fn confirm_rollcall_inner(conn: &mut Connection, session_id: &str, marks: &[
             None => owed_unit_price(&pkgs, &rule.owed_price_mode),
         };
         let amount = consume_amount_cents(line.hours, unit);
+        let is_free = snapshot.iter().any(|x| x.id == line.student_id && x.free);
         let mut reason = format!("{} {} · {}", k.name, s.start_time, status_label(&line.status));
-        if line.hours > 0.0 && picked.is_none() {
+        if is_free {
+            reason.push_str(" · 免费学员，不扣");
+        } else if line.hours > 0.0 && picked.is_none() {
             reason.push_str(" · 课包用尽，转为欠课时");
         } else if line.hours == 0.0 {
             reason.push_str(" · 按规则不扣");

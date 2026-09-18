@@ -6,9 +6,12 @@ import { ApplyFutureRow, ScheduleEditor, slotsFromRules, slotsToRules, validateS
 import { Modal, Stepper, useRefresh, useToast } from './ui';
 
 /** 新建 / 编辑班级。上课时间按「每天一个时段」填写。 */
-export function ClassFormModal({ klass, rules, onClose, onDone }: {
+export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
   klass?: Klass | null; rules?: RuleSummary[]; onClose: () => void; onDone: (id: string) => void;
+  /** 「保存并继续」时回调，弹窗保持打开 */
+  onCreated?: (id: string) => void;
 }) {
+  const [savedCount, setSavedCount] = useState(0);
   const toast = useToast();
   const { bump } = useRefresh();
   const editing = !!klass;
@@ -38,7 +41,7 @@ export function ClassFormModal({ klass, rules, onClose, onDone }: {
   const initialSlotsKey = JSON.stringify(slotsToRules(slotsFromRules(rules ?? [])));
   const scheduleChanged = JSON.stringify(slotsToRules(slots)) !== initialSlotsKey;
 
-  const submit = async () => {
+  const submit = async (andContinue = false) => {
     if (!name.trim()) { setErr('请填写班级名称'); return; }
     if (!(capacity > 0)) { setErr('人数上限需大于 0'); return; }
     if (!(duration > 0)) { setErr('单次时长需大于 0'); return; }
@@ -55,9 +58,18 @@ export function ClassFormModal({ klass, rules, onClose, onDone }: {
         onDone(klass.id);
       } else {
         const created = await api.createClass({ ...input, rules: slotsToRules(slots) });
-        toast('班级已创建', 'ok');
         bump();
-        onDone(created.id);
+        if (andContinue) {
+          setSavedCount((n) => n + 1);
+          toast(`已创建 ${created.name}，继续建下一个`, 'ok');
+          onCreated?.(created.id);
+          // 名称、时段清空；颜色换下一个，教室 / 上限 / 时长保留
+          setName(''); setSlots([]);
+          setColor((c) => CLASS_COLORS[(CLASS_COLORS.indexOf(c) + 1) % CLASS_COLORS.length]);
+        } else {
+          toast('班级已创建', 'ok');
+          onDone(created.id);
+        }
       }
     } catch (e) {
       setErr(api.errMsg(e));
@@ -68,11 +80,12 @@ export function ClassFormModal({ klass, rules, onClose, onDone }: {
 
   return (
     <Modal title={editing ? '编辑班级' : '新建班级'}
-      sub={editing ? '修改不影响已产生的流水' : '设定上课时段、人数上限和单次时长'}
+      sub={editing ? '修改不影响已产生的流水' : savedCount > 0 ? `本次已创建 ${savedCount} 个班级` : '设定上课时段、人数上限和单次时长'}
       onClose={onClose} width={640}
       footer={<>
-        <button className="btn" onClick={onClose}>取消</button>
-        <button className="btn primary" disabled={busy} onClick={submit}>{editing ? '保存' : '创建班级'}</button>
+        <button className="btn" onClick={onClose}>{savedCount > 0 ? '完成' : '取消'}</button>
+        {!editing && <button className="btn" disabled={busy} onClick={() => submit(true)}>保存并继续</button>}
+        <button className="btn primary" disabled={busy} onClick={() => submit(false)}>{editing ? '保存' : '创建班级'}</button>
       </>}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 14, alignItems: 'end' }}>
         <div className="field">

@@ -102,16 +102,19 @@ fn build_card(conn: &Connection, k: Klass, balances: &std::collections::HashMap<
     let rules = class_rules(conn, &k.id)?;
     let enrolled = repo::enrolled_count(conn, &k.id)?;
     let mut st = conn.prepare(
-        "SELECT s.id, s.name FROM enrollment e JOIN student s ON s.id = e.student_id
+        "SELECT s.id, s.name, s.billing FROM enrollment e JOIN student s ON s.id = e.student_id
          WHERE e.class_id = ?1 AND e.left_on IS NULL ORDER BY e.joined_on, s.name",
     )?;
-    let roster: Vec<(String, String)> = st
-        .query_map(params![k.id], |r| Ok((r.get(0)?, r.get(1)?)))?
+    let roster: Vec<(String, String, String)> = st
+        .query_map(params![k.id], |r| Ok((r.get(0)?, r.get(1)?, r.get(2)?)))?
         .collect::<Result<Vec<_>, _>>()?;
-    let initials: Vec<String> = roster.iter().take(5).map(|(_, n)| n.chars().next().unwrap_or(' ').to_string()).collect();
+    let initials: Vec<String> = roster.iter().take(5).map(|(_, n, _)| n.chars().next().unwrap_or(' ').to_string()).collect();
     let mut owed_count = 0;
     let mut zero_count = 0;
-    for (sid, _) in &roster {
+    for (sid, _, billing) in &roster {
+        if billing == "free" {
+            continue;
+        }
         let b = *balances.get(sid).unwrap_or(&0.0);
         if b < 0.0 {
             owed_count += 1;

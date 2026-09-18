@@ -86,7 +86,7 @@ pub fn build_row(conn: &Connection, s: Student, balance: f64, rule: &crate::core
         )
         .unwrap_or(None);
     let unit = repo::owed_unit_price_for(conn, &s.id, rule)?;
-    let owed_cents = if balance < 0.0 { ((-balance) * unit as f64).round() as i64 } else { 0 };
+    let owed_cents = if balance < 0.0 && !s.is_free() { ((-balance) * unit as f64).round() as i64 } else { 0 };
     let is_new = s.enrolled_on.starts_with(&month);
     Ok(StudentRow {
         classes: classes_of(conn, &s.id)?,
@@ -129,7 +129,9 @@ pub fn list_students(db: State<Db>, filter: Option<String>, query: Option<String
         match row.student.status.as_str() {
             "active" => {
                 stats.active_count += 1;
-                if bal < 0.0 {
+                if row.student.is_free() {
+                    // 免费学员不进欠费 / 余额不足统计
+                } else if bal < 0.0 {
                     stats.owed_count += 1;
                 } else if bal <= threshold {
                     stats.low_count += 1;
@@ -142,8 +144,8 @@ pub fn list_students(db: State<Db>, filter: Option<String>, query: Option<String
             _ => {}
         }
         let keep = match filter.as_str() {
-            "owed" => row.student.status == "active" && bal < 0.0,
-            "low" => row.student.status == "active" && bal >= 0.0 && bal <= threshold,
+            "owed" => row.student.status == "active" && !row.student.is_free() && bal < 0.0,
+            "low" => row.student.status == "active" && !row.student.is_free() && bal >= 0.0 && bal <= threshold,
             "new" => row.student.status == "active" && row.is_new_this_month,
             "paused" => row.student.status == "paused",
             "left" => row.student.status == "left",
@@ -282,6 +284,12 @@ pub struct StudentInput {
     pub note: Option<String>,
     /// 新建时可直接加入的班级
     pub class_ids: Option<Vec<String>>,
+    /// paid | free
+    pub billing: Option<String>,
+}
+
+fn billing_of(v: Option<&str>) -> &'static str {
+    if v == Some("free") { "free" } else { "paid" }
 }
 
 fn clean(s: Option<String>) -> Option<String> {
@@ -300,9 +308,9 @@ pub fn create_student(db: State<Db>, input: StudentInput) -> AppResult<Student> 
     let enrolled_on = clean(input.enrolled_on).unwrap_or_else(today_str);
     let tx = conn.transaction()?;
     tx.execute(
-        "INSERT INTO student(id, name, en_name, status, enrolled_on, guardian_name, phone, note, created_at, updated_at)
-         VALUES (?1, ?2, ?3, 'active', ?4, ?5, ?6, ?7, ?8, ?8)",
-        params![id, name, clean(input.en_name), enrolled_on, clean(input.guardian_name), clean(input.phone), clean(input.note), now],
+        "INSERT INTO student(id, name, en_name, status, enrolled_on, guardian_name, phone, note, billing, created_at, updated_at)
+         VALUES (?1, ?2, ?3, 'active', ?4, ?5, ?6, ?7, ?8, ?9, ?9)",
+        params![id, name, clean(input.en_name), enrolled_on, clean(input.guardian_name), clean(input.phone), clean(input.note), billing_of(input.billing.as_deref()), now],
     )?;
     for cid in input.class_ids.unwrap_or_default() {
         tx.execute(
@@ -327,7 +335,7 @@ pub fn update_student(db: State<Db>, id: String, input: StudentInput) -> AppResu
         return Err(AppError::rule("无效的学生状态"));
     }
     conn.execute(
-        "UPDATE student SET name = ?2, en_name = ?3, status = ?4, enrolled_on = ?5, guardian_name = ?6, phone = ?7, note = ?8, updated_at = ?9 WHERE id = ?1",
+        "UPDATE student SET name = ?2, en_name = ?3, status = ?4, enrolled_on = ?5, guardian_name = ?6, phone = ?7, note = ?8, updated_at = ?9, billing = ?10 WHERE id = ?1",
         params![
             id,
             name,
@@ -337,7 +345,8 @@ pub fn update_student(db: State<Db>, id: String, input: StudentInput) -> AppResu
             clean(input.guardian_name),
             clean(input.phone),
             clean(input.note),
-            now_ms()
+            now_ms(),
+            billing_of(input.billing.as_deref().or(Some(cur.billing.as_str())))
         ],
     )?;
     if status == "left" {

@@ -65,6 +65,8 @@ pub struct StudentBalance {
     pub id: String,
     pub name: String,
     pub balance: f64,
+    /// 免费学员：记出勤但不扣课时
+    pub free: bool,
 }
 
 #[derive(Clone, Debug, Deserialize)]
@@ -102,7 +104,7 @@ pub fn plan_rollcall(rule: &HoursRule, students: &[StudentBalance], marks: &[Mar
             .iter()
             .find(|s| s.id == m.student_id)
             .ok_or_else(|| format!("学生不在本次名单中：{}", m.student_id))?;
-        let hours = rule.cost(&m.status);
+        let hours = if s.free { 0.0 } else { rule.cost(&m.status) };
         let after = s.balance - hours;
         if !rule.allow_negative && hours > 0.0 && after < 0.0 {
             plan.insufficient.push(s.name.clone());
@@ -125,9 +127,10 @@ mod tests {
 
     fn students() -> Vec<StudentBalance> {
         vec![
-            StudentBalance { id: "a".into(), name: "A".into(), balance: 2.0 },
-            StudentBalance { id: "b".into(), name: "B".into(), balance: 0.0 },
-            StudentBalance { id: "c".into(), name: "C".into(), balance: -2.0 },
+            StudentBalance { id: "a".into(), name: "A".into(), balance: 2.0, free: false },
+            StudentBalance { id: "b".into(), name: "B".into(), balance: 0.0, free: false },
+            StudentBalance { id: "c".into(), name: "C".into(), balance: -2.0, free: false },
+            StudentBalance { id: "f".into(), name: "F".into(), balance: 0.0, free: true },
         ]
     }
     fn mark(id: &str, st: &str) -> Mark {
@@ -170,6 +173,16 @@ mod tests {
         let rule = HoursRule { allow_negative: false, ..Default::default() };
         let p = plan_rollcall(&rule, &students(), &[mark("a", "present"), mark("b", "present"), mark("c", "leave")]).unwrap();
         assert_eq!(p.insufficient, vec!["B".to_string()]);
+    }
+
+    #[test]
+    fn free_student_never_charged_even_when_present() {
+        let rule = HoursRule { allow_negative: false, ..Default::default() };
+        let p = plan_rollcall(&rule, &students(), &[mark("f", "present")]).unwrap();
+        assert_eq!(p.lines[0].hours, 0.0);
+        assert_eq!(p.lines[0].balance_after, 0.0);
+        assert!(p.insufficient.is_empty());
+        assert_eq!(p.total_hours, 0.0);
     }
 
     #[test]

@@ -170,7 +170,15 @@ pub fn build_report(conn: &Connection, month: &str) -> AppResult<Report> {
     let mut owed_hours = 0.0;
     let mut owed_cents = 0i64;
     let mut owed_students = 0;
+    let free_ids: std::collections::HashSet<String> = {
+        let mut st = conn.prepare("SELECT id FROM student WHERE billing = 'free'")?;
+        let v: Vec<String> = st.query_map([], |r| r.get::<_, String>(0))?.collect::<Result<Vec<_>, _>>()?;
+        v.into_iter().collect()
+    };
     for (sid, b) in &balances {
+        if free_ids.contains(sid) {
+            continue;
+        }
         if *b > 0.0 {
             unconsumed_hours += b;
             unconsumed_students += 1;

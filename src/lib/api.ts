@@ -14,6 +14,8 @@ export interface Student {
   guardianName: string | null;
   phone: string | null;
   note: string | null;
+  /** paid | free：免费学员记出勤但不扣课时 */
+  billing: 'paid' | 'free';
   createdAt: number;
   updatedAt: number;
 }
@@ -177,6 +179,7 @@ export interface StudentInput {
   phone?: string | null;
   note?: string | null;
   classIds?: string[];
+  billing?: 'paid' | 'free';
 }
 export interface PickStudent { id: string; name: string; enName: string | null; balance: number; classNames: string }
 

@@ -94,14 +94,17 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
   // ---------- 计算（翻译自画板 script） ----------
   const rows = useMemo(() => students.map((s) => {
     const st = statusOf(s);
-    const d = taken ? (s.attendanceHours ?? 0) : rule[st];
+    const free = s.billing === 'free';
+    const d = free ? 0 : taken ? (s.attendanceHours ?? 0) : rule[st];
     const after = taken ? s.balance : s.balance - d;
-    const afterColor = after < 0 ? 'var(--danger)' : after <= view.lowBalanceThreshold ? 'var(--warn)' : 'var(--ink)';
-    const insufficient = planned && !rule.allowNegative && after < 0;
-    const note = s.balance < 0
-      ? <>已欠 <span className="num">{num(-s.balance)}</span> 课时 · 应补 <span className="num">{yuan(s.owedCents)}</span></>
-      : (s.note ?? '');
-    return { s, st, d, after, afterColor, low: after < 0, insufficient, note };
+    const afterColor = free ? 'var(--ink-4)' : after < 0 ? 'var(--danger)' : after <= view.lowBalanceThreshold ? 'var(--warn)' : 'var(--ink)';
+    const insufficient = planned && !free && !rule.allowNegative && after < 0;
+    const note = free
+      ? '免费学员 · 记出勤不扣课时'
+      : s.balance < 0
+        ? <>已欠 <span className="num">{num(-s.balance)}</span> 课时 · 应补 <span className="num">{yuan(s.owedCents)}</span></>
+        : (s.note ?? '');
+    return { s, st, d, after, afterColor, low: !free && after < 0, insufficient, note, free };
   }), [students, statusOf, taken, rule, planned, view.lowBalanceThreshold]);
 
   const total = taken ? view.hoursDeducted : rows.reduce((a, r) => a + r.d, 0);
@@ -189,7 +192,7 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
     const now = Date.now();
     setExtras((xs) => [...xs, {
       id: p.id, name: p.name, enName: p.enName, status: 'active', enrolledOn: '', guardianName: null, phone: null, note: null,
-      createdAt: now, updatedAt: now, balance: p.balance, owedCents: 0, attendanceStatus: null, attendanceHours: null, extra: true,
+      billing: 'paid' as const, createdAt: now, updatedAt: now, balance: p.balance, owedCents: 0, attendanceStatus: null, attendanceHours: null, extra: true,
     }]);
     setPickOpen(false);
   };
@@ -271,8 +274,12 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
                 <span className="num" style={{ fontSize: 14, color: r.d === 0 ? 'var(--ink-3)' : 'var(--accent-deep)' }}>{r.d === 0 ? '0' : '−' + num(r.d)}</span>
               </span>
               <span style={{ width: 78, flexShrink: 0, textAlign: 'right' }}>
-                {!taken && <span className="num" style={{ fontSize: 12.5, color: 'var(--ink-4)' }}>{num(r.s.balance)} → </span>}
-                <span className="num" style={{ fontSize: 17, fontWeight: 600, color: r.afterColor }}>{num(r.after)}</span>
+                {r.free ? (
+                  <span style={{ fontSize: 12.5, color: 'var(--ink-4)' }}>免费</span>
+                ) : (<>
+                  {!taken && <span className="num" style={{ fontSize: 12.5, color: 'var(--ink-4)' }}>{num(r.s.balance)} → </span>}
+                  <span className="num" style={{ fontSize: 17, fontWeight: 600, color: r.afterColor }}>{num(r.after)}</span>
+                </>)}
               </span>
               <span style={{ width: 84, flexShrink: 0, display: 'flex', justifyContent: 'flex-end' }}>
                 {r.insufficient ? (

@@ -12,11 +12,16 @@ pub struct Student {
     pub guardian_name: Option<String>,
     pub phone: Option<String>,
     pub note: Option<String>,
+    /// paid | free（免费学员：记出勤、不扣课时）
+    pub billing: String,
     pub created_at: i64,
     pub updated_at: i64,
 }
 
 impl Student {
+    pub fn is_free(&self) -> bool {
+        self.billing == "free"
+    }
     pub fn from_row(r: &Row) -> rusqlite::Result<Self> {
         Ok(Student {
             id: r.get("id")?,
@@ -27,6 +32,7 @@ impl Student {
             guardian_name: r.get("guardian_name")?,
             phone: r.get("phone")?,
             note: r.get("note")?,
+            billing: r.get::<_, Option<String>>("billing")?.unwrap_or_else(|| "paid".into()),
             created_at: r.get("created_at")?,
             updated_at: r.get("updated_at")?,
         })

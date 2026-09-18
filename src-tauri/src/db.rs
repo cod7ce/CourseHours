@@ -12,7 +12,10 @@ pub struct Db {
     pub data_dir: PathBuf,
 }
 
-const MIGRATIONS: &[(&str, &str)] = &[("001_init", include_str!("../migrations/001_init.sql"))];
+const MIGRATIONS: &[(&str, &str)] = &[
+    ("001_init", include_str!("../migrations/001_init.sql")),
+    ("002_student_billing", include_str!("../migrations/002_student_billing.sql")),
+];
 
 pub fn open(path: &Path) -> AppResult<Connection> {
     let conn = Connection::open(path)?;

@@ -37,16 +37,23 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [klass?.id]);
 
-  const submit = async () => {
+  const [savedCount, setSavedCount] = useState(0);
+  const submit = async (andContinue = false) => {
     if (!classId) { setErr('请选择班级'); return; }
     if (!date) { setErr('请选择日期'); return; }
     if (end <= start) { setErr('结束时间需晚于开始时间'); return; }
     setBusy(true); setErr(null);
     try {
       await api.addExtraSession({ classId, date, startTime: start, endTime: end, room: room.trim() || null, note: note.trim() || null });
-      toast('已添加临时课次', 'ok');
       bump();
-      onDone();
+      if (andContinue) {
+        setSavedCount((n) => n + 1);
+        toast('已添加，继续加下一节', 'ok');
+        setNote('');
+      } else {
+        toast('已添加临时课次', 'ok');
+        onDone();
+      }
     } catch (e) {
       setErr(api.errMsg(e));
     } finally {
@@ -57,8 +64,9 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
   return (
     <Modal title="临时加课" sub="加课只创建一节课次，课时在点名时才扣" onClose={onClose} width={480}
       footer={<>
-        <button className="btn" onClick={onClose}>取消</button>
-        <button className="btn primary" disabled={busy || classes.length === 0} onClick={submit}>添加课次</button>
+        <button className="btn" onClick={savedCount > 0 ? onDone : onClose}>{savedCount > 0 ? '完成' : '取消'}</button>
+        <button className="btn" disabled={busy || classes.length === 0} onClick={() => submit(true)}>添加并继续</button>
+        <button className="btn primary" disabled={busy || classes.length === 0} onClick={() => submit(false)}>添加课次</button>
       </>}>
       {classes.length === 0 ? (
         <div className="muted" style={{ fontSize: 12.5 }}>还没有在读班级，先去「班级」新建一个。</div>
