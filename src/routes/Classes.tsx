@@ -153,7 +153,7 @@ function Card({ c }: { c: ClassCard }) {
       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginTop: 14 }}>
         <Link className="btn sm primary" to={`/classes/${c.id}`} style={{ height: 32, padding: '0 14px', fontSize: 12.5 }}>查看班级</Link>
         {rollTo ? (
-          <Link className="btn sm" to={rollTo} style={{ height: 32, padding: '0 14px', fontSize: 12.5 }}>点名</Link>
+          <Link className="btn sm" to={rollTo} state={{ from: '/classes', label: '班级' }} style={{ height: 32, padding: '0 14px', fontSize: 12.5 }}>点名</Link>
         ) : (
           <button className="btn sm" disabled title="没有待点名的课次" style={{ height: 32, padding: '0 14px', fontSize: 12.5 }}>点名</button>
         )}

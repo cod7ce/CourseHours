@@ -67,7 +67,7 @@ export function Schedule() {
   const openBlock = (s: SessionView) => {
     if (suppressClick.current) { suppressClick.current = false; return; }
     if (s.status === 'cancelled') setCancelledView(s);
-    else nav(`/sessions/${s.id}/roll-call`);
+    else nav(`/sessions/${s.id}/roll-call`, { state: { from: '/schedule', label: '课表' } });
   };
   const openActions = (e: ReactMouseEvent, s: SessionView) => {
     e.preventDefault(); e.stopPropagation();

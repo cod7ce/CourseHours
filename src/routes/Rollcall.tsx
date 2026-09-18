@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate, useParams } from 'react-router';
+import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import * as api from '../lib/api';
 import { errMsg } from '../lib/api';
 import type { AttendanceStatus, PickStudent, RollcallStudent, RollcallView } from '../lib/api';
@@ -31,11 +31,21 @@ const ON: Record<AttendanceStatus, React.CSSProperties> = {
   absent: { ...BTN, border: '1px solid var(--danger)', background: 'var(--danger)', color: '#FFFFFF' },
 };
 
+/** 从哪进来就回哪：课表 / 班级详情 / 今日 */
+export interface BackTo { to: string; label: string }
+function useBackTo(): BackTo {
+  const loc = useLocation();
+  const st = loc.state as { from?: string; label?: string } | null;
+  if (st?.from && st.label) return { to: st.from, label: st.label };
+  return { to: '/', label: '今日' };
+}
+
 export function Rollcall() {
   const { id = '' } = useParams();
   const { data, loading, error, reload } = useAsync(() => api.getRollcall(id), [id]);
   const nav = useNavigate();
   const toast = useToast();
+  const back = useBackTo();
 
   useEffect(() => {
     if (data?.session.status === 'cancelled') {
@@ -44,13 +54,13 @@ export function Rollcall() {
     }
   }, [data, nav, toast]);
 
-  if (error) return <><PageHeader crumb={{ to: '/', label: '今日' }} title="点名" /><div className="page-body"><div className="err">{error}</div></div></>;
-  if (!data) return <><PageHeader crumb={{ to: '/', label: '今日' }} title="点名" /><div className="page-body">{loading && <Loading />}</div></>;
+  if (error) return <><PageHeader crumb={back} title="点名" /><div className="page-body"><div className="err">{error}</div></div></>;
+  if (!data) return <><PageHeader crumb={back} title="点名" /><div className="page-body">{loading && <Loading />}</div></>;
   if (data.session.status === 'cancelled') return null;
-  return <RollcallBody key={`${id}-${data.session.status}-${data.session.updatedAt}`} view={data} sessionId={id} reload={reload} />;
+  return <RollcallBody key={`${id}-${data.session.status}-${data.session.updatedAt}`} view={data} sessionId={id} reload={reload} back={back} />;
 }
 
-function RollcallBody({ view, sessionId, reload }: { view: RollcallView; sessionId: string; reload: () => void }) {
+function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; sessionId: string; reload: () => void; back: BackTo }) {
   const nav = useNavigate();
   const toast = useToast();
   const confirm = useConfirm();
@@ -142,7 +152,7 @@ function RollcallBody({ view, sessionId, reload }: { view: RollcallView; session
       try { localStorage.removeItem(draftKey(sessionId)); } catch { /* ignore */ }
       bump();
       toast(`已扣 ${num(r.totalHours)} 课时`, 'ok');
-      nav('/');
+      nav(back.to);
     } catch (e) { setErr(errMsg(e)); } finally { setBusy(false); }
   };
 
@@ -154,7 +164,7 @@ function RollcallBody({ view, sessionId, reload }: { view: RollcallView; session
       bump();
       toast('已标记本次不上课');
       setCancelOpen(false);
-      nav('/');
+      nav(back.to);
     } catch (e) { setErr(errMsg(e)); setCancelOpen(false); } finally { setBusy(false); }
   };
 
@@ -191,7 +201,7 @@ function RollcallBody({ view, sessionId, reload }: { view: RollcallView; session
   // ---------- render ----------
   return (
     <>
-      <PageHeader crumb={{ to: '/', label: '今日' }} title={`${klass.name} · 点名`}
+      <PageHeader crumb={back} title={`${klass.name} · 点名`}
         right={planned ? <>
           <button type="button" className="btn" onClick={allPresent}>全部标记出勤</button>
           <button type="button" className="btn" onClick={() => setCancelOpen(true)} disabled={busy}>本次不上课</button>

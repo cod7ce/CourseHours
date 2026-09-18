@@ -94,7 +94,7 @@ export function ClassDetail() {
       <PageHeader crumb={crumb} title={title} right={<>
         <button className="btn" onClick={() => setEditing(true)}>编辑班级</button>
         <button className="btn" disabled={!active} onClick={() => setEnrolling(true)}>加入学生</button>
-        {rollTo ? <Link className="btn primary" to={rollTo}>去点名</Link> : <button className="btn primary" disabled title="没有待点名的课次">去点名</button>}
+        {rollTo ? <Link className="btn primary" to={rollTo} state={{ from: `/classes/${id}`, label: k.name }}>去点名</Link> : <button className="btn primary" disabled title="没有待点名的课次">去点名</button>}
       </>} />
 
       <div className="page-body" style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
@@ -168,7 +168,7 @@ export function ClassDetail() {
               </div>
               {sessions.length === 0 ? (
                 <div className="muted" style={{ fontSize: 12.5, padding: '16px 18px' }}>还没有课次，去「排课」按规则生成</div>
-              ) : sessions.map((s, i) => <SessionLine key={s.id} s={s} first={i === 0} onOpen={() => nav(`/sessions/${s.id}/roll-call`)} />)}
+              ) : sessions.map((s, i) => <SessionLine key={s.id} s={s} first={i === 0} onOpen={() => nav(`/sessions/${s.id}/roll-call`, { state: { from: `/classes/${id}`, label: k.name } })} />)}
             </section>
 
             <section className="card" style={{ padding: '16px 18px' }}>
@@ -243,7 +243,7 @@ function SessionLine({ s, first, onOpen }: { s: SessionBrief; first: boolean; on
       <div style={{ ...base, background: 'var(--accent-tint)' }} onClick={onOpen}>
         <span className="num" style={{ width: 46, flexShrink: 0, fontSize: 13, fontWeight: 600, color: 'var(--accent-deep)' }}>{md(s.date)}</span>
         <span style={{ flexGrow: 1, minWidth: 0, fontSize: 12.5, color: 'var(--accent-deep)' }}>今天 <span className="num">{s.startTime}</span> · 待点名</span>
-        <Link to={`/sessions/${s.id}/roll-call`} onClick={(e) => e.stopPropagation()}
+        <Link to={`/sessions/${s.id}/roll-call`} state={{ from: `/classes/${s.classId}`, label: '班级' }} onClick={(e) => e.stopPropagation()}
           style={{ display: 'inline-flex', alignItems: 'center', height: 26, padding: '0 11px', borderRadius: 13, background: 'var(--accent)', color: 'var(--nav-text-on)', fontSize: 12 }}>点名</Link>
       </div>
     );
