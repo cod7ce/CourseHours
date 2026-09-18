@@ -20,13 +20,14 @@ export function ruleText(r: RuleSummary | undefined, fallbackRoom: string | null
 
 export function Classes() {
   const nav = useNavigate();
-  const [includeEnded, setIncludeEnded] = useState(false);
+  // showEnded = true 时只显示已结束的班级
+  const [showEnded, setShowEnded] = useState(false);
   const [creating, setCreating] = useState(false);
-  const { data, loading, error, reload } = useAsync(() => api.listClasses(includeEnded), [includeEnded]);
+  const { data, loading, error, reload } = useAsync(() => api.listClasses(true), []);
 
   const right = (
     <>
-      <button className="btn" onClick={() => setIncludeEnded((v) => !v)}>{includeEnded ? '只看在读' : '已结束的班级'}</button>
+      <button className={`btn ${showEnded ? 'primary' : ''}`} onClick={() => setShowEnded((v) => !v)}>{showEnded ? '返回在读班级' : '已结束的班级'}</button>
       <button className="btn primary" onClick={() => setCreating(true)}>新建班级</button>
     </>
   );
@@ -34,15 +35,19 @@ export function Classes() {
   if (error) return <><PageHeader title="班级" right={right} /><div className="page-body"><div className="err">{error}</div></div></>;
   if (!data) return <><PageHeader title="班级" right={right} /><div className="page-body">{loading && <Loading />}</div></>;
 
-  const { cards, stats } = data;
+  const { stats } = data;
+  const endedCount = data.cards.filter((c) => c.status === 'ended').length;
+  const cards = data.cards.filter((c) => (showEnded ? c.status === 'ended' : c.status === 'active'));
   const spare = Math.max(0, stats.capacity - stats.enrolled);
-  const sub = <><span className="num">{stats.classCount}</span> 个在读班级 · <span className="num">{stats.enrolled}</span> 人 · 本月 <span className="num">{stats.monthSessions}</span> 节课</>;
+  const sub = showEnded
+    ? <><span className="num">{endedCount}</span> 个已结束的班级 · 数据与流水都保留，可随时查看</>
+    : <><span className="num">{stats.classCount}</span> 个在读班级 · <span className="num">{stats.enrolled}</span> 人 · 本月 <span className="num">{stats.monthSessions}</span> 节课</>;
 
   return (
     <>
       <PageHeader title="班级" sub={sub} right={right} />
       <div className="page-body" style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
-        <div className="kpi-grid" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
+        {!showEnded && <div className="kpi-grid" style={{ gridTemplateColumns: 'repeat(4, minmax(0, 1fr))' }}>
           <div className="kpi" style={{ padding: '14px 18px' }}>
             <div style={LABEL}>在班学生</div>
             <div className="num" style={BIG}>{stats.enrolled} <span style={UNIT}>/ <span className="num">{stats.capacity}</span> 容量</span></div>
@@ -59,17 +64,21 @@ export function Classes() {
             <div style={LABEL}>还可招收</div>
             <div className="num" style={BIG}>{spare} <span style={UNIT}>人</span></div>
           </div>
-        </div>
+        </div>}
 
-        {cards.length === 0 ? (
+        {cards.length === 0 && showEnded ? (
           <div className="card">
-            <Empty title={includeEnded ? '还没有班级' : '还没有在读班级'} hint="新建一个班级，设定上课时段和人数上限，就可以排课点名了"
+            <Empty title="还没有已结束的班级" hint="在班级详情页底部「结束班级」后，班级会出现在这里，历史点名和流水都还在" />
+          </div>
+        ) : cards.length === 0 ? (
+          <div className="card">
+            <Empty title="还没有在读班级" hint="新建一个班级，设定上课时段和人数上限，就可以排课点名了"
               action={<button className="btn primary" style={{ marginTop: 6 }} onClick={() => setCreating(true)}>新建班级</button>} />
           </div>
         ) : (
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, minmax(0, 1fr))', gap: 18 }}>
             {cards.map((c) => <Card key={c.id} c={c} />)}
-            <button type="button" onClick={() => setCreating(true)}
+            {!showEnded && <button type="button" onClick={() => setCreating(true)}
               style={{
                 background: 'transparent', border: '1.5px dashed var(--dashed)', borderRadius: 14, padding: '17px 18px',
                 display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', gap: 10, cursor: 'pointer',
@@ -80,7 +89,7 @@ export function Classes() {
               </span>
               <span style={{ fontSize: 13.5, color: 'var(--ink-2)' }}>新建班级</span>
               <span style={{ fontSize: 11.5, color: 'var(--ink-3)', textAlign: 'center', lineHeight: 1.6 }}>设定上课时段、人数上限<br />和默认课次数</span>
-            </button>
+            </button>}
           </div>
         )}
       </div>
