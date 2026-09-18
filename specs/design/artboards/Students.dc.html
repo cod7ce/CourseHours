@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6EF; }
+    a { color: #B75E36; }
+    a:hover { color: #8F4526; }
+    button { font-family: inherit; }
+  </style>
+</helmet>
+<div style="width: 1360px; height: 880px; box-sizing: border-box; display: flex; overflow: hidden; background: #FAF6EF; font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; color: #2B2521;">
+
+  <aside style="width: 216px; flex-shrink: 0; background: #332A21; display: flex; flex-direction: column;">
+    <div style="display: flex; gap: 8px; padding: 16px 18px 0;">
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #E0705F;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #D9A343;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #5FA06A;"></span>
+    </div>
+    <div style="padding: 26px 18px 22px;">
+      <div style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 20px; color: #F2E9DB;">[机构名称]</div>
+      <div style="font-size: 10.5px; color: #A99C8B; letter-spacing: 0.16em; margin-top: 6px;">COURSE HOURS</div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+        <span>今日</span>
+      </a>
+      <a href="Schedule.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"></rect><path d="M8 2.5v4M16 2.5v4M3 9.5h18"></path></svg>
+        <span>课表</span>
+      </a>
+      <a href="Students.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; background: #B75E36; color: #FFF6EE; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.6"></circle><path d="M3 20c0-3.5 2.9-5.6 6.5-5.6s6.5 2.1 6.5 5.6"></path><path d="M17 7.4a3.1 3.1 0 0 1 0 6"></path><path d="M18.4 15.2c1.9.7 3 2.2 3 4.3"></path></svg>
+        <span>学生</span>
+      </a>
+      <a href="Classes.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"></rect></svg>
+        <span>班级</span>
+      </a>
+      <a href="Ledger.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 6.5h12M8.5 12h12M8.5 17.5h12M4 6.5h.01M4 12h.01M4 17.5h.01"></path></svg>
+        <span>课时流水</span>
+      </a>
+      <a href="Reports.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"></path><path d="M6.5 20v-6M12 20v-11M17.5 20v-4"></path></svg>
+        <span>经营报表</span>
+      </a>
+    </nav>
+    <div style="flex-grow: 1;"></div>
+    <div style="margin: 0 12px 10px; padding: 13px 14px; border-radius: 10px; background: #4A2E24;">
+      <div style="font-size: 11px; color: #E3B9A6;">已欠课时 · 待补缴</div>
+      <div style="display: flex; align-items: baseline; gap: 5px; margin-top: 4px;">
+        <span style="font-family: 'Newsreader', Georgia, serif; font-size: 23px; font-weight: 600; color: #FBE7DC;">3</span>
+        <span style="font-size: 11.5px; color: #E3B9A6;">课时 · ¥468 · 2 人</span>
+      </div>
+    </div>
+    <div style="padding: 8px 12px 14px; border-top: 1px solid #453A2E;">
+      <a href="Settings.dc.html" style="display: flex; align-items: center; gap: 11px; height: 36px; padding: 0 12px; border-radius: 9px; color: #A99C8B; text-decoration: none; font-size: 13px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 2.6v2.4M12 19v2.4M21.4 12H19M5 12H2.6M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7M18.6 18.6l-1.7-1.7M7.1 7.1L5.4 5.4"></path></svg>
+        <span>设置</span>
+      </a>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;">
+
+    <header style="height: 80px; flex-shrink: 0; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EAE1D2;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 27px; font-weight: 600;">学生</h1>
+        <div style="font-size: 12.5px; color: #6A6057; margin-top: 3px;">47 人在读 · 按剩余课时升序</div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <label style="display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 12px; background: #FFFFFF; border: 1px solid #E6DCCA; border-radius: 9px;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#6A6057" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-4.2-4.2"></path></svg>
+          <span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%);">搜索学生姓名</span>
+          <input type="text" placeholder="搜索学生姓名" style="border: 0; outline: 0; background: transparent; font-size: 13px; width: 148px; color: #2B2521; font-family: inherit;">
+        </label>
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">导出名单</button>
+        <button type="button" style="height: 36px; padding: 0 16px; border: 0; border-radius: 9px; background: #B75E36; color: #FFF6EE; font-size: 13.5px; cursor: pointer;">新增学生</button>
+      </div>
+    </header>
+
+    <div style="flex-grow: 1; min-height: 0; box-sizing: border-box; padding: 20px 32px 24px; display: flex; flex-direction: column; gap: 14px;">
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button type="button" style="height: 32px; padding: 0 14px; border: 1px solid #B75E36; border-radius: 16px; background: #B75E36; color: #FFF6EE; font-size: 12.5px; cursor: pointer;">全部 47</button>
+        <button type="button" style="height: 32px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 16px; background: #FFFFFF; color: #4A423A; font-size: 12.5px; cursor: pointer;">已欠课时 2</button>
+        <button type="button" style="height: 32px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 16px; background: #FFFFFF; color: #4A423A; font-size: 12.5px; cursor: pointer;">余额不足 5</button>
+        <button type="button" style="height: 32px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 16px; background: #FFFFFF; color: #4A423A; font-size: 12.5px; cursor: pointer;">本月新增 4</button>
+        <button type="button" style="height: 32px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 16px; background: #FFFFFF; color: #4A423A; font-size: 12.5px; cursor: pointer;">已停课 2</button>
+      </div>
+
+      <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; overflow: hidden;">
+        <div style="display: flex; align-items: center; gap: 16px; height: 40px; padding: 0 20px; background: #FBF7F0; font-size: 11.5px; color: #6A6057;">
+          <span style="flex-grow: 1; min-width: 0;">学生</span>
+          <span style="width: 132px; flex-shrink: 0;">所在班级</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right;">课时余额</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right;">本月出勤</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right;">最近上课</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right;">应补缴</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right;">状态</span>
+          <span style="width: 112px; flex-shrink: 0; text-align: right;">操作</span>
+        </div>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FDF6F3; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F7E2DE; color: #8C332C; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">林</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">林小满</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Lily</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #A33B33;">−2</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">4 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #8C332C;">¥300</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #8C332C;">已欠 2 课时</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 8px; background: #B75E36; color: #FFF6EE; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FDF6F3; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F7E2DE; color: #8C332C; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">吴</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">吴与安</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Owen</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Flyers 冲刺班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #A33B33;">−1</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">7 / 8</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-12</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #8C332C;">¥168</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #8C332C;">已欠 1 课时</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 8px; background: #B75E36; color: #FFF6EE; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FDFAF3; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F8EBD1; color: #7A5410; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">周</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">周子谦</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Chris</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Starters A 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #8A6011;">0</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">5 / 6</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-17</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #7A5410;">下次上课起欠</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border-radius: 8px; background: #B75E36; color: #FFF6EE; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">徐</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">徐牧野</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Max</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">4</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">5 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 10-06 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">何</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">何屿</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Hugo</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">5</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">5 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 10-08 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">顾</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">顾南</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Nate</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Starters A 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">6</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">6 / 6</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-17</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 10-15 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">沈</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">沈清和</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Cindy</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">7</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">4 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 10-22 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">白</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">白桐</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Tina</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Starters A 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">8</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">6 / 6</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-17</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 10-29 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">苏</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">苏念</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Nina</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">9</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">4 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 11-05 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+
+        <a href="StudentDetail.dc.html" style="display: flex; align-items: center; gap: 16px; height: 56px; padding: 0 20px; border-top: 1px solid #F3ECE1; text-decoration: none; color: #2B2521;">
+          <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 11px;">
+            <span style="width: 32px; height: 32px; flex-shrink: 0; border-radius: 50%; background: #F1EADE; color: #5A4E40; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px;">陈</span>
+            <span><span style="font-size: 13.5px; font-weight: 600;">陈亦航</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057; margin-left: 7px;">Ethan</span></span>
+          </span>
+          <span style="width: 132px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">Movers B 班</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">12</span>
+          <span style="width: 78px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">5 / 5</span>
+          <span style="width: 84px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">09-15</span>
+          <span style="width: 96px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #6A6057;">—</span>
+          <span style="width: 104px; flex-shrink: 0; text-align: right; font-size: 12px; color: #6A6057;">约 11-26 用完</span>
+          <span style="width: 112px; flex-shrink: 0; display: flex; justify-content: flex-end; gap: 8px;">
+            <span style="display: inline-flex; align-items: center; height: 30px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; font-size: 12.5px;">充值</span>
+          </span>
+        </a>
+      </section>
+
+      <div style="display: flex; align-items: center; justify-content: space-between; padding: 0 4px;">
+        <span style="font-size: 12px; color: #6A6057;">显示 1 – 10，共 47 名在读学生</span>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" style="height: 32px; padding: 0 13px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; color: #6A6057; font-size: 12.5px; cursor: pointer;">上一页</button>
+          <button type="button" style="height: 32px; padding: 0 13px; border: 1px solid #E6DCCA; border-radius: 8px; background: #FFFFFF; color: #2B2521; font-size: 12.5px; cursor: pointer;">下一页</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1360,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

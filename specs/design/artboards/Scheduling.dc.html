@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6EF; }
+    a { color: #B75E36; }
+    a:hover { color: #8F4526; }
+    button { font-family: inherit; }
+  </style>
+</helmet>
+<div style="width: 1360px; height: 880px; box-sizing: border-box; display: flex; overflow: hidden; background: #FAF6EF; font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; color: #2B2521;">
+
+  <aside style="width: 216px; flex-shrink: 0; background: #332A21; display: flex; flex-direction: column;">
+    <div style="display: flex; gap: 8px; padding: 16px 18px 0;">
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #E0705F;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #D9A343;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #5FA06A;"></span>
+    </div>
+    <div style="padding: 26px 18px 22px;">
+      <div style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 20px; color: #F2E9DB;">[机构名称]</div>
+      <div style="font-size: 10.5px; color: #A99C8B; letter-spacing: 0.16em; margin-top: 6px;">COURSE HOURS</div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+        <span>今日</span>
+      </a>
+      <a href="Schedule.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; background: #B75E36; color: #FFF6EE; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"></rect><path d="M8 2.5v4M16 2.5v4M3 9.5h18"></path></svg>
+        <span>课表</span>
+      </a>
+      <a href="Students.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.6"></circle><path d="M3 20c0-3.5 2.9-5.6 6.5-5.6s6.5 2.1 6.5 5.6"></path><path d="M17 7.4a3.1 3.1 0 0 1 0 6"></path><path d="M18.4 15.2c1.9.7 3 2.2 3 4.3"></path></svg>
+        <span>学生</span>
+      </a>
+      <a href="Classes.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"></rect></svg>
+        <span>班级</span>
+      </a>
+      <a href="Ledger.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 6.5h12M8.5 12h12M8.5 17.5h12M4 6.5h.01M4 12h.01M4 17.5h.01"></path></svg>
+        <span>课时流水</span>
+      </a>
+      <a href="Reports.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"></path><path d="M6.5 20v-6M12 20v-11M17.5 20v-4"></path></svg>
+        <span>经营报表</span>
+      </a>
+    </nav>
+    <div style="flex-grow: 1;"></div>
+    <div style="margin: 0 12px 10px; padding: 13px 14px; border-radius: 10px; background: #3E3327;">
+      <div style="font-size: 11px; color: #A99C8B;">课表已排到</div>
+      <div style="display: flex; align-items: baseline; gap: 5px; margin-top: 4px;">
+        <span style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; font-weight: 600; color: #F2E9DB;">9 月 30 日</span>
+      </div>
+    </div>
+    <div style="padding: 8px 12px 14px; border-top: 1px solid #453A2E;">
+      <a href="Settings.dc.html" style="display: flex; align-items: center; gap: 11px; height: 36px; padding: 0 12px; border-radius: 9px; color: #A99C8B; text-decoration: none; font-size: 13px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 2.6v2.4M12 19v2.4M21.4 12H19M5 12H2.6M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7M18.6 18.6l-1.7-1.7M7.1 7.1L5.4 5.4"></path></svg>
+        <span>设置</span>
+      </a>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;">
+
+    <header style="height: 80px; flex-shrink: 0; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EAE1D2;">
+      <div>
+        <a href="Schedule.dc.html" style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; text-decoration: none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+          课表
+        </a>
+        <h1 style="margin: 3px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 25px; font-weight: 600;">排课</h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">临时加课</button>
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">新建循环规则</button>
+      </div>
+    </header>
+
+    <div style="flex-grow: 1; min-height: 0; box-sizing: border-box; padding: 20px 32px 24px; display: flex; flex-direction: column; gap: 16px;">
+
+      <section style="display: flex; align-items: center; gap: 22px; background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 16px 20px;">
+        <label style="display: flex; align-items: center; gap: 12px; cursor: pointer;">
+          <input type="checkbox" checked="{{ auto }}" onChange="{{ toggleAuto }}" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+          <span style="{{ autoTrack }}"><span style="{{ autoKnob }}"></span></span>
+          <span>
+            <span style="display: block; font-size: 13.5px; font-weight: 600;">每周自动生成课次</span>
+            <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">{{ autoHint }}</span>
+          </span>
+        </label>
+
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+
+        <div>
+          <div style="font-size: 11.5px; color: #6A6057;">提前生成</div>
+          <div style="display: flex; align-items: center; gap: 9px; margin-top: 5px;">
+            <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+              <button type="button" aria-label="减少周数" onClick="{{ decWeeks }}" style="width: 32px; height: 32px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+              <span style="width: 40px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ weeks }}</span>
+              <button type="button" aria-label="增加周数" onClick="{{ incWeeks }}" style="width: 32px; height: 32px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+            </span>
+            <span style="font-size: 12.5px; color: #6A6057;">周</span>
+          </div>
+        </div>
+
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+
+        <div>
+          <div style="font-size: 11.5px; color: #6A6057;">上次生成</div>
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; margin-top: 4px;">9 月 15 日</div>
+        </div>
+
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+
+        <div>
+          <div style="font-size: 11.5px; color: #6A6057;">课表已排到</div>
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; margin-top: 4px;">9 月 30 日</div>
+        </div>
+
+        <div style="flex-grow: 1;"></div>
+        <button type="button" style="height: 40px; padding: 0 22px; border: 0; border-radius: 10px; background: #B75E36; color: #FFF6EE; font-size: 14px; cursor: pointer;">立即生成 {{ totalText }}</button>
+      </section>
+
+      <div style="flex-grow: 1; min-height: 0; display: flex; gap: 18px;">
+
+        <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column; gap: 16px;">
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 20px; border-bottom: 1px solid #F0E8DA;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">循环规则</h2>
+              <span style="font-size: 11.5px; color: #6A6057;">规则只是计划，课次按规则生成后各自独立</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; height: 34px; padding: 0 20px; background: #FBF7F0; font-size: 11.5px; color: #6A6057;">
+              <span style="flex-grow: 1; min-width: 0;">班级</span>
+              <span style="width: 108px; flex-shrink: 0;">每周</span>
+              <span style="width: 116px; flex-shrink: 0;">时段</span>
+              <span style="width: 74px; flex-shrink: 0;">教室</span>
+              <span style="width: 68px; flex-shrink: 0; text-align: right;">节 / 周</span>
+              <span style="width: 56px; flex-shrink: 0; text-align: right;">操作</span>
+            </div>
+            <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5">
+              <div style="display: flex; align-items: center; gap: 14px; height: 48px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+                <span style="flex-grow: 1; min-width: 0; display: flex; align-items: center; gap: 9px; font-size: 13.5px;"><span style="{{ r.dotStyle }}"></span>{{ r.name }}</span>
+                <span style="width: 108px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">{{ r.dow }}</span>
+                <span style="width: 116px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #4A423A;">{{ r.time }}</span>
+                <span style="width: 74px; flex-shrink: 0; font-size: 12.5px; color: #4A423A;">{{ r.room }}</span>
+                <span style="width: 68px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600;">{{ r.per }}</span>
+                <span style="width: 56px; flex-shrink: 0; text-align: right;"><a href="ClassDetail.dc.html" style="font-size: 12px; text-decoration: none;">编辑</a></span>
+              </div>
+            </sc-for>
+          </section>
+
+          <section style="flex-grow: 1; min-height: 0; background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; overflow: hidden;">
+            <div style="display: flex; align-items: center; gap: 10px; height: 50px; padding: 0 20px; border-bottom: 1px solid #F0E8DA;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">已生成课次的手动调整</h2>
+              <div style="flex-grow: 1;"></div>
+              <a href="Schedule.dc.html" style="font-size: 12px; text-decoration: none;">在课表上改</a>
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+              <span style="width: 50px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057;">09-18</span>
+              <span style="width: 62px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #E6EEE5; color: #3E5C46; font-size: 11px;">加课</span></span>
+              <span style="flex-grow: 1; min-width: 0; font-size: 12.5px;">苏念 · 一对一补课 19:00 – 20:30 · A 教室</span>
+              <span style="font-size: 11.5px; color: #6A6057;">只扣她 1 课时</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+              <span style="width: 50px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057;">09-11</span>
+              <span style="width: 62px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F1EADE; color: #5A5249; font-size: 11px;">取消</span></span>
+              <span style="flex-grow: 1; min-width: 0; font-size: 12.5px;">Movers C 班 周三 16:30 · 老师出差</span>
+              <span style="font-size: 11.5px; color: #6A6057;">不顺延，不扣课时</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+              <span style="width: 50px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057;">09-05</span>
+              <span style="width: 62px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #E6EEE5; color: #3E5C46; font-size: 11px;">加课</span></span>
+              <span style="flex-grow: 1; min-width: 0; font-size: 12.5px;">Flyers 冲刺班 · 考前加练 18:30 – 20:00</span>
+              <span style="font-size: 11.5px; color: #6A6057;">全班照常扣</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 12px; height: 48px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+              <span style="width: 50px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 12.5px; color: #6A6057;">08-29</span>
+              <span style="width: 62px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F1EADE; color: #5A5249; font-size: 11px;">取消</span></span>
+              <span style="flex-grow: 1; min-width: 0; font-size: 12.5px;">Phonics 启蒙班 周六 10:00 · 台风停课</span>
+              <span style="font-size: 11.5px; color: #6A6057;">不顺延，不扣课时</span>
+            </div>
+          </section>
+        </div>
+
+        <aside style="width: 352px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; overflow: hidden;">
+            <div style="padding: 16px 18px 12px; border-bottom: 1px solid #F0E8DA;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">本次将生成</h2>
+              <div style="display: flex; align-items: baseline; gap: 7px; margin-top: 7px;">
+                <span style="font-family: 'Newsreader', Georgia, serif; font-size: 30px; font-weight: 600; color: #8F4526; line-height: 1;">{{ total }}</span>
+                <span style="font-size: 12.5px; color: #6A6057;">节课 · {{ rangeText }}</span>
+              </div>
+            </div>
+            <sc-for list="{{ rules }}" as="r" hint-placeholder-count="5">
+              <div style="display: flex; align-items: center; gap: 10px; height: 40px; padding: 0 18px; border-top: 1px solid #F3ECE1;">
+                <span style="{{ r.dotStyle }}"></span>
+                <span style="flex-grow: 1; min-width: 0; font-size: 12.5px;">{{ r.name }}</span>
+                <span style="font-family: 'Newsreader', Georgia, serif; font-size: 13.5px; font-weight: 600;">{{ r.count }}</span>
+              </div>
+            </sc-for>
+          </section>
+
+          <section style="background: #F8EBD1; border: 1px solid #E8D5AE; border-radius: 14px; padding: 15px 18px;">
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#7A5410" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M12 11.5v5"></path></svg>
+              <span style="font-size: 13px; font-weight: 600; color: #5E4A18;">生成后需要你手动处理</span>
+            </div>
+            <p style="margin: 9px 0 0; font-size: 12px; color: #5E4A18; line-height: 1.7;">10 月 1 – 3 日是国庆假期。系统不会自动跳过节假日，这 3 天的课会照常生成，请到课表上取消 —— 取消不顺延，直接少上。</p>
+          </section>
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 15px 18px;">
+            <div style="display: flex; align-items: center; gap: 9px;">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#3E5C46" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 12.5l5 5 10-11"></path></svg>
+              <span style="font-size: 13px; color: #3E5C46;">已检查教室与时段冲突，未发现冲突</span>
+            </div>
+          </section>
+
+          <div style="flex-grow: 1;"></div>
+
+          <p style="margin: 0; font-size: 11.5px; color: #6A6057; line-height: 1.7;">生成只创建课次，不扣任何人的课时。课时在点名确认时才扣。</p>
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1360,"height":880}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { weeks: 2, auto: true };
+  }
+  renderVals() {
+    var self = this;
+    var s = this.state;
+
+    var classes = [
+      { name: 'Starters A 班', color: '#B75E36', dow: '周二 / 周四', time: '09:30 – 11:00', room: 'A 教室', per: 2 },
+      { name: 'Movers B 班', color: '#4C6F55', dow: '周二 / 周四', time: '14:00 – 15:30', room: 'A 教室', per: 2 },
+      { name: 'Movers C 班', color: '#3F6B6E', dow: '周一 / 周三', time: '16:30 – 18:00', room: 'B 教室', per: 2 },
+      { name: 'Flyers 冲刺班', color: '#8C4A63', dow: '周四 / 周六', time: '18:30 – 20:00', room: 'B 教室', per: 2 },
+      { name: 'Phonics 启蒙班', color: '#92701F', dow: '周六', time: '10:00 – 11:30', room: 'A 教室', per: 1 }
+    ];
+
+    var total = 0;
+    var rules = classes.map(function (c) {
+      var n = c.per * s.weeks;
+      total += n;
+      return {
+        name: c.name, dow: c.dow, time: c.time, room: c.room,
+        per: c.per, count: n + ' 节',
+        dotStyle: 'width:8px;height:8px;border-radius:3px;flex-shrink:0;background:' + c.color + ';'
+      };
+    });
+
+    var start = new Date(2026, 9, 1);
+    var end = new Date(2026, 9, 1 + s.weeks * 7 - 1);
+    function d(x) { return (x.getMonth() + 1) + ' 月 ' + x.getDate() + ' 日'; }
+
+    function track(on) {
+      return 'display:flex;align-items:center;width:42px;height:24px;border-radius:12px;padding:2px;box-sizing:border-box;flex-shrink:0;background:' + (on ? '#B75E36' : '#D9CDB6') + ';';
+    }
+    function knob(on) {
+      return 'width:20px;height:20px;border-radius:50%;background:#FFFFFF;margin-left:' + (on ? '18px' : '0') + ';';
+    }
+
+    return {
+      weeks: s.weeks,
+      auto: s.auto,
+      autoTrack: track(s.auto),
+      autoKnob: knob(s.auto),
+      autoHint: s.auto ? '每周一早上按规则补齐，始终保持提前 ' + s.weeks + ' 周' : '关闭后只在你点「立即生成」时才排课',
+      rules: rules,
+      total: total,
+      totalText: total + ' 节',
+      rangeText: d(start) + ' – ' + d(end),
+      incWeeks: function () { if (s.weeks < 8) { self.setState({ weeks: s.weeks + 1 }); } },
+      decWeeks: function () { if (s.weeks > 1) { self.setState({ weeks: s.weeks - 1 }); } },
+      toggleAuto: function () { self.setState({ auto: !s.auto }); }
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6EF; }
+    a { color: #B75E36; }
+    a:hover { color: #8F4526; }
+    button { font-family: inherit; }
+  </style>
+</helmet>
+<div style="width: 1360px; height: 880px; box-sizing: border-box; display: flex; overflow: hidden; background: #FAF6EF; font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; color: #2B2521;">
+
+  <aside style="width: 216px; flex-shrink: 0; background: #332A21; display: flex; flex-direction: column;">
+    <div style="display: flex; gap: 8px; padding: 16px 18px 0;">
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #E0705F;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #D9A343;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #5FA06A;"></span>
+    </div>
+    <div style="padding: 26px 18px 22px;">
+      <div style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 20px; color: #F2E9DB;">[机构名称]</div>
+      <div style="font-size: 10.5px; color: #A99C8B; letter-spacing: 0.16em; margin-top: 6px;">COURSE HOURS</div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+        <span>今日</span>
+      </a>
+      <a href="Schedule.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"></rect><path d="M8 2.5v4M16 2.5v4M3 9.5h18"></path></svg>
+        <span>课表</span>
+      </a>
+      <a href="Students.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; background: #B75E36; color: #FFF6EE; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.6"></circle><path d="M3 20c0-3.5 2.9-5.6 6.5-5.6s6.5 2.1 6.5 5.6"></path><path d="M17 7.4a3.1 3.1 0 0 1 0 6"></path><path d="M18.4 15.2c1.9.7 3 2.2 3 4.3"></path></svg>
+        <span>学生</span>
+      </a>
+      <a href="Classes.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"></rect></svg>
+        <span>班级</span>
+      </a>
+      <a href="Ledger.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 6.5h12M8.5 12h12M8.5 17.5h12M4 6.5h.01M4 12h.01M4 17.5h.01"></path></svg>
+        <span>课时流水</span>
+      </a>
+      <a href="Reports.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"></path><path d="M6.5 20v-6M12 20v-11M17.5 20v-4"></path></svg>
+        <span>经营报表</span>
+      </a>
+    </nav>
+    <div style="flex-grow: 1;"></div>
+    <div style="padding: 8px 12px 14px; border-top: 1px solid #453A2E;">
+      <a href="Settings.dc.html" style="display: flex; align-items: center; gap: 11px; height: 36px; padding: 0 12px; border-radius: 9px; color: #A99C8B; text-decoration: none; font-size: 13px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 2.6v2.4M12 19v2.4M21.4 12H19M5 12H2.6M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7M18.6 18.6l-1.7-1.7M7.1 7.1L5.4 5.4"></path></svg>
+        <span>设置</span>
+      </a>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;">
+
+    <header style="height: 80px; flex-shrink: 0; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EAE1D2;">
+      <div>
+        <a href="Students.dc.html" style="display: inline-flex; align-items: center; gap: 4px; font-size: 12px; text-decoration: none;">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"></path></svg>
+          学生
+        </a>
+        <h1 style="margin: 3px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 25px; font-weight: 600;">林小满 <span style="font-weight: 400; color: #6A6057;">Lily</span></h1>
+      </div>
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">登记请假</button>
+        <button type="button" style="height: 36px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">手动调整课时</button>
+        <a href="Recharge.dc.html" style="display: inline-flex; align-items: center; height: 36px; padding: 0 16px; border-radius: 9px; background: #B75E36; color: #FFF6EE; font-size: 13.5px; text-decoration: none;">登记充值</a>
+      </div>
+    </header>
+
+    <div style="flex-grow: 1; min-height: 0; box-sizing: border-box; padding: 20px 32px 24px; display: flex; flex-direction: column; gap: 14px;">
+
+      <section style="display: flex; align-items: center; gap: 24px; background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 22px;">
+        <span style="width: 56px; height: 56px; flex-shrink: 0; border-radius: 50%; background: #F7E2DE; color: #8C332C; display: flex; align-items: center; justify-content: center; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 23px;">林</span>
+        <div style="width: 178px;">
+          <div style="font-size: 16px; font-weight: 600;">林小满</div>
+          <div style="display: flex; gap: 6px; margin-top: 7px;">
+            <span style="display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 6px; background: #E9F0E8; color: #3E5C46; font-size: 11.5px;">Movers B 班</span>
+            <span style="display: inline-flex; align-items: center; height: 22px; padding: 0 9px; border-radius: 6px; background: #F1EADE; color: #5A5249; font-size: 11.5px;">在读</span>
+          </div>
+        </div>
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+        <div style="width: 150px;">
+          <div style="font-size: 11.5px; color: #6A6057;">课时余额</div>
+          <div style="display: flex; align-items: baseline; gap: 6px; margin-top: 3px;">
+            <span style="font-family: 'Newsreader', Georgia, serif; font-size: 34px; font-weight: 600; color: #A33B33; line-height: 1;">−2</span>
+            <span style="font-size: 12px; color: #8C332C;">已欠 2 课时</span>
+          </div>
+        </div>
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+        <div style="width: 132px;">
+          <div style="font-size: 11.5px; color: #6A6057;">累计已消耗</div>
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 24px; font-weight: 600; margin-top: 4px; line-height: 1;">50 <span style="font-size: 12px; font-weight: 400; color: #6A6057;">课时</span></div>
+        </div>
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+        <div style="width: 132px;">
+          <div style="font-size: 11.5px; color: #6A6057;">本月出勤</div>
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 24px; font-weight: 600; margin-top: 4px; line-height: 1;">4 / 5 <span style="font-size: 12px; font-weight: 400; color: #6A6057;">次</span></div>
+        </div>
+        <div style="width: 1px; align-self: stretch; background: #F0E8DA;"></div>
+        <div>
+          <div style="font-size: 11.5px; color: #6A6057;">入学</div>
+          <div style="font-family: 'Newsreader', Georgia, serif; font-size: 24px; font-weight: 600; margin-top: 4px; line-height: 1;">2026-03</div>
+        </div>
+      </section>
+
+      <section style="display: flex; align-items: center; gap: 12px; background: #FBEDE9; border: 1px solid #EDCFC7; border-radius: 12px; padding: 12px 18px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8C332C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5l9.5 16.5H2.5z"></path><path d="M12 10v4M12 17h.01"></path></svg>
+        <span style="font-size: 13px; color: #6B2A24;">已欠 2 课时，按秋季课包 ¥150 / 次折算应补 ¥300。今天 14:00 的课照常上，课后将欠 3 课时。</span>
+        <div style="flex-grow: 1;"></div>
+        <a href="Recharge.dc.html" style="display: inline-flex; align-items: center; height: 32px; padding: 0 16px; border-radius: 8px; background: #A33B33; color: #FFF4F1; font-size: 12.5px; text-decoration: none;">充值并抵扣</a>
+      </section>
+
+      <div style="flex-grow: 1; min-height: 0; display: flex; gap: 18px;">
+
+        <section style="flex-grow: 1; min-width: 0; background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; overflow: hidden; display: flex; flex-direction: column;">
+          <div style="display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 20px; border-bottom: 1px solid #F0E8DA;">
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">课时流水</h2>
+            <div style="flex-grow: 1;"></div>
+            <button type="button" style="height: 28px; padding: 0 12px; border: 1px solid #B75E36; border-radius: 14px; background: #B75E36; color: #FFF6EE; font-size: 12px; cursor: pointer;">全部</button>
+            <button type="button" style="height: 28px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 14px; background: #FFFFFF; color: #4A423A; font-size: 12px; cursor: pointer;">充值</button>
+            <button type="button" style="height: 28px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 14px; background: #FFFFFF; color: #4A423A; font-size: 12px; cursor: pointer;">消费</button>
+            <button type="button" style="height: 28px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 14px; background: #FFFFFF; color: #4A423A; font-size: 12px; cursor: pointer;">调整</button>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 36px; padding: 0 20px; background: #FBF7F0; font-size: 11.5px; color: #6A6057;">
+            <span style="width: 54px; flex-shrink: 0;">日期</span>
+            <span style="width: 52px; flex-shrink: 0;">类型</span>
+            <span style="flex-grow: 1; min-width: 0;">说明</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right;">变动</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right;">余额</span>
+            <span style="width: 56px; flex-shrink: 0; text-align: right;">操作</span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">09-15</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F9EAE0; color: #8F4526; font-size: 11px;">消费</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">Movers B 班 14:00 · 出勤 · 秋季课包</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #8F4526;">−1</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600; color: #A33B33;">−2</span>
+            <span style="width: 56px; flex-shrink: 0; text-align: right;"><a href="StudentDetail.dc.html" style="font-size: 12px; text-decoration: none;">撤销</a></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">09-10</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F1EADE; color: #5A5249; font-size: 11px;">请假</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">家长提前请假 · 按规则不扣</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #6A6057;">0</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600; color: #A33B33;">−1</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">09-08</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F9EAE0; color: #8F4526; font-size: 11px;">消费</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">Movers B 班 14:00 · 出勤 · 秋季课包</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #8F4526;">−1</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600; color: #A33B33;">−1</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">09-03</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F9EAE0; color: #8F4526; font-size: 11px;">消费</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">Movers B 班 14:00 · 迟到 · 秋季课包</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #8F4526;">−1</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600; color: #8A6011;">0</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">09-01</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F9EAE0; color: #8F4526; font-size: 11px;">消费</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">Movers B 班 14:00 · 出勤 · 秋季课包</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #8F4526;">−1</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600;">1</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FBF9F4;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">08-27</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #E9F0E8; color: #3E5C46; font-size: 11px;">调整</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">8-20 重复点名，回退 1 课时</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #3E5C46;">+1</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600;">2</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 52px; padding: 0 20px; border-top: 1px solid #F3ECE1;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">08-27</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #F1EADE; color: #5A5249; font-size: 11px;">缺勤</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">Movers B 班 14:00 · 缺勤 · 未到且未请假</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #6A6057;">0</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600;">1</span>
+            <span style="width: 56px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px; height: 32px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FBF9F4;">
+            <span style="font-size: 11px; color: #8C8276;">中间 20 条上课记录</span>
+            <span style="flex-grow: 1; height: 1px; background: #F0E8DA;"></span>
+            <a href="StudentDetail.dc.html" style="font-size: 11.5px; text-decoration: none;">展开全部 51 条</a>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 14px; height: 50px; padding: 0 20px; border-top: 1px solid #F3ECE1; background: #FAFBF8;">
+            <span style="width: 54px; flex-shrink: 0; font-family: 'Newsreader', Georgia, serif; font-size: 13px; color: #4A423A;">07-02</span>
+            <span style="width: 52px; flex-shrink: 0;"><span style="display: inline-flex; align-items: center; height: 21px; padding: 0 8px; border-radius: 6px; background: #E6EEE5; color: #3E5C46; font-size: 11px;">充值</span></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 13px;">秋季课包 24 课次 · ¥3,600（¥150 / 次）</span>
+            <span style="width: 64px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 15px; color: #3E5C46;">+24</span>
+            <span style="width: 58px; flex-shrink: 0; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px; font-weight: 600;">21</span>
+            <span style="width: 56px; flex-shrink: 0; text-align: right;"><a href="Recharge.dc.html" style="font-size: 12px; text-decoration: none;">详情</a></span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px; height: 30px; padding: 0 20px; background: #FAFBF8;">
+            <span style="width: 106px; flex-shrink: 0;"></span>
+            <span style="flex-grow: 1; min-width: 0; font-size: 11.5px; color: #5A5249;">↳ 充值前余额 −3，其中 3 课次用于结清欠课时，实际可用 21 课时</span>
+            <span style="width: 128px; flex-shrink: 0;"></span>
+          </div>
+
+          <div style="flex-grow: 1;"></div>
+        </section>
+
+        <aside style="width: 306px; flex-shrink: 0; display: flex; flex-direction: column; gap: 14px;">
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 16px 18px;">
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 15px; font-weight: 600;">当前课包</h2>
+            <div style="font-size: 13.5px; font-weight: 600; margin-top: 10px;">秋季课包 · 24 课次</div>
+            <div style="display: flex; align-items: baseline; gap: 8px; margin-top: 5px;">
+              <span style="font-family: 'Newsreader', Georgia, serif; font-size: 20px; font-weight: 600;">¥3,600</span>
+              <span style="font-size: 11.5px; color: #6A6057;">÷ 24 课次 = ¥150 / 次</span>
+            </div>
+            <div style="display: flex; align-items: center; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 14px;">
+              <span>已用 26 / 24</span>
+              <span style="color: #8C332C;">超出 2</span>
+            </div>
+            <div style="display: flex; height: 8px; border-radius: 4px; background: #F1EADE; margin-top: 6px; overflow: hidden;">
+              <div style="width: 92%; height: 8px; background: #B75E36;"></div>
+              <div style="width: 2%; height: 8px; background: #FFFFFF;"></div>
+              <div style="width: 6%; height: 8px; background: #A33B33;"></div>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 12px; padding-top: 12px; border-top: 1px solid #F3ECE1;">
+              <span>购买日期</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">2026-07-02</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;">
+              <span>有效期</span><span style="color: #2B2521;">不限，用完为止</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;">
+              <span>历史课包</span><span style="color: #2B2521;">春季 24 课次 ¥3,360（¥140 / 次）</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;">
+              <span>累计付费</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">¥6,960 / 48 课次</span>
+            </div>
+            <p style="margin: 11px 0 0; font-size: 11px; color: #6A6057; line-height: 1.5;">单价由每次充值的「总金额 ÷ 课次」自动算出，逐包保存。课包不设有效期，用完后可继续上课，超出部分记为欠课时，下次充值自动抵扣。</p>
+          </section>
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 16px 18px;">
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 15px; font-weight: 600;">上课规律</h2>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 11px;">
+              <span>固定班级</span><span style="color: #2B2521;">Movers B 班</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 8px;">
+              <span>上课时间</span><span style="color: #2B2521;">周二 / 周四 14:00</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 8px;">
+              <span>近三个月</span><span style="color: #2B2521;">出勤 21 · 请假 3 · 缺勤 1</span>
+            </div>
+          </section>
+
+          <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 16px 18px;">
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 15px; font-weight: 600;">联系人</h2>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 11px;">
+              <span>家长</span><span style="color: #2B2521;">[家长姓名]</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 8px;">
+              <span>电话</span><span style="color: #2B2521;">[联系电话]</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 8px;">
+              <span>备注</span><span style="color: #2B2521;">[备注]</span>
+            </div>
+          </section>
+
+        </aside>
+      </div>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1360,"height":880}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+{
+  "v": 3,
+  "attachments": {},
+  "boards": {
+    "ClassDetail.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "班级详情 · 名册与课次",
+      "w": 1360,
+      "x": 1440,
+      "y": 2560
+    },
+    "Classes.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "班级列表",
+      "w": 1360,
+      "x": 0,
+      "y": 2560
+    },
+    "Ledger.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "课时流水 · 全机构",
+      "w": 1360,
+      "x": 2880,
+      "y": 2560
+    },
+    "Main.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "今日 · 总览",
+      "w": 1360,
+      "x": 0,
+      "y": 0
+    },
+    "Recharge.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "登记充值 · 抵扣欠课时（可点击试用）",
+      "w": 1360,
+      "x": 2880,
+      "y": 1280
+    },
+    "Reports.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "经营报表",
+      "w": 1360,
+      "x": 4320,
+      "y": 1280
+    },
+    "Roster.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "点名扣课时（可点击试用）",
+      "w": 1360,
+      "x": 1440,
+      "y": 0
+    },
+    "Schedule.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "课表 · 周视图",
+      "w": 1360,
+      "x": 2880,
+      "y": 0
+    },
+    "Scheduling.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "排课 · 循环规则与批量生成（可点击试用）",
+      "w": 1360,
+      "x": 4320,
+      "y": 0
+    },
+    "Settings.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "设置 · 课时规则（可点击试用）",
+      "w": 1360,
+      "x": 4320,
+      "y": 2560
+    },
+    "StudentDetail.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "学生详情 · 课时流水",
+      "w": 1360,
+      "x": 1440,
+      "y": 1280
+    },
+    "Students.dc.html": {
+      "h": 880,
+      "is_interactive": true,
+      "title": "学生 · 按余额排序",
+      "w": 1360,
+      "x": 0,
+      "y": 1280
+    }
+  },
+  "createdOnFiles": {
+    "at": "2026-09-17T06:00:00Z",
+    "v": 1
+  },
+  "designSystems": [],
+  "launch": {
+    "view": "canvas"
+  },
+  "notes": {
+    "n1": {
+      "kind": "title1",
+      "maxW": 5680,
+      "text": "每天走的主线：今日 → 点名扣课时 → 课表 → 排课",
+      "w": 240,
+      "x": 0,
+      "y": -300
+    },
+    "n2": {
+      "kind": "title1",
+      "maxW": 5680,
+      "text": "钱和账：余额预警 → 课时流水 → 充值抵扣 → 经营报表",
+      "w": 240,
+      "x": 0,
+      "y": 1000
+    },
+    "n3": {
+      "kind": "title1",
+      "maxW": 5680,
+      "text": "底座：班级、全机构流水、规则设置",
+      "w": 240,
+      "x": 0,
+      "y": 2280
+    }
+  },
+  "order": [
+    "Main.dc.html",
+    "Roster.dc.html",
+    "Schedule.dc.html",
+    "Scheduling.dc.html",
+    "Students.dc.html",
+    "StudentDetail.dc.html",
+    "Recharge.dc.html",
+    "Reports.dc.html",
+    "Classes.dc.html",
+    "ClassDetail.dc.html",
+    "Ledger.dc.html",
+    "Settings.dc.html"
+  ],
+  "pages": [],
+  "title": "课时统计与消费系统"
+}

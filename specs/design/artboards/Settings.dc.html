@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400..700&family=Noto+Serif+SC:wght@500;600;700&display=swap">
+  <style>
+    body { margin: 0; background: #FAF6EF; }
+    a { color: #B75E36; }
+    a:hover { color: #8F4526; }
+    button { font-family: inherit; }
+    input { font-family: inherit; }
+  </style>
+</helmet>
+<div style="width: 1360px; height: 880px; box-sizing: border-box; display: flex; overflow: hidden; background: #FAF6EF; font-family: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif; color: #2B2521;">
+
+  <aside style="width: 216px; flex-shrink: 0; background: #332A21; display: flex; flex-direction: column;">
+    <div style="display: flex; gap: 8px; padding: 16px 18px 0;">
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #E0705F;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #D9A343;"></span>
+      <span style="width: 12px; height: 12px; border-radius: 50%; background: #5FA06A;"></span>
+    </div>
+    <div style="padding: 26px 18px 22px;">
+      <div style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 20px; color: #F2E9DB;">[机构名称]</div>
+      <div style="font-size: 10.5px; color: #A99C8B; letter-spacing: 0.16em; margin-top: 6px;">COURSE HOURS</div>
+    </div>
+    <nav style="display: flex; flex-direction: column; gap: 2px; padding: 0 12px;">
+      <a href="Main.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg>
+        <span>今日</span>
+      </a>
+      <a href="Schedule.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4.5" width="18" height="16" rx="2"></rect><path d="M8 2.5v4M16 2.5v4M3 9.5h18"></path></svg>
+        <span>课表</span>
+      </a>
+      <a href="Students.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9.5" cy="8.5" r="3.6"></circle><path d="M3 20c0-3.5 2.9-5.6 6.5-5.6s6.5 2.1 6.5 5.6"></path><path d="M17 7.4a3.1 3.1 0 0 1 0 6"></path><path d="M18.4 15.2c1.9.7 3 2.2 3 4.3"></path></svg>
+        <span>学生</span>
+      </a>
+      <a href="Classes.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="3" width="7.5" height="7.5" rx="1.8"></rect><rect x="3" y="13.5" width="7.5" height="7.5" rx="1.8"></rect><rect x="13.5" y="13.5" width="7.5" height="7.5" rx="1.8"></rect></svg>
+        <span>班级</span>
+      </a>
+      <a href="Ledger.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 6.5h12M8.5 12h12M8.5 17.5h12M4 6.5h.01M4 12h.01M4 17.5h.01"></path></svg>
+        <span>课时流水</span>
+      </a>
+      <a href="Reports.dc.html" style="display: flex; align-items: center; gap: 11px; height: 38px; padding: 0 12px; border-radius: 9px; color: #C9BDA9; text-decoration: none; font-size: 13.5px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20h18"></path><path d="M6.5 20v-6M12 20v-11M17.5 20v-4"></path></svg>
+        <span>经营报表</span>
+      </a>
+    </nav>
+    <div style="flex-grow: 1;"></div>
+    <div style="padding: 8px 12px 14px; border-top: 1px solid #453A2E;">
+      <a href="Settings.dc.html" style="display: flex; align-items: center; gap: 11px; height: 36px; padding: 0 12px; border-radius: 9px; background: #4A3D2E; color: #F2E9DB; text-decoration: none; font-size: 13px;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.2"></circle><path d="M12 2.6v2.4M12 19v2.4M21.4 12H19M5 12H2.6M18.6 5.4l-1.7 1.7M7.1 16.9l-1.7 1.7M18.6 18.6l-1.7-1.7M7.1 7.1L5.4 5.4"></path></svg>
+        <span>设置</span>
+      </a>
+    </div>
+  </aside>
+
+  <div style="flex-grow: 1; min-width: 0; display: flex; flex-direction: column;">
+
+    <header style="height: 80px; flex-shrink: 0; box-sizing: border-box; padding: 0 32px; display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #EAE1D2;">
+      <div>
+        <h1 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 27px; font-weight: 600;">设置</h1>
+        <div style="font-size: 12.5px; color: #6A6057; margin-top: 3px;">改动只影响之后的点名和充值，已产生的流水不会重算</div>
+      </div>
+      <span style="{{ dirtyStyle }}">{{ dirtyText }}</span>
+    </header>
+
+    <div style="flex-grow: 1; min-height: 0; box-sizing: border-box; padding: 20px 32px 24px; display: flex; gap: 20px;">
+
+      <nav style="width: 176px; flex-shrink: 0; display: flex; flex-direction: column; gap: 2px;">
+        <button type="button" onClick="{{ goRules }}" style="{{ navRules }}">课时规则</button>
+        <button type="button" onClick="{{ goAlerts }}" style="{{ navAlerts }}">提醒与预警</button>
+        <button type="button" onClick="{{ goPacks }}" style="{{ navPacks }}">班级与课包</button>
+        <button type="button" onClick="{{ goOrg }}" style="{{ navOrg }}">机构信息</button>
+        <button type="button" onClick="{{ goData }}" style="{{ navData }}">数据与备份</button>
+      </nav>
+
+      <section style="flex-grow: 1; min-width: 0; background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 20px 24px; display: flex; flex-direction: column;">
+
+        <sc-if value="{{ isRules }}" hint-placeholder-val="{{ true }}">
+          <div>
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">各状态扣多少课时</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">点名时每个学生选一个状态，按这里的设置扣减。</p>
+
+            <div style="display: flex; align-items: center; height: 50px; border-bottom: 1px solid #F3ECE1;">
+              <span style="width: 12px; height: 12px; border-radius: 4px; background: #4C6F55; flex-shrink: 0;"></span>
+              <span style="margin-left: 11px; font-size: 13.5px;">出勤</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少出勤扣课时" onClick="{{ decPresent }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ present }}</span>
+                <button type="button" aria-label="增加出勤扣课时" onClick="{{ incPresent }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <div style="display: flex; align-items: center; height: 50px; border-bottom: 1px solid #F3ECE1;">
+              <span style="width: 12px; height: 12px; border-radius: 4px; background: #8A6011; flex-shrink: 0;"></span>
+              <span style="margin-left: 11px; font-size: 13.5px;">迟到</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少迟到扣课时" onClick="{{ decLate }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ late }}</span>
+                <button type="button" aria-label="增加迟到扣课时" onClick="{{ incLate }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <div style="display: flex; align-items: center; height: 50px; border-bottom: 1px solid #F3ECE1;">
+              <span style="width: 12px; height: 12px; border-radius: 4px; background: #B6A88F; flex-shrink: 0;"></span>
+              <span style="margin-left: 11px; font-size: 13.5px;">请假</span>
+              <span style="margin-left: 8px; font-size: 11.5px; color: #6A6057;">家长提前说过</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少请假扣课时" onClick="{{ decLeave }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ leave }}</span>
+                <button type="button" aria-label="增加请假扣课时" onClick="{{ incLeave }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <div style="display: flex; align-items: center; height: 50px; border-bottom: 1px solid #F3ECE1;">
+              <span style="width: 12px; height: 12px; border-radius: 4px; background: #A33B33; flex-shrink: 0;"></span>
+              <span style="margin-left: 11px; font-size: 13.5px;">缺勤</span>
+              <span style="margin-left: 8px; font-size: 11.5px; color: #6A6057;">没来也没说</span>
+              <div style="flex-grow: 1;"></div>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少缺勤扣课时" onClick="{{ decAbsent }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ absent }}</span>
+                <button type="button" aria-label="增加缺勤扣课时" onClick="{{ incAbsent }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <h2 style="margin: 22px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">欠课时与充值抵扣</h2>
+
+            <label style="display: flex; align-items: center; gap: 13px; height: 52px; border-bottom: 1px solid #F3ECE1; cursor: pointer; margin-top: 4px;">
+              <input type="checkbox" checked="{{ allowNeg }}" onChange="{{ toggleNeg }}" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+              <span style="{{ negTrack }}"><span style="{{ negKnob }}"></span></span>
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">余额不足也能点名，记为欠课时</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">关掉后，余额为 0 的学生点名时会被拦下</span>
+              </span>
+            </label>
+
+            <label style="display: flex; align-items: center; gap: 13px; height: 52px; border-bottom: 1px solid #F3ECE1; cursor: pointer;">
+              <input type="checkbox" checked="{{ autoOffset }}" onChange="{{ toggleOffset }}" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+              <span style="{{ offTrack }}"><span style="{{ offKnob }}"></span></span>
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">充值时默认抵扣欠课时</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">登记充值时预选「从本次充值中抵扣」，仍可逐笔改</span>
+              </span>
+            </label>
+
+            <div style="padding: 14px 0 4px;">
+              <div style="font-size: 13.5px;">欠款折算单价</div>
+              <div style="display: flex; gap: 10px; margin-top: 10px;">
+                <label style="{{ optPkgStyle }}">
+                  <input type="radio" name="pricemode" checked="{{ isPkg }}" onChange="{{ pickPkg }}" style="width: 15px; height: 15px; margin: 0; accent-color: #B75E36; flex-shrink: 0;">
+                  <span style="font-size: 12.5px;">按欠课时所属课包的单价</span>
+                </label>
+                <label style="{{ optLatestStyle }}">
+                  <input type="radio" name="pricemode" checked="{{ isLatest }}" onChange="{{ pickLatest }}" style="width: 15px; height: 15px; margin: 0; accent-color: #B75E36; flex-shrink: 0;">
+                  <span style="font-size: 12.5px;">按最近一次充值的单价</span>
+                </label>
+              </div>
+            </div>
+
+            <div style="display: flex; align-items: center; height: 52px; border-top: 1px solid #F3ECE1; margin-top: 8px;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">已确认的点名可撤销时限</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">超过时限只能用「手动调整」冲正，留痕更清楚</span>
+              </span>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少撤销天数" onClick="{{ decUndo }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ undo }}</span>
+                <button type="button" aria-label="增加撤销天数" onClick="{{ incUndo }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">天</span>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAlerts }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">什么时候提醒你</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">提醒只出现在应用里和桌面通知，不会自动发给家长。</p>
+
+            <div style="display: flex; align-items: center; height: 56px; border-bottom: 1px solid #F3ECE1; margin-top: 6px;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">余额预警线</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">剩余不超过这个数，学生在列表和今日页标黄</span>
+              </span>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="降低预警线" onClick="{{ decWarn }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ warn }}</span>
+                <button type="button" aria-label="提高预警线" onClick="{{ incWarn }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <div style="display: flex; align-items: center; height: 56px; border-bottom: 1px solid #F3ECE1;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">欠课时到这个数就在点名时提示</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">提示而已，不拦你点名，方便当面跟家长说一声</span>
+              </span>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="降低欠课时提示线" onClick="{{ decOwed }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ owedAlert }}</span>
+                <button type="button" aria-label="提高欠课时提示线" onClick="{{ incOwed }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">课时</span>
+            </div>
+
+            <label style="display: flex; align-items: center; gap: 13px; height: 56px; border-bottom: 1px solid #F3ECE1; cursor: pointer;">
+              <input type="checkbox" checked="{{ daily }}" onChange="{{ toggleDaily }}" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+              <span style="{{ dailyTrack }}"><span style="{{ dailyKnob }}"></span></span>
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">每天早上推送今日课程</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">08:00 提醒今天几节课、谁余额不足</span>
+              </span>
+              <span style="display: flex; align-items: center; height: 34px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-family: 'Newsreader', Georgia, serif; font-size: 14px;">08:00</span>
+            </label>
+
+            <div style="display: flex; align-items: center; height: 56px; border-bottom: 1px solid #F3ECE1;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">课表快排完时提醒生成</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">已排的课次剩不到这么多天，提醒你去排课</span>
+              </span>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少提前天数" onClick="{{ decLead }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ genLead }}</span>
+                <button type="button" aria-label="增加提前天数" onClick="{{ incLead }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">天</span>
+            </div>
+
+            <div style="padding: 16px 0 4px;">
+              <div style="font-size: 13.5px;">提醒方式</div>
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <button type="button" style="height: 36px; padding: 0 16px; border: 1px solid #B75E36; border-radius: 9px; background: #B75E36; color: #FFF6EE; font-size: 12.5px; cursor: pointer;">桌面通知</button>
+                <button type="button" style="height: 36px; padding: 0 16px; border: 1px solid #B75E36; border-radius: 9px; background: #B75E36; color: #FFF6EE; font-size: 12.5px; cursor: pointer;">应用内角标</button>
+                <button type="button" style="height: 36px; padding: 0 16px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #4A423A; font-size: 12.5px; cursor: pointer;">邮件摘要</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPacks }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">新建班级的默认值</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">只影响以后新建的班级，现有班级各自保留自己的设置。</p>
+
+            <div style="display: flex; gap: 14px; margin-top: 14px;">
+              <div style="flex-grow: 1;">
+                <div style="font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">人数上限</div>
+                <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7; width: 128px;">
+                  <button type="button" aria-label="减少人数上限" onClick="{{ decCap }}" style="width: 34px; height: 38px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                  <span style="flex-grow: 1; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ cap }}</span>
+                  <button type="button" aria-label="增加人数上限" onClick="{{ incCap }}" style="width: 34px; height: 38px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+                </span>
+              </div>
+              <div style="flex-grow: 1;">
+                <div style="font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">单次时长</div>
+                <span style="display: flex; align-items: center; height: 38px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-family: 'Newsreader', Georgia, serif; font-size: 15px;">90 分钟</span>
+              </div>
+              <div style="flex-grow: 1;">
+                <div style="font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">默认教室</div>
+                <span style="display: flex; align-items: center; height: 38px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 13.5px;">A 教室</span>
+              </div>
+            </div>
+
+            <div style="padding: 18px 0 0;">
+              <div style="font-size: 13.5px;">教室</div>
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">A 教室 <span style="color: #8C8276;">×</span></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">B 教室 <span style="color: #8C8276;">×</span></span>
+                <button type="button" style="height: 34px; padding: 0 14px; border: 1px dashed #D9CDB6; border-radius: 9px; background: transparent; color: #8F4526; font-size: 12.5px; cursor: pointer;">＋ 添加教室</button>
+              </div>
+            </div>
+
+            <h2 style="margin: 24px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">课包预设</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">登记充值时一键填入课次和金额。单价仍由「总金额 ÷ 课次」现算，预设只是省打字。</p>
+
+            <div style="display: flex; align-items: center; gap: 14px; height: 46px; border-bottom: 1px solid #F3ECE1; margin-top: 8px;">
+              <span style="flex-grow: 1; min-width: 0; font-size: 13.5px;">24 课次</span>
+              <span style="width: 96px; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px;">¥3,600</span>
+              <span style="width: 96px; text-align: right; font-size: 12px; color: #6A6057;">折合 ¥150</span>
+              <span style="width: 40px; text-align: right; font-size: 12px; color: #B75E36;">删除</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; height: 46px; border-bottom: 1px solid #F3ECE1;">
+              <span style="flex-grow: 1; min-width: 0; font-size: 13.5px;">12 课次</span>
+              <span style="width: 96px; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px;">¥1,920</span>
+              <span style="width: 96px; text-align: right; font-size: 12px; color: #6A6057;">折合 ¥160</span>
+              <span style="width: 40px; text-align: right; font-size: 12px; color: #B75E36;">删除</span>
+            </div>
+            <div style="display: flex; align-items: center; gap: 14px; height: 46px; border-bottom: 1px solid #F3ECE1;">
+              <span style="flex-grow: 1; min-width: 0; font-size: 13.5px;">10 课次</span>
+              <span style="width: 96px; text-align: right; font-family: 'Newsreader', Georgia, serif; font-size: 14px;">¥1,700</span>
+              <span style="width: 96px; text-align: right; font-size: 12px; color: #6A6057;">折合 ¥170</span>
+              <span style="width: 40px; text-align: right; font-size: 12px; color: #B75E36;">删除</span>
+            </div>
+            <button type="button" style="height: 36px; padding: 0 14px; margin-top: 12px; border: 1px dashed #D9CDB6; border-radius: 9px; background: transparent; color: #8F4526; font-size: 12.5px; cursor: pointer;">＋ 添加预设</button>
+
+            <div style="padding: 20px 0 0;">
+              <div style="font-size: 13.5px;">收款方式</div>
+              <div style="display: flex; gap: 8px; margin-top: 10px;">
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">微信 <span style="color: #8C8276;">×</span></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">支付宝 <span style="color: #8C8276;">×</span></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">现金 <span style="color: #8C8276;">×</span></span>
+                <span style="display: inline-flex; align-items: center; gap: 8px; height: 34px; padding: 0 12px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-size: 12.5px;">转账 <span style="color: #8C8276;">×</span></span>
+                <button type="button" style="height: 34px; padding: 0 14px; border: 1px dashed #D9CDB6; border-radius: 9px; background: transparent; color: #8F4526; font-size: 12.5px; cursor: pointer;">＋ 添加</button>
+              </div>
+            </div>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isOrg }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">机构信息</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">用在侧边栏、导出的报表和给家长的收据上。</p>
+
+            <div style="display: flex; gap: 16px; align-items: flex-start; margin-top: 16px;">
+              <div style="width: 84px; flex-shrink: 0;">
+                <div style="font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">标志</div>
+                <button type="button" style="width: 84px; height: 84px; border: 1.5px dashed #D9CDB6; border-radius: 12px; background: transparent; color: #8F4526; font-size: 12px; cursor: pointer;">上传</button>
+              </div>
+              <div style="flex-grow: 1; min-width: 0;">
+                <label style="display: block;">
+                  <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">机构名称</span>
+                  <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                    <input type="text" value="[机构名称]" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+                  </span>
+                </label>
+                <div style="display: flex; gap: 14px; margin-top: 12px;">
+                  <label style="flex-grow: 1;">
+                    <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">主理人</span>
+                    <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                      <input type="text" value="[你的名字]" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+                    </span>
+                  </label>
+                  <label style="flex-grow: 1;">
+                    <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">联系电话</span>
+                    <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                      <input type="text" value="[联系电话]" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+                    </span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <label style="display: block; margin-top: 14px;">
+              <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">上课地址</span>
+              <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                <input type="text" value="[上课地址]" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+              </span>
+            </label>
+
+            <h2 style="margin: 24px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">收据</h2>
+
+            <label style="display: block; margin-top: 12px;">
+              <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">收据抬头</span>
+              <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                <input type="text" value="[机构名称] 课时费收据" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+              </span>
+            </label>
+
+            <label style="display: block; margin-top: 12px;">
+              <span style="display: block; font-size: 11.5px; color: #6A6057; margin-bottom: 6px;">收据脚注（选填）</span>
+              <span style="display: flex; align-items: center; height: 40px; padding: 0 14px; background: #FDFBF7; border: 1px solid #E6DCCA; border-radius: 10px;">
+                <input type="text" placeholder="例如：课包不设有效期，用完为止" style="flex-grow: 1; width: 100%; min-width: 0; border: 0; outline: 0; background: transparent; font-size: 14px; color: #2B2521;">
+              </span>
+            </label>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isData }}" hint-placeholder-val="{{ false }}">
+          <div>
+            <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">数据存在哪</h2>
+            <p style="margin: 5px 0 0; font-size: 11.5px; color: #6A6057;">所有数据只在这台 Mac 上，不上传任何服务器。</p>
+
+            <div style="display: flex; align-items: center; gap: 14px; height: 56px; border-bottom: 1px solid #F3ECE1; margin-top: 6px;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">数据位置</span>
+                <span style="display: block; font-family: 'Newsreader', Georgia, serif; font-size: 11.5px; color: #6A6057; margin-top: 2px;">~/Library/Application Support/[机构名称]/</span>
+              </span>
+              <button type="button" style="height: 34px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FFFFFF; color: #2B2521; font-size: 12.5px; cursor: pointer;">在访达中显示</button>
+            </div>
+
+            <label style="display: flex; align-items: center; gap: 13px; height: 56px; border-bottom: 1px solid #F3ECE1; cursor: pointer;">
+              <input type="checkbox" checked="{{ autoBackup }}" onChange="{{ toggleBackup }}" style="position: absolute; width: 1px; height: 1px; opacity: 0;">
+              <span style="{{ bkTrack }}"><span style="{{ bkKnob }}"></span></span>
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">每天自动备份</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">{{ backupHint }}</span>
+              </span>
+              <span style="display: flex; align-items: center; height: 34px; padding: 0 14px; border: 1px solid #E6DCCA; border-radius: 9px; background: #FDFBF7; font-family: 'Newsreader', Georgia, serif; font-size: 14px;">22:00</span>
+            </label>
+
+            <div style="display: flex; align-items: center; height: 56px; border-bottom: 1px solid #F3ECE1;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13.5px;">保留最近几份备份</span>
+                <span style="display: block; font-size: 11.5px; color: #6A6057; margin-top: 2px;">超出的自动删掉，每份约 2 MB</span>
+              </span>
+              <span style="display: flex; align-items: center; border: 1px solid #E6DCCA; border-radius: 9px; overflow: hidden; background: #FDFBF7;">
+                <button type="button" aria-label="减少保留份数" onClick="{{ decKeep }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">−</button>
+                <span style="width: 44px; text-align: center; font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ keep }}</span>
+                <button type="button" aria-label="增加保留份数" onClick="{{ incKeep }}" style="width: 34px; height: 34px; border: 0; background: transparent; cursor: pointer; color: #4A423A; font-size: 16px;">+</button>
+              </span>
+              <span style="width: 36px; text-align: right; font-size: 12px; color: #6A6057;">份</span>
+            </div>
+
+            <h2 style="margin: 24px 0 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 17px; font-weight: 600;">导出与恢复</h2>
+            <div style="display: flex; gap: 10px; margin-top: 12px;">
+              <button type="button" style="height: 38px; padding: 0 16px; border: 1px solid #E6DCCA; border-radius: 10px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">立即备份</button>
+              <button type="button" style="height: 38px; padding: 0 16px; border: 1px solid #E6DCCA; border-radius: 10px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">导出全部数据（CSV）</button>
+              <button type="button" style="height: 38px; padding: 0 16px; border: 1px solid #E6DCCA; border-radius: 10px; background: #FFFFFF; color: #2B2521; font-size: 13px; cursor: pointer;">从备份恢复</button>
+            </div>
+
+            <div style="margin-top: 22px; padding: 14px 16px; border: 1px solid #EDCFC7; border-radius: 12px; background: #FBEDE9; display: flex; align-items: center; gap: 12px;">
+              <span style="flex-grow: 1; min-width: 0;">
+                <span style="display: block; font-size: 13px; font-weight: 600; color: #6B2A24;">清空全部数据</span>
+                <span style="display: block; font-size: 11.5px; color: #6B2A24; margin-top: 3px;">删掉所有学生、班级和流水。会先自动备份一份，但不可撤销。</span>
+              </span>
+              <button type="button" style="height: 34px; padding: 0 16px; border: 1px solid #A33B33; border-radius: 9px; background: #FFFFFF; color: #A33B33; font-size: 12.5px; cursor: pointer;">清空</button>
+            </div>
+          </div>
+        </sc-if>
+
+        <div style="flex-grow: 1; min-height: 14px;"></div>
+
+        <div style="display: flex; align-items: center; gap: 10px; padding-top: 16px; border-top: 1px solid #F0E8DA;">
+          <span style="font-size: 11.5px; color: #6A6057;">保存后立即生效，历史流水不受影响</span>
+          <div style="flex-grow: 1;"></div>
+          <button type="button" onClick="{{ reset }}" style="height: 38px; padding: 0 18px; border: 1px solid #E6DCCA; border-radius: 10px; background: #FFFFFF; color: #2B2521; font-size: 13.5px; cursor: pointer;">恢复默认</button>
+          <button type="button" style="height: 38px; padding: 0 24px; border: 0; border-radius: 10px; background: #B75E36; color: #FFF6EE; font-size: 13.5px; cursor: pointer;">保存设置</button>
+        </div>
+      </section>
+
+      <aside style="width: 304px; flex-shrink: 0; display: flex; flex-direction: column; gap: 16px;">
+
+        <sc-if value="{{ isRules }}" hint-placeholder-val="{{ true }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">规则预览</h2>
+              <p style="margin: 6px 0 0; font-size: 11.5px; color: #6A6057;">点名界面顶部会显示这句话</p>
+              <div style="margin-top: 12px; padding: 13px 15px; border-radius: 10px; background: #F8EBD1; font-size: 12.5px; color: #5E4A18; line-height: 1.7;">{{ ruleSentence }}</div>
+            </section>
+
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">按当前设置试算</h2>
+              <p style="margin: 6px 0 0; font-size: 11.5px; color: #6A6057;">以 Movers B 班 9 人、1 人请假为例</p>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: #6A6057; margin-top: 13px;">
+                <span>本次共扣</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #2B2521;">{{ exampleTotal }}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>林小满（余额 −2）</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #A33B33;">{{ exampleLily }}</span>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #F3ECE1; font-size: 11.5px; color: #6A6057; line-height: 1.7;">{{ exampleNote }}</div>
+            </section>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isAlerts }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">通知长这样</h2>
+              <div style="margin-top: 12px; padding: 13px 15px; border-radius: 12px; background: #F6F1E7; border: 1px solid #E6DCCA;">
+                <div style="font-size: 12px; font-weight: 600;">[机构名称]</div>
+                <div style="font-size: 12.5px; color: #4A423A; margin-top: 5px; line-height: 1.6;">{{ notifyText }}</div>
+                <div style="font-family: 'Newsreader', Georgia, serif; font-size: 11px; color: #8C8276; margin-top: 7px;">今天 08:00</div>
+              </div>
+            </section>
+
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">按当前预警线</h2>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: #6A6057; margin-top: 12px;">
+                <span>会被标黄的学生</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600;">{{ warnCount }}</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>已欠课时的学生</span><span style="font-family: 'Newsreader', Georgia, serif; font-size: 17px; font-weight: 600; color: #A33B33;">2 人</span>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #F3ECE1; font-size: 11.5px; color: #6A6057; line-height: 1.7;">预警线调高会让更多人进名单，也更容易变成没人看的红点。3 课时大约够上一周半。</div>
+            </section>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isPacks }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">关于预设</h2>
+              <p style="margin: 10px 0 0; font-size: 12px; color: #4A423A; line-height: 1.7;">预设只是充值时的快捷填充。你随时可以在充值界面改掉课次或金额，单价按当次实际填的两个数现算，逐包保存。</p>
+              <p style="margin: 10px 0 0; font-size: 12px; color: #4A423A; line-height: 1.7;">所以同一个学生不同时期买的课包可以是不同单价，报表里的班级均价是加权算出来的。</p>
+            </section>
+
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">当前在用</h2>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 12px;">
+                <span>在读班级</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">5 个</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>教室</span><span style="color: #2B2521;">A / B</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>在用单价区间</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">¥135 – ¥170</span>
+              </div>
+            </section>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isOrg }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">收据预览</h2>
+              <div style="margin-top: 12px; padding: 16px; border-radius: 10px; background: #FDFBF7; border: 1px solid #EAE1D2;">
+                <div style="font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 14px; font-weight: 600; text-align: center;">[机构名称] 课时费收据</div>
+                <div style="height: 1px; background: #EFE7D9; margin: 12px 0;"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057;"><span>学生</span><span style="color: #2B2521;">林小满</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;"><span>课次</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">10 课次</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;"><span>金额</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">¥1,000</span></div>
+                <div style="display: flex; justify-content: space-between; font-size: 11.5px; color: #6A6057; margin-top: 7px;"><span>抵扣欠课时</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">2 课次</span></div>
+                <div style="height: 1px; background: #EFE7D9; margin: 12px 0;"></div>
+                <div style="display: flex; justify-content: space-between; font-size: 12px;"><span style="color: #6A6057;">充值后可用</span><span style="font-family: 'Newsreader', Georgia, serif; font-weight: 600;">8 课时</span></div>
+                <div style="font-size: 10.5px; color: #8C8276; margin-top: 12px; line-height: 1.6;">课包不设有效期，用完为止</div>
+              </div>
+            </section>
+          </div>
+        </sc-if>
+
+        <sc-if value="{{ isData }}" hint-placeholder-val="{{ false }}">
+          <div style="display: flex; flex-direction: column; gap: 16px;">
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">最近备份</h2>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 12px;">
+                <span style="font-family: 'Newsreader', Georgia, serif;">09-16 22:00</span><span style="color: #2B2521;">2.1 MB</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 9px;">
+                <span style="font-family: 'Newsreader', Georgia, serif;">09-15 22:00</span><span style="color: #2B2521;">2.1 MB</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12px; color: #6A6057; margin-top: 9px;">
+                <span style="font-family: 'Newsreader', Georgia, serif;">09-14 22:00</span><span style="color: #2B2521;">2.0 MB</span>
+              </div>
+              <div style="margin-top: 12px; padding-top: 12px; border-top: 1px solid #F3ECE1; font-size: 11.5px; color: #6A6057; line-height: 1.7;">{{ keepHint }}</div>
+            </section>
+
+            <section style="background: #FFFFFF; border: 1px solid #EAE1D2; border-radius: 14px; padding: 18px 20px;">
+              <h2 style="margin: 0; font-family: 'Newsreader', 'Noto Serif SC', Georgia, serif; font-size: 16px; font-weight: 600;">数据量</h2>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 12px;">
+                <span>学生</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">47</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>课次</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">486</span>
+              </div>
+              <div style="display: flex; justify-content: space-between; font-size: 12.5px; color: #6A6057; margin-top: 9px;">
+                <span>流水记录</span><span style="font-family: 'Newsreader', Georgia, serif; color: #2B2521;">3,914</span>
+              </div>
+            </section>
+          </div>
+        </sc-if>
+
+      </aside>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script data-dc-script data-props='{"$preview":{"width":1360,"height":880}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      section: 'rules',
+      present: 1, late: 1, leave: 0, absent: 0,
+      allowNeg: true, autoOffset: true, priceMode: 'pkg', undo: 7,
+      warn: 3, owedAlert: 5, daily: true, genLead: 7,
+      cap: 10, autoBackup: true, keep: 30,
+      touched: false
+    };
+  }
+  bump(key, delta, min, max) {
+    var v = this.state[key] + delta;
+    if (v < min) { v = min; }
+    if (v > max) { v = max; }
+    var patch = { touched: true };
+    patch[key] = v;
+    this.setState(patch);
+  }
+  go(name) {
+    this.setState({ section: name });
+  }
+  renderVals() {
+    var self = this;
+    var s = this.state;
+
+    function track(on) {
+      return 'display:flex;align-items:center;width:42px;height:24px;border-radius:12px;padding:2px;box-sizing:border-box;flex-shrink:0;background:' + (on ? '#B75E36' : '#D9CDB6') + ';';
+    }
+    function knob(on) {
+      return 'width:20px;height:20px;border-radius:50%;background:#FFFFFF;margin-left:' + (on ? '18px' : '0') + ';';
+    }
+    function nav(active) {
+      return 'display:flex;align-items:center;height:38px;padding:0 14px;border:0;border-radius:9px;font-size:13.5px;text-align:left;cursor:pointer;'
+        + (active ? 'background:#F1E7DA;color:#2B2521;font-weight:600;' : 'background:transparent;color:#4A423A;');
+    }
+
+    var optBase = 'display:flex;align-items:center;gap:9px;flex-grow:1;padding:11px 13px;border-radius:10px;cursor:pointer;';
+    var isPkg = s.priceMode === 'pkg';
+
+    var parts = [];
+    parts.push(s.present > 0 ? '出勤扣 ' + s.present + ' 课时' : '出勤不扣');
+    parts.push(s.late > 0 ? '迟到扣 ' + s.late + ' 课时' : '迟到不扣');
+    parts.push(s.leave > 0 ? '请假扣 ' + s.leave + ' 课时' : '请假不扣');
+    parts.push(s.absent > 0 ? '缺勤扣 ' + s.absent + ' 课时' : '缺勤不扣');
+    var sentence = '扣课时规则：' + parts.join('、') + '。';
+    sentence += s.allowNeg
+      ? '余额不足照常点名，不足的部分记为欠课时。'
+      : '余额不足的学生无法点名，需先充值。';
+    sentence += s.autoOffset ? '充值时默认抵扣欠课时。' : '充值不自动抵扣欠课时。';
+
+    var exampleTotal = 8 * s.present + 1 * s.leave;
+    var lilyAfter = -2 - s.present;
+
+    var note;
+    if (!s.allowNeg) {
+      note = '林小满余额为负，按当前设置今天会被拦下，需要先充值才能点名。';
+    } else if (s.present === 0) {
+      note = '出勤不扣课时，课包就只剩计次意义，报表里的课消收入会归零 —— 确认这是你想要的。';
+    } else {
+      note = '林小满出勤后变成 ' + lilyAfter + '，欠的课时会一直挂着，下次充值时' + (s.autoOffset ? '自动抵扣。' : '需要手动选择是否抵扣。');
+    }
+
+    // 余额 ≤ warn 的学生（含欠课时的 2 人）
+    var balances = [-2, -1, 0, 4, 5, 6, 7, 8, 9, 12, 14, 16, 21];
+    var warnCount = 0;
+    for (var i = 0; i < balances.length; i++) {
+      if (balances[i] <= s.warn) { warnCount += 1; }
+    }
+
+    return {
+      isRules: s.section === 'rules',
+      isAlerts: s.section === 'alerts',
+      isPacks: s.section === 'packs',
+      isOrg: s.section === 'org',
+      isData: s.section === 'data',
+      navRules: nav(s.section === 'rules'),
+      navAlerts: nav(s.section === 'alerts'),
+      navPacks: nav(s.section === 'packs'),
+      navOrg: nav(s.section === 'org'),
+      navData: nav(s.section === 'data'),
+      goRules: function () { self.go('rules'); },
+      goAlerts: function () { self.go('alerts'); },
+      goPacks: function () { self.go('packs'); },
+      goOrg: function () { self.go('org'); },
+      goData: function () { self.go('data'); },
+
+      present: s.present, late: s.late, leave: s.leave, absent: s.absent, undo: s.undo,
+      warn: s.warn, owedAlert: s.owedAlert, genLead: s.genLead, cap: s.cap, keep: s.keep,
+      allowNeg: s.allowNeg, autoOffset: s.autoOffset, daily: s.daily, autoBackup: s.autoBackup,
+      negTrack: track(s.allowNeg), negKnob: knob(s.allowNeg),
+      offTrack: track(s.autoOffset), offKnob: knob(s.autoOffset),
+      dailyTrack: track(s.daily), dailyKnob: knob(s.daily),
+      bkTrack: track(s.autoBackup), bkKnob: knob(s.autoBackup),
+      isPkg: isPkg, isLatest: !isPkg,
+      optPkgStyle: optBase + (isPkg ? 'border:1.5px solid #B75E36;background:#FDF7F3;' : 'border:1px solid #E6DCCA;background:#FFFFFF;'),
+      optLatestStyle: optBase + (!isPkg ? 'border:1.5px solid #B75E36;background:#FDF7F3;' : 'border:1px solid #E6DCCA;background:#FFFFFF;'),
+      ruleSentence: sentence,
+      exampleTotal: exampleTotal + ' 课时',
+      exampleLily: lilyAfter + ' 课时',
+      exampleNote: note,
+      warnCount: warnCount + ' 人',
+      notifyText: s.daily
+        ? '今天 3 节课，第一节 09:30 Starters A 班。' + warnCount + ' 人余额不足，2 人已欠课时。'
+        : '已关闭每日推送，只在应用内显示角标。',
+      backupHint: s.autoBackup ? '每晚 22:00 自动备份到本机' : '已关闭，只能手动备份',
+      keepHint: '当前保留最近 ' + s.keep + ' 份，约占 ' + (Math.round(s.keep * 2.1 * 10) / 10) + ' MB。',
+      dirtyText: s.touched ? '有未保存的改动' : '已是最新',
+      dirtyStyle: s.touched
+        ? 'display:inline-flex;align-items:center;height:28px;padding:0 13px;border-radius:14px;background:#F8EBD1;color:#7A5410;font-size:12px;'
+        : 'display:inline-flex;align-items:center;height:28px;padding:0 13px;border-radius:14px;background:#E6EEE5;color:#3E5C46;font-size:12px;',
+
+      incPresent: function () { self.bump('present', 1, 0, 4); },
+      decPresent: function () { self.bump('present', -1, 0, 4); },
+      incLate: function () { self.bump('late', 1, 0, 4); },
+      decLate: function () { self.bump('late', -1, 0, 4); },
+      incLeave: function () { self.bump('leave', 1, 0, 4); },
+      decLeave: function () { self.bump('leave', -1, 0, 4); },
+      incAbsent: function () { self.bump('absent', 1, 0, 4); },
+      decAbsent: function () { self.bump('absent', -1, 0, 4); },
+      incUndo: function () { self.bump('undo', 1, 0, 90); },
+      decUndo: function () { self.bump('undo', -1, 0, 90); },
+      incWarn: function () { self.bump('warn', 1, 0, 20); },
+      decWarn: function () { self.bump('warn', -1, 0, 20); },
+      incOwed: function () { self.bump('owedAlert', 1, 1, 20); },
+      decOwed: function () { self.bump('owedAlert', -1, 1, 20); },
+      incLead: function () { self.bump('genLead', 1, 1, 30); },
+      decLead: function () { self.bump('genLead', -1, 1, 30); },
+      incCap: function () { self.bump('cap', 1, 2, 30); },
+      decCap: function () { self.bump('cap', -1, 2, 30); },
+      incKeep: function () { self.bump('keep', 5, 5, 180); },
+      decKeep: function () { self.bump('keep', -5, 5, 180); },
+      toggleNeg: function () { self.setState({ allowNeg: !self.state.allowNeg, touched: true }); },
+      toggleOffset: function () { self.setState({ autoOffset: !self.state.autoOffset, touched: true }); },
+      toggleDaily: function () { self.setState({ daily: !self.state.daily, touched: true }); },
+      toggleBackup: function () { self.setState({ autoBackup: !self.state.autoBackup, touched: true }); },
+      pickPkg: function () { self.setState({ priceMode: 'pkg', touched: true }); },
+      pickLatest: function () { self.setState({ priceMode: 'latest', touched: true }); },
+      reset: function () {
+        self.setState({
+          present: 1, late: 1, leave: 0, absent: 0,
+          allowNeg: true, autoOffset: true, priceMode: 'pkg', undo: 7,
+          warn: 3, owedAlert: 5, daily: true, genLead: 7,
+          cap: 10, autoBackup: true, keep: 30, touched: false
+        });
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

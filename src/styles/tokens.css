@@ -1,0 +1,87 @@
+/* 从 specs/design/design-tokens.md 生成。所有组件只用变量。 */
+:root {
+  --ground: #FAF6EF;
+  --surface: #FFFFFF;
+  --surface-sunk: #FBF7F0;
+  --surface-input: #FDFBF7;
+  --surface-soft: #F6F1E7;
+
+  --line: #EAE1D2;
+  --line-soft: #F3ECE1;
+  --line-faint: #F0E8DA;
+  --line-ctrl: #E6DCCA;
+  --line-mid: #EFE7D9;
+  --line-grid: #E0D5C1;
+  --dashed: #D9CDB6;
+  --dashed-soft: #C2B49E;
+
+  --ink: #2B2521;
+  --ink-2: #4A423A;
+  --ink-3: #6A6057;
+  --ink-4: #8C8276;
+
+  --accent: #B75E36;
+  --accent-deep: #8F4526;
+  --accent-mid: #C9764D;
+  --accent-dark: #A3502B;
+  --accent-soft: #F9EAE0;
+  --accent-tint: #FDF7F3;
+
+  --nav-bg: #332A21;
+  --nav-card: #3E3327;
+  --nav-card-warn: #4A2E24;
+  --nav-text: #C9BDA9;
+  --nav-text-dim: #A99C8B;
+  --nav-text-on: #FFF6EE;
+  --nav-brand: #F2E9DB;
+  --nav-line: #453A2E;
+  --nav-active-2: #F1E7DA;
+  --nav-warn-text: #E3B9A6;
+  --nav-warn-num: #FBE7DC;
+
+  --ok: #4C6F55;  --ok-soft: #E6EEE5;  --ok-ink: #3E5C46;
+  --warn: #8A6011; --warn-soft: #F8EBD1; --warn-ink: #7A5410;
+  --danger: #A33B33; --danger-soft: #F7E2DE; --danger-ink: #8C332C;
+  --danger-tint: #FDF6F3;
+  --on-danger: #FFF4F1;
+
+  --class-1: #B75E36; --class-2: #4C6F55; --class-3: #3F6B6E;
+  --class-4: #8C4A63; --class-5: #92701F; --class-6: #8C8276;
+  --class-1-soft: #F9EAE0; --class-1-line: #E6C6B2;
+  --class-2-soft: #E9F0E8; --class-2-line: #C6D6C4;
+  --class-3-soft: #E3EDED; --class-3-line: #BFD5D5;
+  --class-4-soft: #F5E7EC; --class-4-line: #DEC3CE;
+  --class-5-soft: #F6EDD8; --class-5-line: #E2D0A8;
+  --class-6-soft: #F1EADE; --class-6-line: #DCD1BD;
+
+  --neutral-soft: #F1EADE;
+  --neutral-ink: #5A5249;
+  --avatar-ink: #5A4E40;
+  --circle-soft: #F3EDE3;
+  --leave-line: #B6A88F;
+  --ink-on-warn: #5E4A18;
+  --ink-on-danger: #6B2A24;
+
+  --banner-danger-bg: #FBEDE9; --banner-danger-line: #EDCFC7;
+  --banner-warn-bg: #F8EBD1;   --banner-warn-line: #E8D5AE;
+
+  --row-danger: #FDF6F3;
+  --row-warn: #FDFAF3;
+  --row-neutral: #FBF9F4;
+  --row-ok: #FAFBF8;
+  --row-today: #FDF9F3;
+  --col-today-hd: #F9EFE6;
+  --col-today-ln: #F2E8DC;
+  --card-today-line: #DCC4B4;
+
+  --mac-red: #E0705F; --mac-yellow: #D9A343; --mac-green: #5FA06A;
+
+  --font-display: 'Newsreader', 'Noto Serif SC', Georgia, serif;
+  --font-body: -apple-system, 'PingFang SC', 'Helvetica Neue', sans-serif;
+
+  --radius-card: 14px;
+  --radius-ctrl: 9px;
+  --radius-chip: 6px;
+  --sidebar-w: 216px;
+  --header-h: 80px;
+}
