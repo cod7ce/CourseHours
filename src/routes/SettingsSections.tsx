@@ -699,7 +699,9 @@ export function VersionPreview() {
           <div>1. 读取 GitHub 上 cod7ce/CourseHours 的 Releases</div>
           <div>2. 版本号比当前新就提示，点一下下载 zip</div>
           <div>3. 解压后退出应用，用脚本原地替换 .app，再自动打开</div>
-          <div style={{ marginTop: 8, color: 'var(--ink-3)' }}>没有用系统级签名，所以第一次打开新版本时若系统拦截，在访达里右键 → 打开一次即可。</div>
+          <div style={{ marginTop: 8, color: 'var(--ink-3)' }}>没有 Apple 公证。手动下载安装的包若提示「已损坏」，在终端跑一次：</div>
+          <div className="num" style={{ marginTop: 4, fontSize: 11.5, wordBreak: 'break-all', userSelect: 'text' }}>xattr -dr com.apple.quarantine "/Applications/课时统计.app"</div>
+          <div style={{ marginTop: 4, color: 'var(--ink-3)' }}>应用内自动更新的版本不需要。</div>
         </div>
       </Card>
       <Card title="发新版本">
