@@ -56,6 +56,10 @@ scripts/release.sh        # 本地打包，产出 dmg + zip，创建 GitHub Rele
 
 也可以只 `git push origin v0.1.1`，`.github/workflows/release.yml` 会在 GitHub Actions 上构建并上传。`.zip` 给自动更新用，`.dmg` 给人下载。
 
+## 隐藏金额
+
+侧边栏「显示金额 / 隐藏金额」：默认隐藏，所有金额显示为 `¥•••`；点「显示金额」先过系统验证（Touch ID，没有则登录密码），当天有效，隔天自动回到隐藏。验证走 `src-tauri/authlock/main.swift`（LocalAuthentication），由 `scripts/build-authlock.sh` 编译成 sidecar 随应用打包，`pnpm tauri dev / build` 前会自动编译。
+
 ## 数据
 
 - 数据库：`~/Library/Application Support/com.coursehours.app/data.db`
