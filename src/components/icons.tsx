@@ -28,3 +28,5 @@ export const IconEdit = ({ size = 14, sw = 1.8, ...r }: P) => <svg {...base(size
 export const IconFolder = ({ size = 15, sw = 1.8, ...r }: P) => <svg {...base(size, sw, r)}><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" /></svg>;
 export const IconShield = ({ size = 15, sw = 1.8, ...r }: P) => <svg {...base(size, sw, r)}><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" /><path d="M9 12l2 2 4-4" /></svg>;
 export const IconBell = ({ size = 15, sw = 1.8, ...r }: P) => <svg {...base(size, sw, r)}><path d="M6 16V11a6 6 0 0 1 12 0v5l1.5 2h-15z" /><path d="M10 20a2 2 0 0 0 4 0" /></svg>;
+export const IconEye = ({ size = 16, sw = 1.7, ...r }: P) => <svg {...base(size, sw, r)}><path d="M2.5 12s3.5-6.5 9.5-6.5 9.5 6.5 9.5 6.5-3.5 6.5-9.5 6.5S2.5 12 2.5 12z" /><circle cx="12" cy="12" r="3" /></svg>;
+export const IconEyeOff = ({ size = 16, sw = 1.7, ...r }: P) => <svg {...base(size, sw, r)}><path d="M3 3l18 18" /><path d="M10.6 5.8A10 10 0 0 1 12 5.5c6 0 9.5 6.5 9.5 6.5a17 17 0 0 1-3.2 4" /><path d="M6.6 6.6A16.6 16.6 0 0 0 2.5 12s3.5 6.5 9.5 6.5c1.6 0 3-.4 4.3-1" /><path d="M9.9 9.9a3 3 0 0 0 4.2 4.2" /></svg>;

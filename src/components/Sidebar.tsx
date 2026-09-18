@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import { listen } from '@tauri-apps/api/event';
 import { getNavStats, type NavStats } from '../lib/api';
 import { num } from '../lib/format';
-import { useRefresh } from './ui';
-import { IconCalendar, IconChart, IconClock, IconGear, IconGrid, IconList, IconStudents } from './icons';
+import { usePrivacy, useRefresh } from './ui';
+import { IconCalendar, IconChart, IconClock, IconEye, IconEyeOff, IconGear, IconGrid, IconList, IconStudents } from './icons';
 
 const items = [
   { to: '/', label: '今日', icon: IconClock, end: true },
@@ -21,6 +21,7 @@ export function Sidebar() {
   const loc = useLocation();
   useEffect(() => { getNavStats().then(setStats).catch(() => {}); }, [tick, loc.pathname]);
   const onSettings = loc.pathname.startsWith('/settings');
+  const privacy = usePrivacy();
   const [hasUpdate, setHasUpdate] = useState(false);
   useEffect(() => { let un: (() => void) | undefined; listen('update-available', () => setHasUpdate(true)).then((f) => { un = f; }); return () => un?.(); }, []);
   return (
@@ -54,6 +55,12 @@ export function Sidebar() {
         </div>
       </div>
       <div className="no-drag" style={{ padding: '8px 12px 14px', borderTop: '1px solid var(--nav-line)' }}>
+        <button type="button" onClick={privacy.toggle} title={privacy.hidden ? '点击显示金额' : '点击隐藏金额'} style={{
+          display: 'flex', alignItems: 'center', gap: 11, width: '100%', height: 36, padding: '0 12px', border: 0, borderRadius: 9, fontSize: 13, cursor: 'pointer',
+          background: privacy.hidden ? 'var(--nav-card)' : 'transparent', color: privacy.hidden ? 'var(--nav-text-on)' : 'var(--nav-text-dim)', textAlign: 'left',
+        }}>
+          {privacy.hidden ? <IconEyeOff /> : <IconEye />}<span>{privacy.hidden ? '金额已隐藏' : '隐藏金额'}</span>
+        </button>
         <NavLink to="/settings/rules" style={{
           display: 'flex', alignItems: 'center', gap: 11, height: 36, padding: '0 12px', borderRadius: 9, fontSize: 13,
           background: onSettings ? 'var(--nav-card)' : 'transparent', color: onSettings ? 'var(--nav-text-on)' : 'var(--nav-text-dim)',

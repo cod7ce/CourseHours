@@ -1,6 +1,7 @@
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react';
 import { Link } from 'react-router';
 import { IconBack, IconMinus, IconPlus } from './icons';
+import { setMoneyHidden } from '../lib/format';
 
 // ---------- Toast ----------
 type ToastKind = 'info' | 'ok' | 'danger';
@@ -168,4 +169,25 @@ export function RefreshProvider({ children }: { children: ReactNode }) {
   const bump = useCallback(() => setTick((x) => x + 1), []);
   const v = useMemo(() => ({ tick, bump }), [tick, bump]);
   return <RefreshCtx.Provider value={v}>{children}</RefreshCtx.Provider>;
+}
+
+/** 隐藏金额：状态存 localStorage，切换时整棵页面树重挂载以刷新所有 yuan() */
+const PrivacyCtx = createContext<{ hidden: boolean; toggle: () => void }>({ hidden: false, toggle: () => {} });
+export const usePrivacy = () => useContext(PrivacyCtx);
+const PRIVACY_KEY = 'privacy:money';
+function readPrivacy(): boolean {
+  try { return localStorage.getItem(PRIVACY_KEY) === '1'; } catch { return false; }
+}
+export function PrivacyProvider({ children }: { children: ReactNode }) {
+  const [hidden, setHidden] = useState<boolean>(() => { const v = readPrivacy(); setMoneyHidden(v); return v; });
+  const toggle = useCallback(() => {
+    setHidden((h) => {
+      const v = !h;
+      setMoneyHidden(v);
+      try { localStorage.setItem(PRIVACY_KEY, v ? '1' : '0'); } catch { /* ignore */ }
+      return v;
+    });
+  }, []);
+  const value = useMemo(() => ({ hidden, toggle }), [hidden, toggle]);
+  return <PrivacyCtx.Provider value={value}>{children}</PrivacyCtx.Provider>;
 }

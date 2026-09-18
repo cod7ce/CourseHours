@@ -2,9 +2,11 @@ import { Outlet, useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { Sidebar } from './Sidebar';
+import { usePrivacy } from './ui';
 
 export function Shell() {
   const nav = useNavigate();
+  const { hidden } = usePrivacy();
   useEffect(() => {
     const h = (e: KeyboardEvent) => {
       if (e.metaKey && e.key === ',') { e.preventDefault(); nav('/settings/rules'); }
@@ -31,7 +33,7 @@ export function Shell() {
     <div className="app">
       <Sidebar />
       <div className="main">
-        <Outlet />
+        <Outlet key={hidden ? 'money-hidden' : 'money-shown'} />
       </div>
     </div>
   );
