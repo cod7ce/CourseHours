@@ -3,7 +3,7 @@ import * as api from '../lib/api';
 import type { Klass, RuleSummary } from '../lib/api';
 import { CLASS_COLORS } from '../lib/format';
 import { ApplyFutureRow, ScheduleEditor, slotsFromRules, slotsToRules, validateSlots, type Slot } from './ScheduleEditor';
-import { Modal, Stepper, useRefresh, useToast } from './ui';
+import { Kbd, Modal, Stepper, useFormShortcuts, useRefresh, useToast } from './ui';
 
 /** 新建 / 编辑班级。上课时间按「每天一个时段」填写。 */
 export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
@@ -78,14 +78,16 @@ export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
     }
   };
 
+  useFormShortcuts({ onSubmit: () => submit(false), onContinue: editing ? undefined : () => submit(true), enabled: !busy });
+
   return (
     <Modal title={editing ? '编辑班级' : '新建班级'}
       sub={editing ? '修改不影响已产生的流水' : savedCount > 0 ? `本次已创建 ${savedCount} 个班级` : '设定上课时段、人数上限和单次时长'}
       onClose={onClose} width={640}
       footer={<>
-        <button className="btn" onClick={onClose}>{savedCount > 0 ? '完成' : '取消'}</button>
-        {!editing && <button className="btn" disabled={busy} onClick={() => submit(true)}>保存并继续</button>}
-        <button className="btn primary" disabled={busy} onClick={() => submit(false)}>{editing ? '保存' : '创建班级'}</button>
+        <button className="btn" onClick={onClose}>取消<Kbd>esc</Kbd></button>
+        {!editing && <button className="btn" disabled={busy} onClick={() => submit(true)}>保存并继续<Kbd>⌘⏎</Kbd></button>}
+        <button className="btn primary" disabled={busy} onClick={() => submit(false)}>{editing ? '保存' : '创建班级'}<Kbd>⏎</Kbd></button>
       </>}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 14, alignItems: 'end' }}>
         <div className="field">

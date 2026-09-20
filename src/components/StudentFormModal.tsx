@@ -2,7 +2,7 @@ import { useState } from 'react';
 import * as api from '../lib/api';
 import type { ClassCard, Student, StudentInput } from '../lib/api';
 import { DatePicker } from './pickers';
-import { Modal, Dot, Switch, useToast } from './ui';
+import { Modal, Dot, Kbd, Switch, useFormShortcuts, useToast } from './ui';
 import { IconCheck } from './icons';
 import { todayStr } from '../lib/format';
 
@@ -72,6 +72,8 @@ export function StudentFormModal({ student, classes, onClose, onDone, onCreated 
     }
   };
 
+  useFormShortcuts({ onSubmit: () => submit(false), onContinue: editing ? undefined : () => submit(true), enabled: !busy });
+
   const activeClasses = classes.filter((c) => c.status === 'active');
 
   return (
@@ -81,9 +83,9 @@ export function StudentFormModal({ student, classes, onClose, onDone, onCreated 
       onClose={onClose}
       width={520}
       footer={<>
-        <button className="btn" onClick={onClose} disabled={busy}>{savedCount > 0 ? '完成' : '取消'}</button>
-        {!editing && <button className="btn" onClick={() => submit(true)} disabled={busy}>保存并继续</button>}
-        <button className="btn primary" onClick={() => submit(false)} disabled={busy}>{editing ? '保存' : '新增'}</button>
+        <button className="btn" onClick={onClose} disabled={busy}>取消<Kbd>esc</Kbd></button>
+        {!editing && <button className="btn" onClick={() => submit(true)} disabled={busy}>保存并继续<Kbd>⌘⏎</Kbd></button>}
+        <button className="btn primary" onClick={() => submit(false)} disabled={busy}>{editing ? '保存' : '新增'}<Kbd>⏎</Kbd></button>
       </>}
     >
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>

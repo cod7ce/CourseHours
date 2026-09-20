@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import * as api from '../lib/api';
 import type { ClassCard } from '../lib/api';
 import { todayStr } from '../lib/format';
-import { Dot, Modal, useRefresh, useToast } from './ui';
+import { Dot, Kbd, Modal, useFormShortcuts, useRefresh, useToast } from './ui';
 
 import { DatePicker } from './pickers';
 import { addMinutes, TimeRangeFields } from './TimeRange';
@@ -61,12 +61,14 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
     }
   };
 
+  useFormShortcuts({ onSubmit: () => submit(false), onContinue: () => submit(true), enabled: !busy && classes.length > 0 });
+
   return (
     <Modal title="临时加课" sub="加课只创建一节课次，课时在点名时才扣" onClose={onClose} width={480}
       footer={<>
-        <button className="btn" onClick={savedCount > 0 ? onDone : onClose}>{savedCount > 0 ? '完成' : '取消'}</button>
-        <button className="btn" disabled={busy || classes.length === 0} onClick={() => submit(true)}>添加并继续</button>
-        <button className="btn primary" disabled={busy || classes.length === 0} onClick={() => submit(false)}>添加课次</button>
+        <button className="btn" onClick={savedCount > 0 ? onDone : onClose}>取消<Kbd>esc</Kbd></button>
+        <button className="btn" disabled={busy || classes.length === 0} onClick={() => submit(true)}>添加并继续<Kbd>⌘⏎</Kbd></button>
+        <button className="btn primary" disabled={busy || classes.length === 0} onClick={() => submit(false)}>添加课次<Kbd>⏎</Kbd></button>
       </>}>
       {classes.length === 0 ? (
         <div className="muted" style={{ fontSize: 12.5 }}>还没有在读班级，先去「班级」新建一个。</div>

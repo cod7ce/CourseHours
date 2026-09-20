@@ -76,6 +76,36 @@ export function Modal({ title, sub, children, footer, onClose, width = 520 }: {
 }
 
 // ---------- 小件 ----------
+/** 按钮上的快捷键提示 */
+export function Kbd({ children }: { children: ReactNode }) {
+  return <span style={{ marginLeft: 7, fontSize: 11, opacity: 0.6, fontFamily: 'var(--font-body)' }}>{children}</span>;
+}
+
+/**
+ * 弹窗表单快捷键：回车提交，⌘回车保存并继续。Esc 由 Modal 自己处理。
+ * 焦点在按钮或多行输入里时，回车交还给它们；中文输入法组字中不触发。
+ */
+export function useFormShortcuts({ onSubmit, onContinue, enabled = true }: {
+  onSubmit: () => void; onContinue?: () => void; enabled?: boolean;
+}) {
+  const ref = useRef({ onSubmit, onContinue });
+  ref.current = { onSubmit, onContinue };
+  useEffect(() => {
+    if (!enabled) return;
+    const h = (e: KeyboardEvent) => {
+      if (e.key !== 'Enter' || e.isComposing) return;
+      const mod = e.metaKey || e.ctrlKey;
+      const t = e.target as HTMLElement | null;
+      if (!mod && t && (t.tagName === 'TEXTAREA' || t.closest('button'))) return;
+      e.preventDefault();
+      if (mod) ref.current.onContinue?.();
+      else ref.current.onSubmit();
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [enabled]);
+}
+
 export function Switch({ on, onChange, label }: { on: boolean; onChange: (v: boolean) => void; label?: string }) {
   return (
     <label className={`switch ${on ? 'on' : ''}`} aria-label={label}>
