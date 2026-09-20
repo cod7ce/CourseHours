@@ -85,8 +85,8 @@ export function StudentFormModal({ student, classes, onClose, onDone, onCreated 
       onClose={onClose}
       width={520}
       footer={<>
-        <button className="btn" onClick={onClose} disabled={busy}>取消<Kbd>esc</Kbd></button>
-        {!editing && <button className="btn" onClick={() => submit(true)} disabled={busy}>保存并继续<Kbd>⌘⏎</Kbd></button>}
+        <button className="btn" onClick={onClose} disabled={busy}>取消<Kbd>Esc</Kbd></button>
+        {!editing && <button className="btn" onClick={() => submit(true)} disabled={busy}>保存并继续<Kbd>⌘ + ⏎</Kbd></button>}
         <button className="btn primary" onClick={() => submit(false)} disabled={busy}>{editing ? '保存' : '新增'}<Kbd>⏎</Kbd></button>
       </>}
     >

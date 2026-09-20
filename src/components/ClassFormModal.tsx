@@ -87,8 +87,8 @@ export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
       sub={editing ? '修改不影响已产生的流水' : savedCount > 0 ? `本次已创建 ${savedCount} 个班级` : '设定上课时段、人数上限和单次时长'}
       onClose={onClose} width={640}
       footer={<>
-        <button className="btn" onClick={onClose}>取消<Kbd>esc</Kbd></button>
-        {!editing && <button className="btn" disabled={busy} onClick={() => submit(true)}>保存并继续<Kbd>⌘⏎</Kbd></button>}
+        <button className="btn" onClick={onClose}>取消<Kbd>Esc</Kbd></button>
+        {!editing && <button className="btn" disabled={busy} onClick={() => submit(true)}>保存并继续<Kbd>⌘ + ⏎</Kbd></button>}
         <button className="btn primary" disabled={busy} onClick={() => submit(false)}>{editing ? '保存' : '创建班级'}<Kbd>⏎</Kbd></button>
       </>}>
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 14, alignItems: 'end' }}>

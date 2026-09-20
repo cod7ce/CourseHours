@@ -68,8 +68,8 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
   return (
     <Modal title="临时加课" sub="加课只创建一节课次，课时在点名时才扣" onClose={onClose} width={480}
       footer={<>
-        <button className="btn" onClick={savedCount > 0 ? onDone : onClose}>取消<Kbd>esc</Kbd></button>
-        <button className="btn" disabled={busy || classes.length === 0} onClick={() => submit(true)}>添加并继续<Kbd>⌘⏎</Kbd></button>
+        <button className="btn" onClick={savedCount > 0 ? onDone : onClose}>取消<Kbd>Esc</Kbd></button>
+        <button className="btn" disabled={busy || classes.length === 0} onClick={() => submit(true)}>添加并继续<Kbd>⌘ + ⏎</Kbd></button>
         <button className="btn primary" disabled={busy || classes.length === 0} onClick={() => submit(false)}>添加课次<Kbd>⏎</Kbd></button>
       </>}>
       {classes.length === 0 ? (

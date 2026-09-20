@@ -83,7 +83,9 @@ export function Kbd({ children }: { children: ReactNode }) {
 
 /**
  * 弹窗表单快捷键：回车提交，⌘回车保存并继续。Esc 由 Modal 自己处理。
- * 焦点在按钮或多行输入里时，回车交还给它们；中文输入法组字中不触发。
+ * 焦点在按钮或多行输入里时，回车交还给它们。
+ * 中文输入法：组字中不触发；部分输入法上屏时 compositionend 先于 keydown，
+ * 所以上屏后 250ms 内的回车也一并忽略，避免选候选词时误提交。
  */
 export function useFormShortcuts({ onSubmit, onContinue, enabled = true }: {
   onSubmit: () => void; onContinue?: () => void; enabled?: boolean;
@@ -92,17 +94,28 @@ export function useFormShortcuts({ onSubmit, onContinue, enabled = true }: {
   ref.current = { onSubmit, onContinue };
   useEffect(() => {
     if (!enabled) return;
+    let composing = false;
+    let endedAt = 0;
+    const onStart = () => { composing = true; };
+    const onEnd = () => { composing = false; endedAt = Date.now(); };
     const h = (e: KeyboardEvent) => {
-      if (e.key !== 'Enter' || e.isComposing) return;
+      if (e.key !== 'Enter') return;
+      if (composing || e.isComposing || e.keyCode === 229 || Date.now() - endedAt < 250) return;
       const mod = e.metaKey || e.ctrlKey;
-      const t = e.target as HTMLElement | null;
-      if (!mod && t && (t.tagName === 'TEXTAREA' || t.closest('button'))) return;
+      const el = e.target instanceof HTMLElement ? e.target : null;
+      if (!mod && el && (el.tagName === 'TEXTAREA' || el.closest('button'))) return;
       e.preventDefault();
       if (mod) ref.current.onContinue?.();
       else ref.current.onSubmit();
     };
+    document.addEventListener('compositionstart', onStart, true);
+    document.addEventListener('compositionend', onEnd, true);
     window.addEventListener('keydown', h);
-    return () => window.removeEventListener('keydown', h);
+    return () => {
+      document.removeEventListener('compositionstart', onStart, true);
+      document.removeEventListener('compositionend', onEnd, true);
+      window.removeEventListener('keydown', h);
+    };
   }, [enabled]);
 }
 
