@@ -20,12 +20,21 @@ pnpm tauri dev                    # 启动开发版
 COURSEHOURS_SEED=1 pnpm tauri dev # 空库时写入一套演示数据（仅 debug 构建有效）
 ```
 
-测试与检查：
+测试与检查（提交前跑 `pnpm check` 一次全过）：
 
 ```bash
 pnpm typecheck                    # 前端类型检查
-cd src-tauri && cargo test        # 48 个 Rust 单测 + 集成测试
+pnpm lint                         # ESLint，重点是 react-hooks/rules-of-hooks
+pnpm test                         # 前端冒烟测试：12 屏 + 主要弹窗真渲染一遍
+cd src-tauri && cargo test        # Rust 单测 + 事务集成测试
 ```
+
+前端测试把 Tauri 的 `invoke` 换成 `src/test/tauri-mock.ts` 里的假数据，分两层：
+
+- `routes.test.tsx` 冒烟：12 屏 + 设置六个分区 + 主要弹窗真渲染一遍，断言「没有 console.error」，接住 hooks 顺序、空数据、字段改名这类运行时错误。
+- `interactions.test.tsx` 交互：点名四态与合计、免费学员不扣、充值算单价与两种抵扣方式、连续新建、弹窗快捷键与输入法回车、隐藏金额与 Touch ID、课表拖拽 15 分钟吸附、设置脏标记与保存，都会断言「发给后端的参数是对的」。
+
+加了新命令要在 mock 里补一条 fixture，否则测试会明确报「没有为命令 xxx 准备假数据」。
 
 ## 打包
 

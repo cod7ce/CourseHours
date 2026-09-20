@@ -28,11 +28,18 @@ public/fonts/  Newsreader + Noto Serif SC 本地 woff2
 ```
 pnpm tauri dev                          # 开发
 COURSEHOURS_SEED=1 pnpm tauri dev       # 空库时写入演示数据（仅 debug）
+pnpm check                              # typecheck + lint + 前端测试 + Rust 测试，提交前跑
 pnpm typecheck                          # 前端类型检查
+pnpm lint                               # ESLint（react-hooks/rules-of-hooks 是 error）
+pnpm test                               # 前端冒烟测试，src/test/routes.test.tsx
 cd src-tauri && cargo test              # Rust 单测 + 集成测试
 pnpm tauri build                        # 打 dmg/app（未签名）
 ```
 Rust 通过 rustup 安装，命令前 `source ~/.cargo/env`。
+
+## 改前端要注意
+- hooks 必须在任何提前 `return` 之前调用；`pnpm lint` 会拦（React error #310 就是这么来的）。
+- 新增 Tauri 命令后，在 `src/test/tauri-mock.ts` 里补一条 fixture，否则冒烟测试会失败。
 
 ## 三条不能破的原则（来自 spec）
 1. `ledger_entry` 只 INSERT，撤销/调整都是写反向 `adjust` 分录。

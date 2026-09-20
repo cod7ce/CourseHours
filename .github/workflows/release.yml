@@ -27,6 +27,8 @@ jobs:
           workspaces: src-tauri
       - name: 安装依赖
         run: pnpm install --frozen-lockfile
+      - name: 检查（类型 / lint / 前端测试 / Rust 测试）
+        run: pnpm check
       - name: 编译 Touch ID 助手
         run: scripts/build-authlock.sh
       - name: 打包
