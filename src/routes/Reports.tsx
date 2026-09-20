@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import * as api from '../lib/api';
 import type { ClassReportRow, Report } from '../lib/api';
-import { Empty, Loading, PageHeader, useAsync, useToast } from '../components/ui';
+import { Empty, Loading, PageHeader, useAsync, usePageHotkeys, useToast } from '../components/ui';
 import { IconBack, IconNext } from '../components/icons';
 import { saveCsv } from '../lib/files';
 import { cnDate, cnMonth, num, pct, shiftMonth, thisMonth, yuan } from '../lib/format';
@@ -16,6 +16,11 @@ const BOX_H = 188; // 图区总高（留出顶部标值空间）
 export function Reports() {
   const toast = useToast();
   const [month, setMonth] = useState(thisMonth());
+  usePageHotkeys({
+    ArrowLeft: () => setMonth((m) => shiftMonth(m, -1)),
+    ArrowRight: () => setMonth((m) => (m >= thisMonth() ? m : shiftMonth(m, 1))),
+    t: () => setMonth(thisMonth()),
+  });
   const [exporting, setExporting] = useState(false);
   const [opErr, setOpErr] = useState<string | null>(null);
   const { data, loading, error } = useAsync(() => api.getReport(month), [month]);
@@ -32,13 +37,13 @@ export function Reports() {
   const right = (
     <>
       <div style={{ display: 'flex', alignItems: 'center', background: 'var(--surface)', border: '1px solid var(--line-ctrl)', borderRadius: 9, overflow: 'hidden' }}>
-        <button type="button" aria-label="上个月" onClick={() => setMonth((m) => shiftMonth(m, -1))}
+        <button type="button" aria-label="上个月" title="上个月（←）" onClick={() => setMonth((m) => shiftMonth(m, -1))}
           style={{ width: 36, height: 36, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><IconBack size={15} /></button>
         <span style={{ width: 1, height: 20, background: 'var(--line-mid)' }} />
         <button type="button" className="num" onClick={() => setMonth(thisMonth())} title={atCurrent ? undefined : '回到本月'}
           style={{ height: 36, padding: '0 14px', border: 0, background: 'transparent', fontSize: 13.5, cursor: atCurrent ? 'default' : 'pointer' }}>{cnMonth(month)}</button>
         <span style={{ width: 1, height: 20, background: 'var(--line-mid)' }} />
-        <button type="button" aria-label="下个月" disabled={atCurrent} onClick={() => setMonth((m) => shiftMonth(m, 1))}
+        <button type="button" aria-label="下个月" title="下个月（→）" disabled={atCurrent} onClick={() => setMonth((m) => shiftMonth(m, 1))}
           style={{ width: 36, height: 36, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}><IconNext size={15} /></button>
       </div>
       <button className="btn" style={{ padding: '0 16px', fontSize: 13.5 }} disabled={exporting || !data} onClick={exportCsv}>导出 CSV</button>

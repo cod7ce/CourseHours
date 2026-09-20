@@ -7,7 +7,7 @@ import { ExtraSessionModal } from '../components/ExtraSessionModal';
 import { ClassScheduleModal } from '../components/ScheduleEditor';
 import { Modal } from '../components/ui';
 import { IconCheck, IconInfo } from '../components/icons';
-import { Loading, PageHeader, Stepper, Switch, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Kbd, Loading, PageHeader, Stepper, Switch, useAsync, useConfirm, useNewAction, useRefresh, useToast } from '../components/ui';
 
 const DOW = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
 function dow(date: string): string {
@@ -100,12 +100,14 @@ export function Scheduling() {
   const lastGen = p?.lastGeneratedAt != null ? cnDate(dateOf(p.lastGeneratedAt)) : '尚未生成';
   const through = p?.scheduledThrough ? cnDate(p.scheduledThrough) : '—';
 
+  useNewAction(() => setExtraOpen(true));
+
   const dotStyle = (color: string): CSSProperties => ({ width: 8, height: 8, borderRadius: 3, flexShrink: 0, background: color });
 
   return (
     <>
       <PageHeader crumb={{ to: '/schedule', label: '课表' }} title="排课" right={<>
-        <button className="btn" onClick={() => setExtraOpen(true)}>临时加课</button>
+        <button className="btn" onClick={() => setExtraOpen(true)}>临时加课<Kbd>⌘ + N</Kbd></button>
         <button className="btn primary" onClick={() => setRuleModal('pick')}>设置上课时间</button>
       </>} />
 

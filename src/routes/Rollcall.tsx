@@ -1,9 +1,9 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate, useParams } from 'react-router';
 import * as api from '../lib/api';
 import { errMsg } from '../lib/api';
 import type { AttendanceStatus, PickStudent, RollcallStudent, RollcallView } from '../lib/api';
-import { Loading, Modal, PageHeader, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Kbd, Loading, Modal, PageHeader, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
 import { IconInfo } from '../components/icons';
 import { cnDate, num, statusLabel, yuan } from '../lib/format';
 
@@ -119,11 +119,16 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
     ? '所有学生扣后仍有余额'
     : <>{low} 人课时不足，扣后合计欠 <span className="num">{num(owed)}</span> 课时 · {rule.allowNegative ? '不影响上课，补缴后自动抵扣' : '规则不允许欠课时，需先充值'}</>;
 
-  // ---------- 键盘：1/2/3/4 打状态，↑↓ 换行 ----------
+  // ---------- 键盘：⌘⏎ 确认；1/2/3/4 打状态，↑↓ 换行 ----------
   const modalOpen = pickOpen || cancelOpen;
   useEffect(() => {
     if (!planned) return;
     const h = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key === 'Enter' && !modalOpen && !busy) {
+        e.preventDefault();
+        void doConfirmRef.current?.();
+        return;
+      }
       if (modalOpen || e.metaKey || e.ctrlKey || e.altKey) return;
       const t = e.target as HTMLElement | null;
       if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT')) return;
@@ -134,7 +139,7 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
     };
     window.addEventListener('keydown', h);
     return () => window.removeEventListener('keydown', h);
-  }, [planned, modalOpen, students, cur, set]);
+  }, [planned, modalOpen, students, cur, set, busy]);
 
   // ---------- 操作 ----------
   const allPresent = () => { setMarks({}); setErr(null); };
@@ -147,6 +152,8 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
     } catch (e) { setErr(errMsg(e)); }
   };
 
+  const doConfirmRef = useRef<(() => Promise<void>) | null>(null);
+
   const doConfirm = async () => {
     setErr(null); setBusy(true);
     try {
@@ -158,6 +165,8 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
       nav(back.to);
     } catch (e) { setErr(errMsg(e)); } finally { setBusy(false); }
   };
+
+  doConfirmRef.current = doConfirm;
 
   const doCancel = async (reason: string) => {
     setErr(null); setBusy(true);
@@ -322,7 +331,7 @@ function RollcallBody({ view, sessionId, reload, back }: { view: RollcallView; s
           <div style={{ flexGrow: 1 }} />
           {planned && <>
             <button type="button" className="btn lg" onClick={saveDraft} disabled={busy}>保存草稿</button>
-            <button type="button" className="btn lg primary" onClick={doConfirm} disabled={busy || rows.length === 0}>确认扣课时</button>
+            <button type="button" className="btn lg primary" onClick={doConfirm} disabled={busy || rows.length === 0}>确认扣课时<Kbd>⌘ + ⏎</Kbd></button>
           </>}
           {taken && (
             <button type="button" className="btn lg danger" onClick={doUndo} disabled={busy || !view.undoable}

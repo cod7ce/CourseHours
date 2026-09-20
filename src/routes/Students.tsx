@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState, type CSSProperties } from 'react';
 import { useNavigate } from 'react-router';
 import * as api from '../lib/api';
 import type { ClassCard, StudentFilter, StudentRow } from '../lib/api';
-import { Avatar, Empty, Loading, PageHeader, balanceColor, useAsync, useRefresh, useToast } from '../components/ui';
+import { Avatar, Empty, Kbd, Loading, PageHeader, balanceColor, useAsync, useNewAction, useRefresh, useToast } from '../components/ui';
 import { IconSearch } from '../components/icons';
 import { StudentFormModal } from '../components/StudentFormModal';
 import { addDays, md, num, todayStr, yuan } from '../lib/format';
@@ -21,6 +21,7 @@ const FILTERS: { key: Filter; label: string; stat: keyof api.StudentListStats }[
 
 // 画板列宽
 const W = { cls: 118, n: 68, last: 72, owed: 84, st: 96, op: 82 };
+const SEARCH_HINT: CSSProperties = { fontSize: 11, color: 'var(--ink-4)', flexShrink: 0 };
 const col = (w: number, right = false): CSSProperties => ({ width: w, flexShrink: 0, textAlign: right ? 'right' : undefined });
 
 /** 每周上课次数：各班启用规则的星期数之和；无法得知按每周 2 次 */
@@ -103,12 +104,15 @@ export function Students() {
         <label className="search-box">
           <IconSearch style={{ color: 'var(--ink-3)' }} />
           <input data-search type="text" placeholder="搜索学生姓名" value={query} onChange={(e) => setQuery(e.target.value)} />
+          <span style={SEARCH_HINT}>⌘ /</span>
         </label>
         <button className="btn" onClick={exportCsv}>导出名单</button>
-        <button className="btn primary" onClick={() => setShowForm(true)}>新增学生</button>
+        <button className="btn primary" onClick={() => setShowForm(true)}>新增学生<Kbd>⌘ + N</Kbd></button>
       </>}
     />
   );
+
+  useNewAction(() => setShowForm(true));
 
   const modal = showForm && (
     <StudentFormModal

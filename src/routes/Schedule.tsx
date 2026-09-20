@@ -7,7 +7,7 @@ import { ExtraSessionModal } from '../components/ExtraSessionModal';
 import { IconBack, IconNext } from '../components/icons';
 import { DatePicker, fromMinutes, toMinutes } from '../components/pickers';
 import { TimeRangeFields, addMinutes } from '../components/TimeRange';
-import { Loading, Modal, PageHeader, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Kbd, Loading, Modal, PageHeader, useAsync, useConfirm, useNewAction, usePageHotkeys, useRefresh, useToast } from '../components/ui';
 
 const HOUR_H = 52;
 const START_H = 9;
@@ -132,6 +132,13 @@ export function Schedule() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [!!drag]);
 
+  useNewAction(() => setExtraOpen(anchor));
+  usePageHotkeys({
+    ArrowLeft: () => setAnchor((a) => addDays(a, -7)),
+    ArrowRight: () => setAnchor((a) => addDays(a, 7)),
+    t: () => setAnchor(todayStr()),
+  }, !drag);
+
   const sub = data ? `${cnFullDate(data.from)} – ${cnDate(data.to)}` : ' ';
   const ghostTime = drag && drag.moved
     ? (() => {
@@ -145,20 +152,21 @@ export function Schedule() {
     <>
       <PageHeader title="课表" sub={sub} right={<>
         <div style={{ display: 'flex', alignItems: 'center', background: 'var(--surface)', border: '1px solid var(--line-ctrl)', borderRadius: 9, overflow: 'hidden' }}>
-          <button type="button" aria-label="上一周" onClick={() => setAnchor(addDays(anchor, -7))}
+          <button type="button" aria-label="上一周" title="上一周（←）" onClick={() => setAnchor(addDays(anchor, -7))}
             style={{ width: 36, height: 36, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <IconBack size={15} />
           </button>
           <span style={{ width: 1, height: 20, background: 'var(--line-mid)' }} />
           <button type="button" onClick={() => setAnchor(todayStr())}
+            title="回到本周（T）"
             style={{ height: 36, padding: '0 14px', border: 0, background: 'transparent', fontSize: 13, cursor: 'pointer' }}>本周</button>
           <span style={{ width: 1, height: 20, background: 'var(--line-mid)' }} />
-          <button type="button" aria-label="下一周" onClick={() => setAnchor(addDays(anchor, 7))}
+          <button type="button" aria-label="下一周" title="下一周（→）" onClick={() => setAnchor(addDays(anchor, 7))}
             style={{ width: 36, height: 36, border: 0, background: 'transparent', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
             <IconNext size={15} />
           </button>
         </div>
-        <button className="btn" onClick={() => setExtraOpen(anchor)}>临时加课</button>
+        <button className="btn" onClick={() => setExtraOpen(anchor)}>临时加课<Kbd>⌘ + N</Kbd></button>
         <Link className="btn primary" to="/schedule/planning">排课</Link>
       </>} />
 

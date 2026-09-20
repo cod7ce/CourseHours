@@ -2,18 +2,27 @@ import { Outlet, useNavigate } from 'react-router';
 import { useEffect } from 'react';
 import { getCurrentWindow } from '@tauri-apps/api/window';
 import { Sidebar } from './Sidebar';
-import { usePrivacy } from './ui';
+import { usePrivacy, useRunNewAction } from './ui';
 
 export function Shell() {
   const nav = useNavigate();
   const { hidden } = usePrivacy();
+  const runNew = useRunNewAction();
   useEffect(() => {
+    const NAV = ['/', '/schedule', '/students', '/classes', '/ledger', '/reports'];
     const h = (e: KeyboardEvent) => {
-      if (e.metaKey && e.key === ',') { e.preventDefault(); nav('/settings/rules'); }
-      if (e.metaKey && e.key === 'f') {
+      if (!e.metaKey && !e.ctrlKey) return;
+      if (e.key === ',') { e.preventDefault(); nav('/settings/rules'); return; }
+      if (e.key === 'f' || e.key === '/') {
         const el = document.querySelector<HTMLInputElement>('input[data-search]');
         if (el) { e.preventDefault(); el.focus(); el.select(); }
+        return;
       }
+      // ⌘N：当前页的「新建」；弹窗开着时不抢
+      if (e.key === 'n' && !document.querySelector('.overlay')) { e.preventDefault(); runNew(); return; }
+      // ⌘1–⌘6：切主页面
+      const n = Number(e.key);
+      if (n >= 1 && n <= NAV.length && !document.querySelector('.overlay')) { e.preventDefault(); nav(NAV[n - 1]); }
     };
     window.addEventListener('keydown', h);
     // 窗口拖动：侧边栏、页面顶栏的空白处按下即拖（Tauri 不支持 -webkit-app-region）
@@ -28,7 +37,7 @@ export function Shell() {
     };
     document.addEventListener('mousedown', drag);
     return () => { window.removeEventListener('keydown', h); document.removeEventListener('mousedown', drag); };
-  }, [nav]);
+  }, [nav, runNew]);
   return (
     <div className="app">
       <Sidebar />

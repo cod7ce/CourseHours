@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Link, useNavigate } from 'react-router';
 import * as api from '../lib/api';
 import type { ClassCard, RuleSummary } from '../lib/api';
-import { Empty, Loading, PageHeader, useAsync } from '../components/ui';
+import { Empty, Kbd, Loading, PageHeader, useAsync, useNewAction } from '../components/ui';
 import { IconPlus } from '../components/icons';
 import { ClassFormModal } from '../components/ClassFormModal';
 import { md, num, yuan } from '../lib/format';
@@ -25,10 +25,12 @@ export function Classes() {
   const [creating, setCreating] = useState(false);
   const { data, loading, error, reload } = useAsync(() => api.listClasses(true), []);
 
+  useNewAction(() => setCreating(true));
+
   const right = (
     <>
       <button className={`btn ${showEnded ? 'primary' : ''}`} onClick={() => setShowEnded((v) => !v)}>{showEnded ? '返回在读班级' : '已结束的班级'}</button>
-      <button className="btn primary" onClick={() => setCreating(true)}>新建班级</button>
+      <button className="btn primary" onClick={() => setCreating(true)}>新建班级<Kbd>⌘ + N</Kbd></button>
     </>
   );
 

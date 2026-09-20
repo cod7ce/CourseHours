@@ -242,6 +242,7 @@ function SearchBox() {
         <input data-search type="text" placeholder="搜索学生或班级" value={q}
           onChange={(e) => setQ(e.target.value)} onFocus={() => { if (hits.length) setOpen(true); }}
           onKeyDown={(e) => { if (e.key === 'Enter' && hits[0]) go(hits[0]); if (e.key === 'Escape') setOpen(false); }} />
+        <span style={{ fontSize: 11, color: 'var(--ink-4)', flexShrink: 0 }}>⌘ /</span>
       </label>
       {open && q.trim() && (
         <div className="card" style={{ position: 'absolute', top: 40, right: 0, width: 300, zIndex: 20, padding: '4px 0', boxShadow: '0 12px 32px -16px rgba(60, 30, 10, .4)', maxHeight: 320, overflow: 'auto' }}>

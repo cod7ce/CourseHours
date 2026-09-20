@@ -5,7 +5,7 @@ import type { LedgerKind, LedgerView } from '../lib/api';
 import { saveCsv } from '../lib/files';
 import { cnMonth, dt, num, shiftMonth, thisMonth, yuan } from '../lib/format';
 import { IconBack, IconNext, IconSearch } from '../components/icons';
-import { Empty, Loading, PageHeader, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Empty, Loading, PageHeader, useAsync, useConfirm, usePageHotkeys, useRefresh, useToast } from '../components/ui';
 
 const PAGE_SIZE = 10;
 const KINDS: { k: LedgerKind; label: string }[] = [
@@ -61,6 +61,11 @@ export function Ledger() {
   const { bump } = useRefresh();
 
   const [month, setMonth] = useState(thisMonth());
+  usePageHotkeys({
+    ArrowLeft: () => setMonth((m) => shiftMonth(m, -1)),
+    ArrowRight: () => setMonth((m) => shiftMonth(m, 1)),
+    t: () => setMonth(thisMonth()),
+  });
   const [kind, setKind] = useState<LedgerKind>('all');
   const [classId, setClassId] = useState('');
   const [q, setQ] = useState('');
@@ -124,13 +129,13 @@ export function Ledger() {
       <PageHeader title="课时流水" sub="全机构逐笔记录 · 每一次扣减、充值、抵扣、冲正都可追溯"
         right={<>
           <div style={{ display: 'flex', alignItems: 'center', background: 'var(--surface)', border: '1px solid var(--line-ctrl)', borderRadius: 9, overflow: 'hidden' }}>
-            <button type="button" aria-label="上个月" style={navBtn} onClick={() => setMonth((m) => shiftMonth(m, -1))}><IconBack size={15} /></button>
+            <button type="button" aria-label="上个月" title="上个月（←）" style={navBtn} onClick={() => setMonth((m) => shiftMonth(m, -1))}><IconBack size={15} /></button>
             <span style={vline} />
             <button type="button" className="num" style={{ height: 36, padding: '0 14px', border: 0, background: 'transparent', fontSize: 13.5, cursor: 'pointer', color: 'var(--ink)' }} onClick={() => setMonth(thisMonth())} title="回到本月">
               {cnMonth(month)}
             </button>
             <span style={vline} />
-            <button type="button" aria-label="下个月" style={navBtn} onClick={() => setMonth((m) => shiftMonth(m, 1))}><IconNext size={15} /></button>
+            <button type="button" aria-label="下个月" title="下个月（→）" style={navBtn} onClick={() => setMonth((m) => shiftMonth(m, 1))}><IconNext size={15} /></button>
           </div>
           <button type="button" className="btn" style={{ fontSize: 13.5, padding: '0 16px' }} disabled={exporting} onClick={exportCsv}>导出 CSV</button>
         </>} />

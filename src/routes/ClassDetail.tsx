@@ -2,7 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
 import * as api from '../lib/api';
 import type { ClassDetail as ClassDetailView, PickStudent, RosterRow, SessionBrief } from '../lib/api';
-import { Empty, Loading, Modal, PageHeader, balanceColor, useAsync, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Empty, Kbd, Loading, Modal, PageHeader, balanceColor, useAsync, useConfirm, useNewAction, useRefresh, useToast } from '../components/ui';
 import { IconCheck, IconSearch } from '../components/icons';
 import { ClassFormModal } from '../components/ClassFormModal';
 import { saveCsv } from '../lib/files';
@@ -26,6 +26,9 @@ export function ClassDetail() {
     () => Promise.all([api.getClass(id), api.getSettings()]).then(([k, s]) => ({ k, threshold: s.alerts.lowBalanceThreshold })),
     [id],
   );
+
+  // ⌘N = 加入学生。hook 必须在提前 return 之前调用
+  useNewAction(data?.k.status === 'active' ? () => setEnrolling(true) : null);
 
   const crumb = { to: '/classes', label: '班级' };
   if (error) return <><PageHeader crumb={crumb} title="班级详情" /><div className="page-body"><div className="err">{error}</div></div></>;
@@ -93,7 +96,7 @@ export function ClassDetail() {
     <>
       <PageHeader crumb={crumb} title={title} right={<>
         <button className="btn" onClick={() => setEditing(true)}>编辑班级</button>
-        <button className="btn" disabled={!active} onClick={() => setEnrolling(true)}>加入学生</button>
+        <button className="btn" disabled={!active} onClick={() => setEnrolling(true)}>加入学生<Kbd>⌘ + N</Kbd></button>
         {rollTo ? <Link className="btn primary" to={rollTo} state={{ from: `/classes/${id}`, label: k.name }}>去点名</Link> : <button className="btn primary" disabled title="没有待点名的课次">去点名</button>}
       </>} />
 

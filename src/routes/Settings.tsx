@@ -1,8 +1,8 @@
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState, useRef } from 'react';
 import { useBlocker, useNavigate, useParams } from 'react-router';
 import * as api from '../lib/api';
 import type { AllSettings } from '../lib/api';
-import { Loading, PageHeader, useConfirm, useRefresh, useToast } from '../components/ui';
+import { Kbd, Loading, PageHeader, useConfirm, useRefresh, useToast } from '../components/ui';
 import {
   AlertsPreview, AlertsSection, DataPreview, DataSection, OrgPreview, OrgSection, VersionPreview, VersionSection,
   PacksPreview, PacksSection, RulesPreview, RulesSection,
@@ -76,6 +76,15 @@ export function Settings() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [blocker.state]);
 
+  const saveRef = useRef<(() => void) | null>(null);
+  useEffect(() => {
+    const h = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 's') { e.preventDefault(); saveRef.current?.(); }
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, []);
+
   const save = async () => {
     if (!draft) return;
     setSaving(true); setSaveErr(null);
@@ -90,6 +99,8 @@ export function Settings() {
       setSaving(false);
     }
   };
+
+  saveRef.current = () => { if (!saving && dirty) void save(); };
 
   const reset = () => {
     setDraft((d) => d ? {
@@ -149,7 +160,7 @@ export function Settings() {
             <div style={{ flexGrow: 1 }} />
             <button type="button" className="btn ghost" style={{ height: 38, padding: '0 14px', borderRadius: 10, fontSize: 13.5 }} onClick={reset}>恢复默认</button>
             {dirty && <button type="button" className="btn" style={{ height: 38, padding: '0 18px', borderRadius: 10, fontSize: 13.5 }} onClick={() => setDraft(saved)}>放弃改动</button>}
-            <button type="button" className="btn primary" style={{ height: 38, padding: '0 24px', borderRadius: 10 }} disabled={saving || !dirty} onClick={save}>保存设置</button>
+            <button type="button" className="btn primary" style={{ height: 38, padding: '0 24px', borderRadius: 10 }} disabled={saving || !dirty} onClick={save}>保存设置<Kbd>⌘ + S</Kbd></button>
           </div>}
         </section>
 

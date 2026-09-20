@@ -76,6 +76,45 @@ export function Modal({ title, sub, children, footer, onClose, width = 520 }: {
 }
 
 // ---------- 小件 ----------
+/** 当前页面的「新建」动作：页面用 useNewAction 注册，Shell 里 ⌘N 触发 */
+const NewActionCtx = createContext<{ current: (() => void) | null }>({ current: null });
+export function NewActionProvider({ children }: { children: ReactNode }) {
+  const ref = useRef<(() => void) | null>(null);
+  return <NewActionCtx.Provider value={ref}>{children}</NewActionCtx.Provider>;
+}
+export function useNewAction(fn: (() => void) | null) {
+  const ref = useContext(NewActionCtx);
+  useEffect(() => {
+    ref.current = fn;
+    return () => { if (ref.current === fn) ref.current = null; };
+  });
+}
+export function useRunNewAction() {
+  const ref = useContext(NewActionCtx);
+  return useCallback(() => { ref.current?.(); }, [ref]);
+}
+
+/** 页面级热键：焦点在输入框 / 弹窗打开时不触发（除非 allowInInput） */
+export function usePageHotkeys(map: Record<string, () => void>, enabled = true) {
+  const ref = useRef(map);
+  ref.current = map;
+  useEffect(() => {
+    if (!enabled) return;
+    const h = (e: KeyboardEvent) => {
+      if (document.querySelector('.overlay')) return;
+      const el = e.target instanceof HTMLElement ? e.target : null;
+      if (el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT')) return;
+      const key = `${e.metaKey || e.ctrlKey ? 'mod+' : ''}${e.key.length === 1 ? e.key.toLowerCase() : e.key}`;
+      const fn = ref.current[key];
+      if (!fn) return;
+      e.preventDefault();
+      fn();
+    };
+    window.addEventListener('keydown', h);
+    return () => window.removeEventListener('keydown', h);
+  }, [enabled]);
+}
+
 /** 按钮上的快捷键提示 */
 export function Kbd({ children }: { children: ReactNode }) {
   return <span style={{ marginLeft: 7, fontSize: 11, opacity: 0.6, fontFamily: 'var(--font-body)' }}>{children}</span>;
