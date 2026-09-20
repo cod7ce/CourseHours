@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import * as api from '../lib/api';
 import type { ClassCard, Student, StudentInput } from '../lib/api';
 import { DatePicker } from './pickers';
@@ -33,8 +33,10 @@ export function StudentFormModal({ student, classes, onClose, onDone, onCreated 
   const toggleClass = (id: string) =>
     setClassIds((s) => (s.includes(id) ? s.filter((x) => x !== id) : [...s, id]));
 
+  const nameRef = useRef<HTMLInputElement>(null);
   const resetForNext = () => {
     setName(''); setEnName(''); setGuardianName(''); setPhone(''); setNote(''); setFree(false);
+    nameRef.current?.focus();
     // 入学日期与所选班级保留，方便连续录同一批学生
   };
 
@@ -91,7 +93,7 @@ export function StudentFormModal({ student, classes, onClose, onDone, onCreated 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
         <div className="field">
           <label>姓名 <span style={{ color: 'var(--danger)' }}>*</span></label>
-          <input className="input" value={name} autoFocus onChange={(e) => setName(e.target.value)} placeholder="学生姓名" />
+          <input ref={nameRef} className="input" value={name} autoFocus onChange={(e) => setName(e.target.value)} placeholder="学生姓名" />
         </div>
         <div className="field">
           <label>英文名</label>

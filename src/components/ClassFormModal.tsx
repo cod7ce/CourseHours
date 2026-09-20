@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import * as api from '../lib/api';
 import type { Klass, RuleSummary } from '../lib/api';
 import { CLASS_COLORS } from '../lib/format';
@@ -12,6 +12,7 @@ export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
   onCreated?: (id: string) => void;
 }) {
   const [savedCount, setSavedCount] = useState(0);
+  const nameRef = useRef<HTMLInputElement>(null);
   const toast = useToast();
   const { bump } = useRefresh();
   const editing = !!klass;
@@ -66,6 +67,7 @@ export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
           // 名称、时段清空；颜色换下一个，教室 / 上限 / 时长保留
           setName(''); setSlots([]);
           setColor((c) => CLASS_COLORS[(CLASS_COLORS.indexOf(c) + 1) % CLASS_COLORS.length]);
+          nameRef.current?.focus();
         } else {
           toast('班级已创建', 'ok');
           onDone(created.id);
@@ -92,7 +94,7 @@ export function ClassFormModal({ klass, rules, onClose, onDone, onCreated }: {
       <div style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: 14, alignItems: 'end' }}>
         <div className="field">
           <label>班级名称</label>
-          <input className="input" value={name} autoFocus placeholder="例如：Movers B 班" onChange={(e) => setName(e.target.value)} />
+          <input ref={nameRef} className="input" value={name} autoFocus placeholder="例如：Movers B 班" onChange={(e) => setName(e.target.value)} />
         </div>
         <div className="field">
           <label>颜色</label>

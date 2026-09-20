@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import * as api from '../lib/api';
 import type { ClassCard } from '../lib/api';
 import { todayStr } from '../lib/format';
@@ -38,6 +38,7 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
   }, [klass?.id]);
 
   const [savedCount, setSavedCount] = useState(0);
+  const noteRef = useRef<HTMLInputElement>(null);
   const submit = async (andContinue = false) => {
     if (!classId) { setErr('请选择班级'); return; }
     if (!date) { setErr('请选择日期'); return; }
@@ -50,6 +51,7 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
         setSavedCount((n) => n + 1);
         toast('已添加，继续加下一节', 'ok');
         setNote('');
+        noteRef.current?.focus();
       } else {
         toast('已添加临时课次', 'ok');
         onDone();
@@ -97,7 +99,7 @@ export function ExtraSessionModal({ classes, defaultDate, onClose, onDone }: {
           </div>
           <div className="field">
             <label>备注</label>
-            <input className="input" value={note} placeholder="例如：考前加练 / 由 9-15 调课而来" onChange={(e) => setNote(e.target.value)} />
+            <input ref={noteRef} className="input" value={note} placeholder="例如：考前加练 / 由 9-15 调课而来" onChange={(e) => setNote(e.target.value)} />
           </div>
           {err && <div className="err">{err}</div>}
         </>
